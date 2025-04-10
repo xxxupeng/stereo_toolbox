@@ -1,0 +1,77 @@
+import os
+import torch
+from torch.utils.data import Dataset
+import numpy as np
+from PIL import Image
+from matplotlib import pyplot as plt
+from torchvision import transforms
+
+from .data_augmentation import *
+from .utils import *
+
+
+class SceneFlow_Dataset(Dataset):
+    def __init__(self, split: str, training: bool, raw_data:bool=False, root_dir='/data/xp/Scene_Flow/'):
+        assert split in ['train_cleanpass', 'train_finalpass', 'test_cleanpass', 'test_finalpass'], "Invalid split name"
+        self.split = split
+        self.training = training
+        self.raw_data = raw_data
+
+        dataset_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    f'datasets_lists/sceneflow/{self.split}.txt')
+        self.left_images, self.right_images, self.disp_images = read_lines(dataset_file)
+
+        self.left_images = [os.path.join(root_dir, line) for line in self.left_images]
+        self.right_images = [os.path.join(root_dir, line) for line in self.right_images]
+        self.disp_images = [os.path.join(root_dir, line) for line in self.disp_images if line is not None]
+
+        self.get_transform = get_transform()
+
+
+    def __len__(self):
+        return len(self.left_images)
+    
+
+    def load_image(self, filename: str):
+        return Image.open(filename).convert('RGB')
+    
+
+    def load_disp(self, filename: str):
+        disp, _ = pfm_imread(filename)
+        disp = np.ascontiguousarray(disp, dtype=np.float32)
+        return disp
+    
+
+    def load_noc_mask(self, filename: str):
+        pass
+
+
+    def __getitem__(self, index):
+        left_image = self.load_image(self.left_images[index])
+        right_image = self.load_image(self.right_images[index])
+        disp_image = self.load_disp(self.disp_images[index])
+        mask_image = np.ones_like(disp_image)
+
+        if self.training:
+            left_image, right_image, disp_image, mask_image = random_crop(left_image, right_image, disp_image, mask_image)
+            if self.raw_data:
+                raw_left_image = transforms.ToTensor()(left_image)
+                raw_right_image = transforms.ToTensor()(right_image)
+            left_image, right_image = random_jitter(left_image, right_image)
+            right_image = random_mask(right_image)
+        else:
+            left_image, right_image, disp_image, mask_image = pad_to_2x(left_image, right_image, disp_image, mask_image)
+            if self.raw_data:
+                raw_left_image = transforms.ToTensor()(left_image)
+                raw_right_image = transforms.ToTensor()(right_image)
+        
+        left_image = self.get_transform(left_image)
+        right_image = self.get_transform(right_image)
+
+        disp_image = torch.from_numpy(disp_image).float()
+        mask_image = torch.from_numpy(mask_image).float()
+
+        if self.raw_data:
+            return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
+        else:
+            return left_image, right_image, disp_image, mask_image, None, None
