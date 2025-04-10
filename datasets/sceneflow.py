@@ -37,20 +37,23 @@ class SceneFlow_Dataset(Dataset):
     
 
     def load_disp(self, filename: str):
+        if filename is None:
+            return None
+        
         disp, _ = pfm_imread(filename)
         disp = np.ascontiguousarray(disp, dtype=np.float32)
         return disp
     
 
     def load_noc_mask(self, filename: str):
-        pass
-
+        return None
+    
 
     def __getitem__(self, index):
         left_image = self.load_image(self.left_images[index])
         right_image = self.load_image(self.right_images[index])
         disp_image = self.load_disp(self.disp_images[index])
-        mask_image = np.ones_like(disp_image)
+        mask_image = self.load_noc_mask(None)
 
         if self.training:
             left_image, right_image, disp_image, mask_image = random_crop(left_image, right_image, disp_image, mask_image)
@@ -68,10 +71,17 @@ class SceneFlow_Dataset(Dataset):
         left_image = self.get_transform(left_image)
         right_image = self.get_transform(right_image)
 
-        disp_image = torch.from_numpy(disp_image).float()
-        mask_image = torch.from_numpy(mask_image).float()
+        if disp_image is not None:
+            disp_image = torch.from_numpy(np.ascontiguousarray(disp_image)).float()
+        else:
+            disp_image = torch.zeros(left_image.shape[1:], dtype=left_image.dtype, device=left_image.device)
+        
+        if mask_image is not None:
+            mask_image = torch.from_numpy(np.ascontiguousarray(mask_image)).float()
+        else:
+            mask_image = torch.ones(left_image.shape[1:], dtype=left_image.dtype, device=left_image.device)
 
         if self.raw_data:
             return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
         else:
-            return left_image, right_image, disp_image, mask_image, None, None
+            return left_image, right_image, disp_image, mask_image, torch.zeros_like(left_image), torch.zeros_like(right_image)
