@@ -10,3 +10,4 @@
 **/*.npy
 **/*.npz
 **/*.ckpt
+**/.pypirc

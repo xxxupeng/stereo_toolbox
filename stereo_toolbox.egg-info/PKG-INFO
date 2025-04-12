@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: stereo-toolbox
+Version: 0.0.1
+Summary: stereo toolbox.
+Home-page: https://github.com/xxxupeng/stereo_toolbox
+Author: xxxupeng
+Author-email: xxxupeng@zju.edu.cn
+License: MIT Licence
+Keywords: pip,stereo matching
+Platform: any
+License-File: LICENSE
+
+A comprehensive stereo matching toolbox for efficient development and research.
