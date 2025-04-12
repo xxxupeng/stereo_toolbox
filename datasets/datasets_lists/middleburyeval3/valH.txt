@@ -1,0 +1,3 @@
+trainingH/Playroom/im0.png trainingH/Playroom/im1.png trainingH/Playroom/disp0GT.pfm
+trainingH/Shelves/im0.png trainingH/Shelves/im1.png trainingH/Shelves/disp0GT.pfm
+trainingH/Pipes/im0.png trainingH/Pipes/im1.png trainingH/Pipes/disp0GT.pfm

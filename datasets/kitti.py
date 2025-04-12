@@ -11,11 +11,19 @@ from .utils import *
 
 
 class KITTI_Dataset(Dataset):
-    def __init__(self, split: str, training: bool, raw_data:bool=False, root_dir='/data/xp/KITTI_2015/'):
+    """
+    Inputs:
+    - split: 'train', 'train_all', 'val', 'test'
+    - training: True for training, False for testing
+    - root_dir: path to the dataset root directory
+    
+    Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
+    - disparity and noc mask are filled with nan if not available.
+    """
+    def __init__(self, split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
         assert split in ['train', 'train_all', 'val', 'test'], "Invalid split name"
         self.split = split
         self.training = training
-        self.raw_data = raw_data
 
         year = re.findall(r'\d+', root_dir)[0]
         dataset_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -67,16 +75,14 @@ class KITTI_Dataset(Dataset):
 
         if self.training:
             left_image, right_image, disp_image, mask_image = random_crop(left_image, right_image, disp_image, mask_image)
-            if self.raw_data:
-                raw_left_image = transforms.ToTensor()(left_image)
-                raw_right_image = transforms.ToTensor()(right_image)
+            raw_left_image = transforms.ToTensor()(left_image)
+            raw_right_image = transforms.ToTensor()(right_image)
             left_image, right_image = random_jitter(left_image, right_image)
             right_image = random_mask(right_image)
         else:
             left_image, right_image, disp_image, mask_image = pad_to_2x(left_image, right_image, disp_image, mask_image)
-            if self.raw_data:
-                raw_left_image = transforms.ToTensor()(left_image)
-                raw_right_image = transforms.ToTensor()(right_image)
+            raw_left_image = transforms.ToTensor()(left_image)
+            raw_right_image = transforms.ToTensor()(right_image)
         
         left_image = self.get_transform(left_image)
         right_image = self.get_transform(right_image)
@@ -84,23 +90,20 @@ class KITTI_Dataset(Dataset):
         if disp_image is not None:
             disp_image = torch.from_numpy(np.ascontiguousarray(disp_image)).float()
         else:
-            disp_image = torch.zeros(left_image.shape[1:], dtype=left_image.dtype, device=left_image.device)
+            disp_image = torch.full(left_image.shape[1:], float('nan'), dtype=left_image.dtype, device=left_image.device)
         
         if mask_image is not None:
             mask_image = torch.from_numpy(np.ascontiguousarray(mask_image)).float()
         else:
-            mask_image = torch.ones(left_image.shape[1:], dtype=left_image.dtype, device=left_image.device)
+            mask_image = torch.full(left_image.shape[1:], float('nan'), dtype=left_image.dtype, device=left_image.device)
 
-        if self.raw_data:
-            return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
-        else:
-            return left_image, right_image, disp_image, mask_image, torch.zeros_like(left_image), torch.zeros_like(right_image)
+        return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
         
 
-def KITTI2015_Dataset(split: str, training: bool, raw_data:bool=False, root_dir='/data/xp/KITTI_2015/'):
-    return KITTI_Dataset(split, training, raw_data, root_dir='/data/xp/KITTI_2015/')
+def KITTI2015_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
+    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2015/')
 
 
-def KITTI2012_Dataset(split: str, training: bool, raw_data:bool=False, root_dir='/data/xp/KITTI_2012/'):
-    return KITTI_Dataset(split, training, raw_data, root_dir='/data/xp/KITTI_2012/')
+def KITTI2012_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2012/'):
+    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2012/')
 

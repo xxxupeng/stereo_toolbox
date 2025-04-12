@@ -1,0 +1,15 @@
+trainingH/Playtable/im0.png trainingH/Playtable/im1.png trainingH/Playtable/disp0GT.pfm
+trainingH/ArtL/im0.png trainingH/ArtL/im1.png trainingH/ArtL/disp0GT.pfm
+trainingH/Jadeplant/im0.png trainingH/Jadeplant/im1.png trainingH/Jadeplant/disp0GT.pfm
+trainingH/PlaytableP/im0.png trainingH/PlaytableP/im1.png trainingH/PlaytableP/disp0GT.pfm
+trainingH/PianoL/im0.png trainingH/PianoL/im1.png trainingH/PianoL/disp0GT.pfm
+trainingH/Piano/im0.png trainingH/Piano/im1.png trainingH/Piano/disp0GT.pfm
+trainingH/Adirondack/im0.png trainingH/Adirondack/im1.png trainingH/Adirondack/disp0GT.pfm
+trainingH/Teddy/im0.png trainingH/Teddy/im1.png trainingH/Teddy/disp0GT.pfm
+trainingH/Recycle/im0.png trainingH/Recycle/im1.png trainingH/Recycle/disp0GT.pfm
+trainingH/Motorcycle/im0.png trainingH/Motorcycle/im1.png trainingH/Motorcycle/disp0GT.pfm
+trainingH/MotorcycleE/im0.png trainingH/MotorcycleE/im1.png trainingH/MotorcycleE/disp0GT.pfm
+trainingH/Vintage/im0.png trainingH/Vintage/im1.png trainingH/Vintage/disp0GT.pfm
+trainingH/Playroom/im0.png trainingH/Playroom/im1.png trainingH/Playroom/disp0GT.pfm
+trainingH/Shelves/im0.png trainingH/Shelves/im1.png trainingH/Shelves/disp0GT.pfm
+trainingH/Pipes/im0.png trainingH/Pipes/im1.png trainingH/Pipes/disp0GT.pfm

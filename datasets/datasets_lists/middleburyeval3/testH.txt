@@ -1,0 +1,15 @@
+testH/Australia/im0.png testH/Australia/im1.png
+testH/AustraliaP/im0.png testH/AustraliaP/im1.png
+testH/Bicycle2/im0.png testH/Bicycle2/im1.png
+testH/Classroom2/im0.png testH/Classroom2/im1.png
+testH/Classroom2E/im0.png testH/Classroom2E/im1.png
+testH/Computer/im0.png testH/Computer/im1.png
+testH/Crusade/im0.png testH/Crusade/im1.png
+testH/CrusadeP/im0.png testH/CrusadeP/im1.png
+testH/Djembe/im0.png testH/Djembe/im1.png
+testH/DjembeL/im0.png testH/DjembeL/im1.png
+testH/Hoops/im0.png testH/Hoops/im1.png
+testH/Livingroom/im0.png testH/Livingroom/im1.png
+testH/Newkuba/im0.png testH/Newkuba/im1.png
+testH/Plants/im0.png testH/Plants/im1.png
+testH/Staircase/im0.png testH/Staircase/im1.png
