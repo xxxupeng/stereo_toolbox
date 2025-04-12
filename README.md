@@ -1,7 +1,14 @@
-# stereo_toolbox
-📦 A comprehensive stereo matching toolbox for efficient development and research.
+# 🔧 Stereo Toolbox
 
-## Dataloader
+A comprehensive stereo matching toolbox for efficient development and research.
+
+## 📦 Installation
+
+```
+pip install stereo_toolbox
+```
+
+## 🔄 Dataloader
 
 | Status | Name | Description |
 | :----: | ------- | ----------- | 
@@ -14,13 +21,13 @@
 | ✅ | [DrivingStereo_Dataset](https://drivingstereo-dataset.github.io/)| |
 
 
-## Model Backbones
+## 🧠 Model Backbones
 
-## Loss Functions
+## 📉 Loss Functions
 
-## Visualization Tools
+## 🎨 Visualization
 
-## Evaluation Tools
+## 📊 Evaluation
 
 
 | Status | Name | Description |
