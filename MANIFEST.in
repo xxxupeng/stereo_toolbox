@@ -1,0 +1,3 @@
+include *.txt
+include docs/*.txt
+recursive-include stereo_toolbox *.txt

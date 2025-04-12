@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "stereo_toolbox",
-    version = "0.0.1",
+    version = "0.0.2",
     keywords = ["pip", "stereo matching"],
     description = "stereo toolbox.",
     long_description = "A comprehensive stereo matching toolbox for efficient development and research.",

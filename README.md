@@ -10,8 +10,8 @@ pip install stereo_toolbox
 
 ## 🔄 Dataloader
 
-| Status | Name | Description |
-| :----: | ------- | ----------- | 
+| Status | Identifier | Description |
+| :----: | ---------- | ----------- | 
 | ✅ | [SceneFlow_Dataset](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) | |
 | ✅ | [KITTI2015_Dataset](https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | |
 | ✅ | [KITTI2012_Dataset](https://www.cvlibs.net/datasets/kitti/eval_stereo_flow.php?benchmark=stereo) | |
@@ -30,7 +30,7 @@ pip install stereo_toolbox
 ## 📊 Evaluation
 
 
-| Status | Name | Description |
-| :----: | ---- | ----------- |
+| Status | Identifier | Description |
+| :----: | ---------- | ----------- |
 | ✅ | colored_disparity_map_Spectral_r | Disparity map pseudocolor visualization with Spectral_r colorbar |
 | ✅ | colored_dispairty_map_KITTI | Disparity map pseudocolor visualization with KITTI colorbar |
