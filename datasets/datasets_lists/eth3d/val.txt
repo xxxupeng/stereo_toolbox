@@ -1,0 +1,5 @@
+delivery_area_2s/im0.png delivery_area_2s/im1.png delivery_area_2s/disp0GT.pfm
+electro_2l/im0.png electro_2l/im1.png electro_2l/disp0GT.pfm
+playground_1l/im0.png playground_1l/im1.png playground_1l/disp0GT.pfm
+terrace_1s/im0.png terrace_1s/im1.png terrace_1s/disp0GT.pfm
+terrains_2l/im0.png terrains_2l/im1.png terrains_2l/disp0GT.pfm
