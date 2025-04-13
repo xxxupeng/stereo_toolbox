@@ -78,7 +78,7 @@ pip install stereo_toolbox
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
 | ❌ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. |
-| ❌ | sceneflow_eval | Evaluation on SceneFlow test set. |
+| ❌ | sceneflow_test | Evaluation on SceneFlow test set. |
 | ❌ | kitti2015_sub | Generate data with KITTI 2015 submission format. |
 | ❌ | kitti2012_sub |  Generate data with KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate data with Middlebury Eval3 submission format. |
