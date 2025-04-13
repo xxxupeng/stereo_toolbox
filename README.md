@@ -79,7 +79,7 @@ pip install stereo_toolbox
 | :----: | ---------- | ----------- |
 | ❌ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. |
 | ❌ | sceneflow_test | Evaluation on SceneFlow test set. |
-| ❌ | kitti2015_sub | Generate data with KITTI 2015 submission format. |
-| ❌ | kitti2012_sub |  Generate data with KITTI 2012 submission format. |
-| ❌ | middeval3_sub |  Generate data with Middlebury Eval3 submission format. |
-| ❌ | eth3d_sub |  Generate data with ETH3D submission format. |
+| ❌ | kitti2015_sub | Generate dispairty maps in KITTI 2015 submission format. |
+| ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
+| ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
+| ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
