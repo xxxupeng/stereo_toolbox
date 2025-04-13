@@ -19,13 +19,13 @@ pip install stereo_toolbox
 | ✅ | [ETH3D_Dataset](https://www.eth3d.net/datasets) | 10+ | Indoor scene dataset with grayscale images. |
 | ✅ | [DrivingStereo_Dataset](https://drivingstereo-dataset.github.io/)| 100K+ | Driving scene dataset with diverse weathers (sunny, cloudy, foggy, rainy). |
 | ✅ | [Middlebury2021_Dataset](https://vision.middlebury.edu/stereo/data/scenes2021/) | 10+ | Indoor scene dataset. The non-occulusion masks are obtained using LRC by [StereoAnywhere](https://github.com/bartn8/stereoanywhere). |
+| ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | A synthetic dataset derived from the open source 3D animated short film, Sintel.|
+| ✅ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | 100+ | A synthetic dataset derived from Carla. |
 | ❌ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) |  |  |
 | ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) | |
 | ❌ | [TartanAir_Dataset]() | |
-| ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | A synthetic dataset derived from the open source 3D animated short film, Sintel.|
 | ❌ | [FallingThings_Dataset]() | |
 | ❌ | [InStereo2k_Dataset]() | |
-| ❌ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | |
 | ❌ | [Argoverse_Dataset]() | |
 
 
@@ -36,6 +36,7 @@ pip install stereo_toolbox
 | :----: | ---------- | ------------ | ----------- |
 | ❌ | [PSMNet]() | 3D Conv. | CVPR 2018 |
 | ❌ | [GwcNet]() | 3D Conv. | CVPR 2019 |
+| ❌ | [AANet]() | 2D Conv. | CVPR 2020 |
 | ❌ | [CFNet]() | 3D Conv. | CVPR 2021 |
 | ❌ | [RaftStereo]() | Iterative | 3DV 2021 |
 | ❌ | [PCWNet]() | 3D Conv. | ECCV 2022 |
