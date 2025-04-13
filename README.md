@@ -25,7 +25,7 @@ pip install stereo_toolbox
 | ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) | |
 | ❌ | [TartanAir_Dataset]() | |
 | ❌ | [FallingThings_Dataset]() | |
-| ❌ | [InStereo2k_Dataset]() | |
+| ❌ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K | |
 | ❌ | [Argoverse_Dataset]() | |
 
 
@@ -51,14 +51,35 @@ pip install stereo_toolbox
 
 
 ## 📉 Loss Functions
+| Status | Identifier | Description |
+| :----: | ---------- | ----------- |
+| ❌ | photometric_loss | |
+| ❌ | edge_aware_smoothness_loss | |
+| ❌ | single_modal_cross_entropy_loss | |
+| ❌ | multi_modal_cross_entropy_loss | |
+
+
+
+
 
 ## 🎨 Visualization
 
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ✅ | colored_disparity_map_Spectral_r | Disparity map pseudocolor visualization with Spectral_r colorbar |
-| ✅ | colored_dispairty_map_KITTI | Disparity map pseudocolor visualization with KITTI colorbar |
+| ✅ | colored_disparity_map_Spectral_r | Disparity map pseudocolor visualization with Spectral_r colorbar. |
+| ✅ | colored_dispairty_map_KITTI | Disparity map pseudocolor visualization with KITTI colorbar. |
+| ❌ | colored_error_map_KITTI | Error map pseudocolor visualization with KITTI colorbar. |
+| ❌ | colored_pointcloud | Point cloud visualization with real color derived from left image. |
+
 
 
 ## 📊 Evaluation
 
+| Status | Identifier | Description |
+| :----: | ---------- | ----------- |
+| ❌ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. |
+| ❌ | sceneflow_eval | Evaluation on SceneFlow test set. |
+| ❌ | kitti2015_sub | Generate data with KITTI 2015 submission format. |
+| ❌ | kitti2012_sub |  Generate data with KITTI 2012 submission format. |
+| ❌ | middeval3_sub |  Generate data with Middlebury Eval3 submission format. |
+| ❌ | eth3d_sub |  Generate data with ETH3D submission format. |
