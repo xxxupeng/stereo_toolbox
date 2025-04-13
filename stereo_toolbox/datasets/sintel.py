@@ -10,23 +10,23 @@ from .data_augmentation import *
 from .utils import *
 
 
-class MiddleburyEval3_Dataset(Dataset):
+class Sintel_Dataset(Dataset):
     """
     Inputs:
-    - split: 'trainH', 'trainH_all', 'valH', 'testH'
+    - split: 'train_clean', 'train_final'
     - training: True for training, False for testing
     - root_dir: path to the dataset root directory
-
+    
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/MiddEval3/'):
-        assert split in ['trainH', 'trainH_all', 'valH', 'testH'], "Invalid split name"
+    def __init__(self, split: str, training: bool, root_dir='/data/xp/Sintel/'):
+        assert split in ['train_clean', 'train_final'], "Invalid split name"
         self.split = split
         self.training = training
 
         dataset_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    f'datasets_lists/middleburyeval3/{self.split}.txt')
+                                    f'datasets_lists/sintel/{self.split}.txt')
         self.left_images, self.right_images, self.disp_images = read_lines(dataset_file)
 
         self.left_images = [os.path.join(root_dir, line) for line in self.left_images]
@@ -46,24 +46,15 @@ class MiddleburyEval3_Dataset(Dataset):
     
 
     def load_disp(self, filename: str):
-        """
-        inf: invalid dispairty
-        """
         if filename is None:
             return None
         
-        disp, _ = pfm_imread(filename)
-        disp = np.ascontiguousarray(disp, dtype=np.float32)
-        disp[disp == float('inf')] = 0
+        disp = np.array(Image.open(filename), dtype=np.float32)
+        disp = disp[...,0] * 4 + disp[...,1] / (2**6) + disp[...,2] / (2**14)
         return disp
     
 
     def load_noc_mask(self, filename: str):
-        """
-        0: invalid
-        128: occluded
-        255: non-occluded
-        """
         if filename is None:
             return None
         
@@ -77,7 +68,7 @@ class MiddleburyEval3_Dataset(Dataset):
         right_image = self.load_image(self.right_images[index])
         disp_image = self.load_disp(self.disp_images[index])
         if disp_image is not None:
-            mask_image = self.load_noc_mask(self.disp_images[index].replace('disp0GT.pfm', 'mask0nocc.png'))
+            mask_image = self.load_noc_mask(self.disp_images[index].replace('disparities', 'occlusions'))
         else:
             mask_image = self.load_noc_mask(None)
 

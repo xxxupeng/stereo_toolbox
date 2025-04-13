@@ -11,3 +11,4 @@
 **/*.npz
 **/*.ckpt
 **/.pypirc
+**/tmp.py

@@ -10,23 +10,23 @@ from .data_augmentation import *
 from .utils import *
 
 
-class MiddleburyEval3_Dataset(Dataset):
+class Middlebury2021_Dataset(Dataset):
     """
     Inputs:
-    - split: 'trainH', 'trainH_all', 'valH', 'testH'
+    - split: 'train'
     - training: True for training, False for testing
     - root_dir: path to the dataset root directory
 
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/MiddEval3/'):
-        assert split in ['trainH', 'trainH_all', 'valH', 'testH'], "Invalid split name"
+    def __init__(self, split: str, training: bool, root_dir='/data/xp/Middlebury2021/'):
+        assert split in ['train'], "Invalid split name"
         self.split = split
         self.training = training
 
         dataset_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    f'datasets_lists/middleburyeval3/{self.split}.txt')
+                                    f'datasets_lists/middlebury2021/{self.split}.txt')
         self.left_images, self.right_images, self.disp_images = read_lines(dataset_file)
 
         self.left_images = [os.path.join(root_dir, line) for line in self.left_images]
@@ -69,6 +69,7 @@ class MiddleburyEval3_Dataset(Dataset):
         
         noc_mask = Image.open(filename).convert('L')
         noc_mask = np.array(noc_mask, dtype=np.uint8)
+
         return noc_mask == 255
 
 
