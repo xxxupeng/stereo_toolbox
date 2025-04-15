@@ -6,3 +6,5 @@ from .drivingstereo import DrivingStereo_Dataset
 from .middlebury2021 import Middlebury2021_Dataset
 from .sintel import Sintel_Dataset
 from .hr_vs import HR_VS_Dataset
+from .booster import Booster_Dataset
+from .instereo2k import InStereo2k_Dataset

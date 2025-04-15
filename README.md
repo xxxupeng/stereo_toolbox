@@ -21,11 +21,11 @@ pip install stereo_toolbox
 | ✅ | [Middlebury2021_Dataset](https://vision.middlebury.edu/stereo/data/scenes2021/) | 24 | Indoor scene dataset. The non-occulusion masks are obtained using LRC by [StereoAnywhere](https://github.com/bartn8/stereoanywhere). |
 | ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | A synthetic dataset derived from the open source 3D animated short film, Sintel.|
 | ✅ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | 780 | A synthetic dataset derived from Carla. |
-| ❌ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) |  |  |
-| ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) | |
+| ✅ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) |  | Indoor dataset with specular and transparent surfaces. |
+| ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) |  |
 | ❌ | [TartanAir_Dataset]() | |
-| ❌ | [FallingThings_Dataset]() | |
-| ❌ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K | |
+| ❌ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | |
+| ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K | |
 | ❌ | [Argoverse_Dataset]() | |
 
 
