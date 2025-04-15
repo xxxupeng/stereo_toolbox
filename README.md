@@ -2,64 +2,64 @@
 
 A comprehensive stereo matching toolbox for efficient development and research.
 
+
 ## 📦 Installation
 
 ```
 pip install stereo_toolbox
 ```
 
-## 🔄 Dataloader
+
+## 🔄 Datasets
 
 | Status | Identifier | Scale | Description |
 | :----: | ---------- | ----- | ----------- | 
 | ✅ | [SceneFlow_Dataset](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) | 35K+ | The most famous synthetic dataset for stereo matching pre-training. |
-| ✅ | [KITTI2015_Dataset](https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | 200+ | Driving scene dataset. |
+| ✅ | [KITTI2015_Dataset](https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | 200 | Driving scene dataset. |
 | ✅ | [KITTI2012_Dataset](https://www.cvlibs.net/datasets/kitti/eval_stereo_flow.php?benchmark=stereo) | 192 | Driving scene dataset. |
 | ✅ | [MiddleburyEval3_Dataset](https://vision.middlebury.edu/stereo/submit3) | 15 | Indoor and outdoor scene dataset. |
 | ✅ | [ETH3D_Dataset](https://www.eth3d.net/datasets) | 27 | Indoor scene dataset with grayscale images. |
 | ✅ | [DrivingStereo_Dataset](https://drivingstereo-dataset.github.io/)| 174K+ | Driving scene dataset with diverse weathers (sunny, cloudy, foggy, rainy). |
 | ✅ | [Middlebury2021_Dataset](https://vision.middlebury.edu/stereo/data/scenes2021/) | 24 | Indoor scene dataset. The non-occulusion masks are obtained using LRC by [StereoAnywhere](https://github.com/bartn8/stereoanywhere). |
-| ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | A synthetic dataset derived from the open source 3D animated short film, Sintel.|
-| ✅ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | 780 | A synthetic dataset derived from Carla. |
-| ✅ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) |  | Indoor dataset with specular and transparent surfaces. |
-| ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) |  |
-| ❌ | [TartanAir_Dataset]() | |
-| ❌ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | |
-| ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K | |
-| ❌ | [Argoverse_Dataset]() | |
+| ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | Synthetic dataset derived from the open source 3D animated short film, Sintel.|
+| ✅ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | 780 | Synthetic dataset derived from Carla. |
+| ✅ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) | 228 | Indoor dataset with specular and transparent surfaces. |
+| ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) |  | |
+| ❌ | [TartanAir_Dataset]() | | |
+| ❌ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | | |
+| ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K+ | Indoor dataset with high accuracy disparity maps. |
+| ❌ | [Argoverse_Dataset]() | | |
+| ❌ | [MonoTrap_Dataset]() | | |
 
 
 
-## 🧠 Model Backbones
+## 🧠 Models
 
 | Status | Identifier | Architecture | Description |
 | :----: | ---------- | ------------ | ----------- |
-| ❌ | [PSMNet]() | 3D Conv. | CVPR 2018 |
-| ❌ | [GwcNet]() | 3D Conv. | CVPR 2019 |
-| ❌ | [AANet]() | 2D Conv. | CVPR 2020 |
-| ❌ | [CFNet]() | 3D Conv. | CVPR 2021 |
-| ❌ | [RaftStereo]() | Iterative | 3DV 2021 |
-| ❌ | [PCWNet]() | 3D Conv. | ECCV 2022 |
-| ❌ | [STTR]() | Transformer | ICCV 2021 |
-| ❌ | [CREStereo]() | Iterative | CVPR 2022 |
-| ❌ | [IGEVStereo]() | Iterative | CVPR 2023 |
-| ❌ | [Selective-IGEVStereo]() | Iterative | CVPR 2024 |
-| ❌ | [MoChaStereo]() | Iterative | CVPR 2024 |
-| ❌ | [NMRF]() | MRF | CVPR 2024 |
-
-
+| ❌ | [PSMNet](https://github.com/JiaRenChang/PSMNet) | 3D Conv. | CVPR 2018 |
+| ❌ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
+| ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020 |
+| ❌ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021 |
+| ❌ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021 |
+| ❌ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022 |
+| ❌ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021 |
+| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022 |
+| ❌ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023 |
+| ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
+| ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
+| ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024 |
 
 
 ## 📉 Loss Functions
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
+| ❌ | L1_loss | |
+| ❌ | smooth_l1_loss | |
 | ❌ | photometric_loss | |
 | ❌ | edge_aware_smoothness_loss | |
 | ❌ | single_modal_cross_entropy_loss | |
 | ❌ | multi_modal_cross_entropy_loss | |
-
-
-
 
 
 ## 🎨 Visualization
@@ -72,7 +72,6 @@ pip install stereo_toolbox
 | ❌ | colored_pointcloud | Point cloud visualization with real color derived from left image. |
 
 
-
 ## 📊 Evaluation
 
 | Status | Identifier | Description |
@@ -83,3 +82,9 @@ pip install stereo_toolbox
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
+
+
+## 📏 Disparity Estimators
+
+| Status | Identifier | Description |
+| :----: | ---------- | ----------- |
