@@ -37,7 +37,7 @@ pip install stereo_toolbox
 
 | Status | Identifier | Architecture | Description |
 | :----: | ---------- | ------------ | ----------- |
-| ❌ | [PSMNet](https://github.com/JiaRenChang/PSMNet) | 3D Conv. | CVPR 2018 |
+| ✅ | [PSMNet](https://github.com/JiaRenChang/PSMNet) | 3D Conv. | CVPR 2018 |
 | ❌ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
 | ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020 |
 | ❌ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021 |
@@ -77,7 +77,7 @@ pip install stereo_toolbox
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
 | ❌ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. |
-| ❌ | sceneflow_test | Evaluation on SceneFlow test set. |
+| ✅ | sceneflow_test | Evaluation on SceneFlow test set. |
 | ❌ | kitti2015_sub | Generate dispairty maps in KITTI 2015 submission format. |
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
