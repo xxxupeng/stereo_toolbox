@@ -1,1 +1,2 @@
 from .sceneflow_test import sceneflow_test
+from .generalization_eval import generalization_eval

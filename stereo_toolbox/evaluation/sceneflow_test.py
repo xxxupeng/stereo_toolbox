@@ -21,7 +21,7 @@ def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress
     
     model = model.to(device).eval()
     
-    metrics = [0] * 4
+    metrics = np.zeros(4)
 
     for idx, (left, right, gt_disp, _, _, _) in enumerate(testdataloader):
         left, right, gt_disp = left.to(device), right.to(device), gt_disp.to(device).squeeze()
@@ -45,8 +45,6 @@ def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress
             testdataloader.set_description(f"EPE: {metrics[0]/(idx+1):.4f}, 1px: {metrics[1]/(idx+1):.2f}%, 2px: {metrics[2]/(idx+1):.2f}%, 3px: {metrics[3]/(idx+1):.2f}%")
 
     return metrics / (idx + 1)
-
-        
 
         
 
