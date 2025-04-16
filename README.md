@@ -30,7 +30,7 @@ pip install stereo_toolbox
 | ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K+ | Indoor dataset with high accuracy disparity maps. |
 | ❌ | [Argoverse_Dataset]() | | |
 | ❌ | [MonoTrap_Dataset]() | | |
-
+| ❌ | [Holopix50k_Dataset]() | | |
 
 
 ## 🧠 Models
@@ -76,8 +76,8 @@ pip install stereo_toolbox
 
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ❌ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. |
-| ✅ | sceneflow_test | Evaluation on SceneFlow test set. |
+| ✅ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. Outliers in the occ, noc, and all regions are reported.|
+| ✅ | sceneflow_test | Evaluation on SceneFlow test set. EPE and outliers are reported.|
 | ❌ | kitti2015_sub | Generate dispairty maps in KITTI 2015 submission format. |
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
