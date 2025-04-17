@@ -12,25 +12,26 @@ pip install stereo_toolbox
 
 ## 🔄 Datasets
 
-| Status | Identifier | Scale | Description |
-| :----: | ---------- | ----- | ----------- | 
-| ✅ | [SceneFlow_Dataset](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) | 35K+ | The most famous synthetic dataset for stereo matching pre-training. |
-| ✅ | [KITTI2015_Dataset](https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | 200 | Driving scene dataset. |
-| ✅ | [KITTI2012_Dataset](https://www.cvlibs.net/datasets/kitti/eval_stereo_flow.php?benchmark=stereo) | 192 | Driving scene dataset. |
-| ✅ | [MiddleburyEval3_Dataset](https://vision.middlebury.edu/stereo/submit3) | 15 | Indoor and outdoor scene dataset. |
-| ✅ | [ETH3D_Dataset](https://www.eth3d.net/datasets) | 27 | Indoor scene dataset with grayscale images. |
-| ✅ | [DrivingStereo_Dataset](https://drivingstereo-dataset.github.io/)| 174K+ | Driving scene dataset with diverse weathers (sunny, cloudy, foggy, rainy). |
-| ✅ | [Middlebury2021_Dataset](https://vision.middlebury.edu/stereo/data/scenes2021/) | 24 | Indoor scene dataset. The non-occulusion masks are obtained using LRC by [StereoAnywhere](https://github.com/bartn8/stereoanywhere). |
-| ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | Synthetic dataset derived from the open source 3D animated short film, Sintel.|
-| ✅ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | 780 | Synthetic dataset derived from Carla. |
-| ✅ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) | 228 | Indoor dataset with specular and transparent surfaces. |
-| ❌ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) |  | |
+| Status | Identifier | train | val | test | non-occlusion mask | Description |
+| :----: | ---------- | :---: | :-: | :--: | ----------- | 
+| ✅ | [SceneFlow_Dataset](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) | 35K+ | 4.3K+ | - | ❌ | The most famous synthetic dataset for stereo matching pre-training. |
+| ✅ | [KITTI2015_Dataset](https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | 200 | - | 200 | ✅ | Driving scene dataset. |
+| ✅ | [KITTI2012_Dataset](https://www.cvlibs.net/datasets/kitti/eval_stereo_flow.php?benchmark=stereo) | 192 | - | 195 | ✅ | Driving scene dataset. |
+| ✅ | [MiddleburyEval3_Dataset](https://vision.middlebury.edu/stereo/submit3) | 15 | - | 15 | ✅ | Indoor and outdoor scene dataset. |
+| ✅ | [ETH3D_Dataset](https://www.eth3d.net/datasets) | 27 | - | 20 | ✅ | Indoor scene dataset with grayscale images. |
+| ✅ | [DrivingStereo_Dataset](https://drivingstereo-dataset.github.io/)| 174K+ | 7.7K+ | - | ❌ | Driving scene dataset with diverse weathers (sunny, cloudy, foggy, rainy). |
+| ✅ | [Middlebury2021_Dataset](https://vision.middlebury.edu/stereo/data/scenes2021/) | 24 | -  | - | ✅ | Indoor scene dataset. The non-occulusion masks are obtained using LRC by [StereoAnywhere](https://github.com/bartn8/stereoanywhere). |
+| ✅ | [Sintel_Dataset](http://sintel.is.tue.mpg.de/stereo) | 1K+ | - | - | ✅ | Synthetic dataset derived from the open source 3D animated short film, Sintel.|
+| ✅ | [HR_VS_Dataset](https://drive.google.com/file/d/1SgEIrH_IQTKJOToUwR1rx4-237sThUqX/view) | 780 | - | - | ❌ | Synthetic dataset rendered by Carla simulator. |
+| ✅ | [Booster_Dataset](https://amsacta.unibo.it/id/eprint/6876/) | 228 | - | - | ✅ | Indoor dataset with specular and transparent surfaces. |
+| ✅ | [CREStereo_Dataset](https://github.com/megvii-research/CREStereo) | 200K | - | - | ❌ | Synthetic dataset rendered by Blender with different shapes, lighting, texture, and smooth disparity distribution. |
 | ❌ | [TartanAir_Dataset]() | | |
 | ❌ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | | |
-| ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K+ | Indoor dataset with high accuracy disparity maps. |
-| ❌ | [Argoverse_Dataset]() | | |
-| ❌ | [MonoTrap_Dataset]() | | |
-| ❌ | [Holopix50k_Dataset]() | | |
+| ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K+ | 50 | - | ❌ | Indoor dataset with high accuracy disparity maps. |
+| ❌ | [Argoverse_Dataset](https://www.argoverse.org/av1.html#stereo-link) | 4K+ | 1.5K+ | 1K+ | Driving scene dataset with details at the near and far range. |
+| ✅ | [MonoTrap_Dataset](https://github.com/bartn8/stereoanywhere) | 0 | 26 | 0 | ❌ | Perspective illusion dataset specifically designed to challenge monocular depth estimation. |
+| ✅ | [Holopix50k_Dataset](https://github.com/LeiaInc/holopix50k) |  41K+ | 4.9K+ | 2.4K+ | ❌ | In-the-wild Dataset contributed by users of the Holopix™ mobile social platform. |
+| ❌ | [LayeredFlow](https://layeredflow.cs.princeton.edu) |
 
 
 ## 🧠 Models
