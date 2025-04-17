@@ -28,7 +28,7 @@ pip install stereo_toolbox
 | ❌ | [TartanAir_Dataset]() | | |
 | ❌ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | | |
 | ✅ | [InStereo2k_Dataset](https://github.com/YuhuaXu/StereoDataset) | 2K+ | 50 | - | ❌ | Indoor dataset with high accuracy disparity maps. |
-| ❌ | [Argoverse_Dataset](https://www.argoverse.org/av1.html#stereo-link) | 4K+ | 1.5K+ | 1K+ | Driving scene dataset with details at the near and far range. |
+| ❌ | [Argoverse_Dataset](https://www.argoverse.org/av1.html#stereo-link) | 4K+ | 1.5K+ | 1K+ | ❌ | Driving scene dataset with details at the near and far range. |
 | ✅ | [MonoTrap_Dataset](https://github.com/bartn8/stereoanywhere) | 0 | 26 | 0 | ❌ | Perspective illusion dataset specifically designed to challenge monocular depth estimation. |
 | ✅ | [Holopix50k_Dataset](https://github.com/LeiaInc/holopix50k) |  41K+ | 4.9K+ | 2.4K+ | ❌ | In-the-wild Dataset contributed by users of the Holopix™ mobile social platform. |
 | ❌ | [LayeredFlow](https://layeredflow.cs.princeton.edu) |
