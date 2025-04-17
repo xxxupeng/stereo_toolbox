@@ -12,7 +12,7 @@ pip install stereo_toolbox
 
 ## 🔄 Datasets
 
-| Status | Identifier | Train | Val | Test | Non-Occlusion Mask | Description |
+| Status | Identifier | Train | Val | Test | Noc. Mask | Description |
 | :----: | ---------- | :---: | :-: | :--: | :----------------: | ----------- | 
 | ✅ | [SceneFlow_Dataset](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) | 35K+ | 4.3K+ | - | ❌ | The most famous synthetic dataset for stereo matching pre-training. |
 | ✅ | [KITTI2015_Dataset](https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | 200 | - | 200 | ✅ | Driving scene dataset. |
