@@ -37,7 +37,7 @@ def colored_disparity_map_Spectral_r(disp, maxval=0, save_file=None):
     return colored_disp
 
 
-def colored_dispairty_map_KITTI(disp, maxval=0, save_file=None):
+def colored_disparity_map_KITTI(disp, maxval=0, save_file=None):
     """
     BGR format
     """
