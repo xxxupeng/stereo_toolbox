@@ -66,10 +66,9 @@ class Middlebury2021_Dataset(Dataset):
         """
         if filename is None:
             return None
-        
+
         noc_mask = Image.open(filename).convert('L')
         noc_mask = np.array(noc_mask, dtype=np.uint8)
-
         return noc_mask == 255
 
 
@@ -78,7 +77,7 @@ class Middlebury2021_Dataset(Dataset):
         right_image = self.load_image(self.right_images[index])
         disp_image = self.load_disp(self.disp_images[index])
         if disp_image is not None:
-            mask_image = self.load_noc_mask(self.disp_images[index].replace('disp0GT.pfm', 'mask0nocc.png'))
+            mask_image = self.load_noc_mask(self.disp_images[index].replace('disp0.pfm', 'mask0nocc.png'))
         else:
             mask_image = self.load_noc_mask(None)
 
