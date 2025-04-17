@@ -60,7 +60,8 @@ class Sintel_Dataset(Dataset):
         
         noc_mask = Image.open(filename).convert('L')
         noc_mask = np.array(noc_mask, dtype=np.uint8)
-        return noc_mask == 255
+        
+        return noc_mask == 0
 
 
     def __getitem__(self, index):
