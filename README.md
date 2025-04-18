@@ -55,12 +55,18 @@ pip install stereo_toolbox
 ## 📉 Loss Functions
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ❌ | L1_loss | |
+| ❌ | l1_loss | |
 | ❌ | smooth_l1_loss | |
 | ❌ | photometric_loss | |
 | ❌ | edge_aware_smoothness_loss | |
 | ❌ | single_modal_cross_entropy_loss | |
 | ❌ | multi_modal_cross_entropy_loss | |
+
+
+## 📏 Disparity Estimators
+
+| Status | Identifier | Description |
+| :----: | ---------- | ----------- |
 
 
 ## 🎨 Visualization
@@ -84,7 +90,6 @@ pip install stereo_toolbox
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
 
-
 **Table 1: Evaluation on the SceneFlow test set.**
 
 | Model | Checkpoint | EPE | 1px | 2px | 3px |
@@ -99,7 +104,6 @@ pip install stereo_toolbox
 | PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 4.0584 | 47.6432 | 28.1250 | 28.4160 | 3.8022 | 63.1951 | 26.5022 | 27.3239 | 9.8662 | 62.2950 | 30.1842 | 34.5084 | 2.3997 | 28.5613 | 14.7393 | 15.3888 |
 
 
-## 📏 Disparity Estimators
+## 🙏 Acknowledgements
 
-| Status | Identifier | Description |
-| :----: | ---------- | ----------- |
+We sincerely thank the authors of the models and datasets mentioned above.
