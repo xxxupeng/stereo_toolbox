@@ -83,18 +83,21 @@ pip install stereo_toolbox
 
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ✅ | sceneflow_test | Evaluation on SceneFlow test set. EPE and outliers are reported.|
+| ✅ | sceneflow_test | Evaluation on SceneFlow *finalpass* test set. EPE and outliers are reported.|
 | ✅ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. Outliers in the occ, noc, and all regions are reported.|
 | ❌ | kitti2015_sub | Generate dispairty maps in KITTI 2015 submission format. |
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
+| ❌ | speed_and_memery | Test inference speed and memory usage. |
+
 
 **Table 1: Evaluation on the SceneFlow test set.**
 
 | Model | Checkpoint | EPE | 1px | 2px | 3px |
 | ----- | ---------- | :-: | :-: | :-: | :-: |
-| PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 1.16 | 11.29 | 6.40 | 4.78 |
+| PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 1.1572 | 11.2908 | 6.4028 | 4.7803 |
+| GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 0.9514 | 8.1138 | 4.6241 | 3.4730 |
 
 **Table 2: Generalization evaluation on four real-world training sets.** For all datasets, we report the average error (EPE), outlier rates in occluded, non-occluded, and all regions. The outlier thresholds are set to 3, 3, 2, and 1 for KITTI 2015, KITTI 2012, Middlebury Eval3, and ETH3D, respectively.
 
@@ -102,6 +105,7 @@ pip install stereo_toolbox
 | ----- | ---------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 |       |            | EPE | Occ | Noc | All | EPE | Occ | Noc | All | EPE | Occ | Noc | All | EPE | Occ | Noc | All |
 | PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 4.0584 | 47.6432 | 28.1250 | 28.4160 | 3.8022 | 63.1951 | 26.5022 | 27.3239 | 9.8662 | 62.2950 | 30.1842 | 34.5084 | 2.3997 | 28.5613 | 14.7393 | 15.3888 |
+| GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 2.3801 | 29.0696 | 12.1746 | 12.5331 | 1.7062 | 45.6458 | 11.9081 | 12.6712 | 6.0044 | 47.1304 | 20.4144 | 24.1094 | 1.9213 | 21.3749 | 10.4911 | 11.0878 |
 
 
 ## 🙏 Acknowledgements
