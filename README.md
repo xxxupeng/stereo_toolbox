@@ -96,7 +96,7 @@ pip install stereo_toolbox
 | ----- | ---------- | :-: | :-: | :-: | :-: |
 | PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 1.16 | 11.29 | 6.40 | 4.78 |
 
-**Table 2: Generalization evaluation on four real-world training sets.**
+**Table 2: Generalization evaluation on four real-world training sets.** For all datasets, we report the average error (EPE), outlier rates in occluded, non-occluded, and all regions. The outlier thresholds are set to 3, 3, 2, and 1 for KITTI 2015, KITTI 2012, Middlebury Eval3, and ETH3D, respectively.
 
 | Model | Checkpoint | KITTI 2015 | | | | KITTI 2012 | | | | MiddEval3 | | | | ETH3D | | | |
 | ----- | ---------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
