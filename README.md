@@ -39,7 +39,7 @@ pip install stereo_toolbox
 | Status | Identifier | Architecture | Description |
 | :----: | ---------- | ------------ | ----------- |
 | ✅ | [PSMNet](https://github.com/JiaRenChang/PSMNet) | 3D Conv. | CVPR 2018 |
-| ❌ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
+| ✅ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
 | ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020 |
 | ❌ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021 |
 | ❌ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021 |
