@@ -77,12 +77,26 @@ pip install stereo_toolbox
 
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ✅ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. Outliers in the occ, noc, and all regions are reported.|
 | ✅ | sceneflow_test | Evaluation on SceneFlow test set. EPE and outliers are reported.|
+| ✅ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. Outliers in the occ, noc, and all regions are reported.|
 | ❌ | kitti2015_sub | Generate dispairty maps in KITTI 2015 submission format. |
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
+
+
+**Table 1: Evaluation on the SceneFlow test set.**
+
+| Model | Checkpoint | EPE | 1px | 2px | 3px |
+| ----- | ---------- | :-: | :-: | :-: | :-: |
+| PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 1.16 | 11.29 | 6.40 | 4.78 |
+
+**Table 2: Generalization evaluation on four real-world training sets.**
+
+| Model | Checkpoint | KITTI 2015 | | | | KITTI 2012 | | | | MiddEval3 | | | | ETH3D | | | |
+| ----- | ---------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+|       |            | EPE | Occ | Noc | All | EPE | Occ | Noc | All | EPE | Occ | Noc | All | EPE | Occ | Noc | All |
+| PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 4.0584 | 47.6432 | 28.1250 | 28.4160 | 3.8022 | 63.1951 | 26.5022 | 27.3239 | 9.8662 | 62.2950 | 30.1842 | 34.5084 | 2.3997 | 28.5613 | 14.7393 | 15.3888 |
 
 
 ## 📏 Disparity Estimators
