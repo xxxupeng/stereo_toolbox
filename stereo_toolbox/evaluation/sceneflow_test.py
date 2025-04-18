@@ -42,7 +42,7 @@ def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress
 
         # update tqdm desc
         if show_progress:
-            testdataloader.set_description(f"EPE: {metrics[0]/(idx+1):.4f}, 1px: {metrics[1]/(idx+1):.2f}%, 2px: {metrics[2]/(idx+1):.2f}%, 3px: {metrics[3]/(idx+1):.2f}%")
+            testdataloader.set_description(f"EPE: {metrics[0]/(idx+1):.4f}px, 1px: {metrics[1]/(idx+1):.4f}%, 2px: {metrics[2]/(idx+1):.4f}%, 3px: {metrics[3]/(idx+1):.4f}%")
 
     return metrics / (idx + 1)
 

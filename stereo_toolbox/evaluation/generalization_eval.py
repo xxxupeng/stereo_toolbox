@@ -60,7 +60,7 @@ def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], split
         metrics[idx] /= image_num
 
         print(f"{dataset.__name__} "
-                f"EPE: {metrics[idx][0]:.4f}%, "
+                f"EPE: {metrics[idx][0]:.4f}px, "
                 f"OCC: {metrics[idx][1]:.4f}%, "
                 f"NOC: {metrics[idx][2]:.4f}%, "
                 f"ALL: {metrics[idx][3]:.4f}%.")
