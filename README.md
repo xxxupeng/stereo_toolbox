@@ -50,6 +50,10 @@ pip install stereo_toolbox
 | ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024 |
+| ❌ | [MonSter]() | Iterative | CVPR 2025 |
+| ❌ | [DEFOM-Stereo]() | Iterative | CVPR 2025 |
+
+
 
 
 ## 📉 Loss Functions
