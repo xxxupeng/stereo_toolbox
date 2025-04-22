@@ -69,9 +69,7 @@ pip install stereo_toolbox
 ## 📉 Loss Functions
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ❌ | l1_loss | |
-| ❌ | smooth_l1_loss | |
-| ❌ | photometric_loss | |
+| ✅ | photometric_loss | |
 | ❌ | edge_aware_smoothness_loss | |
 | ❌ | single_modal_cross_entropy_loss | |
 | ❌ | multi_modal_cross_entropy_loss | |
@@ -85,7 +83,6 @@ pip install stereo_toolbox
 | ✅ | argmax_disparity_estimator | |
 | ✅ | unimodal_disparity_estimator | ICCV 2019 |
 | ✅ | dominant_modal_disparity_estimator | CVPR 2024 |
-
 
 
 ## 🎨 Visualization
