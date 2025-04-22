@@ -54,7 +54,7 @@ pip install stereo_toolbox
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022 |
 | ❌ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021 |
 | ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022 |
-| ❌ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023 |
+| ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023 |
 | ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024 |
