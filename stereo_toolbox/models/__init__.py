@@ -1,10 +1,11 @@
 import torch
 
 from .PSMNet.stackhourglass import PSMNet # change `.cuda()` to `.to(x.device)` and optimize the cost volume building
-from .GwcNet.gwcnet import GwcNet_G, GwcNet_GC # change `return [pred0, pred1, pred2, pred3]` to `return pred0, pred1, pred2, pred3` and `return [pred3]` to  `return pred2`
-from .CFNet.cfnet import CFNet # mish avtivation function, return pred1_s2 only when evaluation, return tuple rather than list
-from .PCWNet.pcwnet import PCWNet_G, PCWNet_GC # rename class as PCWNet
-
+from .GwcNet.gwcnet import GwcNet_G, GwcNet_GC
+from .CFNet.cfnet import CFNet # mish avtivation function only, return pred1_s2 only when evaluation
+from .PCWNet.pcwnet import PCWNet_G, PCWNet_GC # rename class as PCWNet, mish avtivation function only, return disp_finetune only when evaluation
+from .RAFTStereo.raft_stereo import RAFTStereo # init self.args
+from .IGEVStereo.igev_stereo import IGEVStereo # init self.args, add imagenet_norm para. (true for imagenet's mean and std, false for all 0.5 to rescale to [-1,1])
 
 
 def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
