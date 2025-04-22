@@ -100,10 +100,10 @@ class KITTI_Dataset(Dataset):
         return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
         
 
-def KITTI2015_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
-    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2015/')
+def KITTI2015_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2015/', imagenet_norm=True):
+    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2015/', imagenet_norm=imagenet_norm)
 
 
-def KITTI2012_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2012/'):
-    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2012/')
+def KITTI2012_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2012/', imagenet_norm=True):
+    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2012/', imagenet_norm=imagenet_norm)
 
