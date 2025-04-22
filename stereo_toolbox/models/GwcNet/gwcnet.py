@@ -213,7 +213,7 @@ class GwcNet(nn.Module):
             cost3 = torch.squeeze(cost3, 1)
             pred3 = F.softmax(cost3, dim=1)
             pred3 = disparity_regression(pred3, self.maxdisp)
-            return pred0, pred1, pred2, pred3
+            return [pred0, pred1, pred2, pred3]
 
         else:
             cost3 = self.classif3(out3)

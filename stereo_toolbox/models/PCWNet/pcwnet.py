@@ -477,8 +477,7 @@ class PCWNet(nn.Module):
             # disp_finetune = torch.squeeze(disp_finetune, 1)
             # pred3 = torch.squeeze(pred3, 1)
 
-            return pred0, combine, pred1, pred2, pred3, disp_finetune
-            # return [pred0, combine, pred1, pred2, pred3, disp_finetune]
+            return [pred0, combine, pred1, pred2, pred3, disp_finetune]
 
         else:
             cost3 = self.classif3(out3)
