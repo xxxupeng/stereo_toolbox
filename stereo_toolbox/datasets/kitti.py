@@ -20,7 +20,7 @@ class KITTI_Dataset(Dataset):
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/KITTI_2015/', imagenet_norm=True):
+    def __init__(self, split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
         assert split in ['train', 'train_all', 'val', 'test'], "Invalid split name"
         self.split = split
         self.training = training
@@ -35,7 +35,7 @@ class KITTI_Dataset(Dataset):
         if self.disp_images[0] is not None:
             self.disp_images = [os.path.join(root_dir, line) for line in self.disp_images]
 
-        self.get_transform = get_transform(imagenet_norm)
+        self.get_transform = get_transform()
 
 
     def __len__(self):
@@ -100,10 +100,10 @@ class KITTI_Dataset(Dataset):
         return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
         
 
-def KITTI2015_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2015/', imagenet_norm=True):
-    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2015/', imagenet_norm=imagenet_norm)
+def KITTI2015_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
+    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2015/')
 
 
-def KITTI2012_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2012/', imagenet_norm=True):
-    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2012/', imagenet_norm=imagenet_norm)
+def KITTI2012_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2012/'):
+    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2012/')
 

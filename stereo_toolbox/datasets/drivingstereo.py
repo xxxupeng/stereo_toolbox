@@ -24,7 +24,7 @@ class DrivingStereo_Dataset(Dataset):
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/Driving_Stereo/', imagenet_norm=True):
+    def __init__(self, split: str, training: bool, root_dir='/data/xp/Driving_Stereo/'):
         assert split in ['train_half', 'test_half', 'test_full',
                         'train_half_sunny', 'train_half_rainy', 'train_half_foggy', 'train_half_cloudy',
                         'train_full_sunny', 'train_full_rainy', 'train_full_foggy', 'train_full_cloudy',
@@ -42,7 +42,7 @@ class DrivingStereo_Dataset(Dataset):
         if self.disp_images[0] is not None:
             self.disp_images = [os.path.join(root_dir, line) for line in self.disp_images]
 
-        self.get_transform = get_transform(imagenet_norm)
+        self.get_transform = get_transform()
 
 
     def __len__(self):
