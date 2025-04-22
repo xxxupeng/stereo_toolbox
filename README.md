@@ -48,12 +48,13 @@ pip install stereo_toolbox
 | :----: | ---------- | ------------ | ----------- |
 | ✅ | [PSMNet](https://github.com/JiaRenChang/PSMNet) | 3D Conv. | CVPR 2018 |
 | ✅ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
-| ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020 |
+| ❌ | [GANet](https://github.com/feihuzhang/GANet) | 3D Conv. | CVPR 2019, need to compile |
+| ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020, need to compile |
 | ✅ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021 |
 | ❌ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021 |
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022 |
 | ❌ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021 |
-| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022 |
+| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine)  |
 | ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023 |
 | ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
@@ -80,6 +81,11 @@ pip install stereo_toolbox
 
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
+| ✅ | softargmax_disparity_estimator | ICCV 2017 |
+| ✅ | argmax_disparity_estimator | |
+| ✅ | unimodal_disparity_estimator | ICCV 2019 |
+| ✅ | dominant_modal_disparity_estimator | CVPR 2024 |
+
 
 
 ## 🎨 Visualization
