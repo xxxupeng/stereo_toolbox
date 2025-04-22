@@ -10,11 +10,11 @@ torch.backends.cudnn.benchmark = True
 from stereo_toolbox.datasets import SceneFlow_Dataset
 
 
-def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress=True):
+def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress=True, imagenet_norm=True):
     """
     return epe / px, 1px 2px 3px ourliers / %
     """
-    testdataloader = DataLoader(SceneFlow_Dataset(split=split, training=False),
+    testdataloader = DataLoader(SceneFlow_Dataset(split=split, training=False, imagenet_norm=imagenet_norm),
                                 batch_size=1, num_workers=16, shuffle=False, drop_last=False)
     if show_progress:
         testdataloader = tqdm(testdataloader, desc='SceneFlow Evaluation', ncols=100)

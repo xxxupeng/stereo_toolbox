@@ -59,9 +59,13 @@ def pfm_imread(filename):
     return data, scale
 
 
-def get_transform():
-    mean = [0.485, 0.456, 0.406]
-    std = [0.229, 0.224, 0.225]
+def get_transform(imagenet_norm=True):
+    if imagenet_norm:
+        mean = [0.485, 0.456, 0.406]
+        std = [0.229, 0.224, 0.225]
+    else:
+        mean = [0.5, 0.5, 0.5]
+        std = [0.5, 0.5, 0.5]
 
     return transforms.Compose([
         transforms.ToTensor(),

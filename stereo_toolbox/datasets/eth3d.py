@@ -20,7 +20,7 @@ class ETH3D_Dataset(Dataset):
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/ETH3D/'):
+    def __init__(self, split: str, training: bool, root_dir='/data/xp/ETH3D/', imagenet_norm=True):
         assert split in ['train', 'train_all', 'val', 'test'], "Invalid split name"
         self.split = split
         self.training = training
@@ -34,7 +34,7 @@ class ETH3D_Dataset(Dataset):
         if self.disp_images[0] is not None:
             self.disp_images = [os.path.join(root_dir, line) for line in self.disp_images]
 
-        self.get_transform = get_transform()
+        self.get_transform = get_transform(imagenet_norm)
 
 
     def __len__(self):

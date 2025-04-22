@@ -10,7 +10,7 @@ torch.backends.cudnn.benchmark = True
 from stereo_toolbox.datasets import KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset
 
 
-def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all']):
+def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all'], imagenet_norm=True):
     """
     Generalization evaluation on training sets of public datasets.
     Outliers threshold: kitti 2015 >3px; kitti 2012 >3px; middlebury eval3 >2px; eth3d >1px.
@@ -24,7 +24,7 @@ def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], split
     metrics = np.zeros((4, 4))
 
     for idx, (dataset, threshlod, split) in enumerate(zip([KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset], threshlods, splits)):
-        testdataloader = DataLoader(dataset(split=split, training=False),
+        testdataloader = DataLoader(dataset(split=split, training=False, imagenet_norm=imagenet_norm),
                                     batch_size=1, num_workers=16, shuffle=False, drop_last=False)
         
         image_num = np.zeros(4)
