@@ -63,6 +63,7 @@ pip install stereo_toolbox
 | ❌ | [DEFOM-Stereo]() | Iterative | CVPR 2025 |
 
 - Unless otherwise specified, the maximum search disparity for cost volume filtering methods is defined as 192.
+- Please refer to `stereo_toolbox/models/__init__.py` to see the changes in detail.
 
 
 
@@ -116,6 +117,7 @@ pip install stereo_toolbox
 | GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 0.9514 | 8.1138 | 4.6241 | 3.4730 |
 | CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.2879 | 10.7195 | 7.3116 | 5.9251 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  1.0391 | 8.1380 | 4.6462 | 3.5443 |
+| RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 0.7863 | 7.7104 | 4.8658 | 3.7327 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 0.6790 | 5.7491 | 3.7320 | 2.9069 |
 
 
@@ -128,6 +130,7 @@ pip install stereo_toolbox
 | GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 2.3801 | 29.0696 | 12.1746 | 12.5331 | 1.7062 | 45.6458 | 11.9081 | 12.6712 | 6.0044 | 47.1304 | 20.4144 | 24.1094 | 1.9213 | 21.3749 | 10.4911 | 11.0878 |
 | CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.9798 | 16.4189 | 5.8712 | 6.0967 | 1.0334 | 30.2510 | 4.5758 | 5.1527 | 5.7162 | 44.5492 | 16.3307 | 20.2219 | 0.5862 | 11.8926 | 5.5666 | 5.8700 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
+| RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 1.1283 | 12.6979 | 5.3413 | 5.5269 | 0.9098 | 28.3453 | 4.2900 | 4.8351 | 1.5231 | 27.9966 | 9.0575 | 11.9563 | 0.3614 | 6.0158 | 2.8471 | 3.0412 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 1.1868 | 14.2606 | 5.5951 | 5.7924 | 1.0131 | 33.6624 | 4.9248 | 5.5936 | 1.5491 | 24.2787 | 7.2518 | 9.9079 | 0.7400 | 9.7601 | 4.0635 | 4.3856 |
 
 

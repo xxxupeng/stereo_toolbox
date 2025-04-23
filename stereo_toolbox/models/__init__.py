@@ -4,7 +4,7 @@ from .PSMNet.stackhourglass import PSMNet # change `.cuda()` to `.to(x.device)` 
 from .GwcNet.gwcnet import GwcNet_G, GwcNet_GC
 from .CFNet.cfnet import CFNet # mish avtivation function only, return pred1_s2 only when evaluation
 from .PCWNet.pcwnet import PCWNet_G, PCWNet_GC # rename class as PCWNet, mish avtivation function only, return disp_finetune only when evaluation
-from .RAFTStereo.raft_stereo import RAFTStereo # init self.args
+from .RAFTStereo.raft_stereo import RAFTStereo # init self.args, negate all outputs as disparity is positive when traversing to the left by default.
 from .IGEVStereo.igev_stereo import IGEVStereo # init self.args, add imagenet_norm para. (true for imagenet's mean and std, false for all 0.5 to rescale to [-1,1])
 
 
