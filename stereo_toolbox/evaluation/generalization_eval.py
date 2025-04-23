@@ -10,7 +10,7 @@ torch.backends.cudnn.benchmark = True
 from stereo_toolbox.datasets import KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset
 
 
-def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all']):
+def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all'], maxdisp=192):
     """
     Generalization evaluation on training sets of public datasets.
     Outliers threshold: kitti 2015 >3px; kitti 2012 >3px; middlebury eval3 >2px; eth3d >1px.
@@ -31,7 +31,7 @@ def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], split
         for left, right, gt_disp, noc_mask, _, _ in testdataloader:
             left, right, gt_disp, noc_mask = left.to(device), right.to(device), gt_disp.to(device).squeeze(), noc_mask.to(device).squeeze()
 
-            all_mask = (gt_disp > 0) * (gt_disp < 191)
+            all_mask = (gt_disp > 0) * (gt_disp < maxdisp-1)
             noc_mask = noc_mask.bool() * all_mask
             occ_mask = ~noc_mask * all_mask
 
