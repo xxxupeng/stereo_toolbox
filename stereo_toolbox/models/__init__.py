@@ -4,11 +4,14 @@ from .PSMNet.stackhourglass import PSMNet # change `.cuda()` to `.to(x.device)` 
 from .GwcNet.gwcnet import GwcNet_G, GwcNet_GC
 from .CFNet.cfnet import CFNet # mish avtivation function only, return pred1_s2 only when evaluation
 from .PCWNet.pcwnet import PCWNet_G, PCWNet_GC # rename class as PCWNet, mish avtivation function only, return disp_finetune only when evaluation
-from .RAFTStereo.raft_stereo import RAFTStereo # init self.args, negate all outputs as disparity is positive when traversing to the left by default.
-from .IGEVStereo.igev_stereo import IGEVStereo # init self.args, add imagenet_norm para. (true for imagenet's mean and std, false for all 0.5 to rescale to [-1,1])
-from .MonSter.monster import Monster
+from .RAFTStereo.raft_stereo import RAFTStereo # init self.args, negate all outputs as disparity is positive when traversing to the left by default, add imagenet_norm param. (true for imagenet's mean and std, false to rescale to [-1,1], default false)
+from .IGEVStereo.igev_stereo import IGEVStereo # init self.args, add imagenet_norm param. (true for imagenet's mean and std, false to rescale to [-1,1], default false)
+from .MonSter.monster import Monster # init self.args, add imagenet_norm param. (true for imagenet's mean and std, false to rescale to [-1,1], default false)
 from .DEFOMStereo.defom_stereo import DEFOMStereo # init self.args, rescale the inputs (1/255 of the orginal), note that the used depthanythingv2 has additional interpolation step
 from .depth_anything_v2.dpt import DepthAnythingV2
+
+
+
 
 def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
     if state_dict_key is not None:
