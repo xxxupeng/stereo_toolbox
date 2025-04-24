@@ -106,7 +106,7 @@ pip install stereo_toolbox
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
-| ❌ | speed_and_memery_test | Test inference speed and memory usage. |
+| ✅ | speed_and_memery_test | Test inference speed and memory usage. |
 
 
 **Table 1: Evaluation on the SceneFlow finalpass test set.**
