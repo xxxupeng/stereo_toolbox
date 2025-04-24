@@ -50,7 +50,7 @@ pip install stereo_toolbox
 | ✅ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
 | ❌ | [GANet](https://github.com/feihuzhang/GANet) | 3D Conv. | CVPR 2019, need to compile |
 | ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020, need to compile |
-| ❌ | [DSMNet](https://github.com/feihuzhang/DSMNet) | 3D Conv. | ECCV 2020 |
+| ❌ | [DSMNet](https://github.com/feihuzhang/DSMNet) | 3D Conv. | ECCV 2020, need to compile |
 | ✅ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021 |
 | ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021 |
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022 |
@@ -92,7 +92,7 @@ pip install stereo_toolbox
 | :----: | ---------- | ----------- |
 | ✅ | colored_disparity_map_Spectral_r | Disparity map pseudocolor visualization with Spectral_r colorbar. |
 | ✅ | colored_dispairty_map_KITTI | Disparity map pseudocolor visualization with KITTI colorbar. |
-| ❌ | colored_error_map_KITTI | Error map pseudocolor visualization with KITTI colorbar. |
+| ✅ | colored_error_map_KITTI | Error map pseudocolor visualization with KITTI colorbar. |
 | ❌ | colored_pointcloud | Point cloud visualization with real color derived from left image. |
 
 

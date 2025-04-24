@@ -1,1 +1,2 @@
-from .disparity_map import *
+from .disparity_map import colored_disparity_map_KITTI, colored_disparity_map_Spectral_r
+from .error_map import colored_error_map_KITTI
