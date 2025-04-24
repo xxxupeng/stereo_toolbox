@@ -140,7 +140,7 @@ pip install stereo_toolbox
 | DEFOMStereo-L | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0725 | 12.5722 | 4.7921 | 4.9853 | 0.8433 | 21.9474 | 3.8260 | 4.2137 | 0.8884 | 20.6396 | 4.3891 | 6.9092 | 0.2533 | 5.1446 | 2.0820 | 2.2437 |
 
 
-**Table 3: Speed and Memory Usage.** GPU: NVIDIA GeForce RTX 4090.
+**Table 3: Speed (s) and Memory (MB) Usage.** GPU: NVIDIA GeForce RTX 4090.
 
 | Model | (480, 640) | |  (736, 1280) | | (1088, 1920) | |
 | ----- | :---: | :----: | :---: | :----: | :---: | :----: |
