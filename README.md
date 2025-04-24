@@ -106,7 +106,7 @@ pip install stereo_toolbox
 | ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
-| ❌ | speed_and_memery | Test inference speed and memory usage. |
+| ❌ | speed_and_memery_test | Test inference speed and memory usage. |
 
 
 **Table 1: Evaluation on the SceneFlow finalpass test set.**
@@ -138,6 +138,22 @@ pip install stereo_toolbox
 | MonSter | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.8884 | 9.6433 | 3.3003 | 3.4495 | 0.7334 | 18.8246 | 3.0310 | 3.3710 | 0.9325 | 18.4153 | 5.8567 | 7.6997 | 0.2724 | 3.5259 | 1.3234 | 1.4525 |
 | DEFOMStereo-S | [defomstereo_vits_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0819 | 13.6233 | 4.9982 | 5.1943 | 0.9024 | 23.5715 | 4.3982 | 4.8102 | 1.9487 | 23.8614 | 6.0614 | 8.7609 | 0.2733 | 4.9148 | 2.0263 | 2.1937 |
 | DEFOMStereo-L | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0725 | 12.5722 | 4.7921 | 4.9853 | 0.8433 | 21.9474 | 3.8260 | 4.2137 | 0.8884 | 20.6396 | 4.3891 | 6.9092 | 0.2533 | 5.1446 | 2.0820 | 2.2437 |
+
+
+**Table 3: Speed and Memory Usage.** GPU: NVIDIA GeForce RTX 4090.
+
+| Model | (480, 640) | |  (736, 1280) | | (1088, 1920) | |
+| ----- | :---: | :----: | :---: | :----: | :---: | :----: |
+|       | Speed | Memory | Speed | Memory | Speed | Memory |
+| PSMNet | 0.0396 | 1787.69 | 0.1245 | 4956.50 | 0.2866 | 10687.22 |
+| GwcNet_GC | 0.0386 | 1882.58 | 0.1326 | 5251.74 | 0.3093 | 11326.84 |
+| CFNet | 0.0481 | 1966.13 | 0.1434 | 5374.05 | 0.3343 | 11526.54 |
+| PCWNet_GC | 0.0888 | 3067.07 | 0.2769 | 8629.70 | 0.6419 | 18680.02 |
+| RAFTStereo | 0.1967 | 914.25 | 0.3624 | 2227.85 | 0.7613 | 4598.91 |
+| IGEVStereo | 0.2363 | 686.43 | 0.3501 | 1504.02 | 0.6741 | 2988.35 |
+| MonSter | 0.3375 | 2399.86 | 0.7188 | 3841.63 | 1.8735 | 6537.50 |
+| DEFOMStereo-S | 0.1957 | 1062.00 | 0.3423 | 2424.38 | 0.8829 | 4886.10 |
+| DEFOMStereo-L | 0.2483 | 2451.85 | 0.5966 | 4005.69 | 1.7410 | 6816.45 |
 
 
 ## 🙏 Acknowledgements
