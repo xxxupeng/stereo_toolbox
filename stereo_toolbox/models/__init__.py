@@ -7,7 +7,7 @@ from .PCWNet.pcwnet import PCWNet_G, PCWNet_GC # rename class as PCWNet, mish av
 from .RAFTStereo.raft_stereo import RAFTStereo # init self.args, negate all outputs as disparity is positive when traversing to the left by default.
 from .IGEVStereo.igev_stereo import IGEVStereo # init self.args, add imagenet_norm para. (true for imagenet's mean and std, false for all 0.5 to rescale to [-1,1])
 from .MonSter.monster import Monster
-from .DEFOMStereo.defom_stereo import DEFOMStereo # init self.args, rescale the inputs
+from .DEFOMStereo.defom_stereo import DEFOMStereo # init self.args, rescale the inputs (1/255 of the orginal), note that the used depthanythingv2 has additional interpolation step
 from .depth_anything_v2.dpt import DepthAnythingV2
 
 def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):

@@ -50,21 +50,21 @@ pip install stereo_toolbox
 | ✅ | [GwcNet](https://github.com/xy-guo/GwcNet) | 3D Conv. | CVPR 2019 |
 | ❌ | [GANet](https://github.com/feihuzhang/GANet) | 3D Conv. | CVPR 2019, need to compile |
 | ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020, need to compile |
+| ❌ | [DSMNet](https://github.com/feihuzhang/DSMNet) | 3D Conv. | ECCV 2020 |
 | ✅ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021 |
 | ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021 |
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022 |
 | ❌ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021 |
-| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine)  |
+| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine) |
 | ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023 |
 | ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024 |
-| ❌ | [MonSter]() | Iterative | CVPR 2025 |
-| ❌ | [DEFOM-Stereo]() | Iterative | CVPR 2025 |
+| ❌ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025 |
+| ❌ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025 |
 
 - Unless otherwise specified, the maximum search disparity for cost volume filtering methods is defined as 192.
 - Please refer to `stereo_toolbox/models/__init__.py` to see the changes in detail.
-
 
 
 ## 📉 Loss Functions
@@ -119,6 +119,8 @@ pip install stereo_toolbox
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  1.0391 | 8.1380 | 4.6462 | 3.5443 |
 | RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 0.7863 | 7.7104 | 4.8658 | 3.7327 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 0.6790 | 5.7491 | 3.7320 | 2.9069 |
+| DEFOMStereo-S | [defomstereo_vits_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.5592 | 5.9396 | 3.7223 | 2.8441 |
+| DEFOMStereo-L | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.4832 | 5.4918 | 3.4421 | 2.6136 |
 
 
 **Table 2: Generalization evaluation on four real-world training sets.** For all datasets, we report the average error (EPE), outlier rates in occluded, non-occluded, and all regions. The outlier thresholds are set to 3, 3, 2, and 1 for KITTI 2015, KITTI 2012, Middlebury Eval3, and ETH3D, respectively.
@@ -132,6 +134,8 @@ pip install stereo_toolbox
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
 | RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 1.1283 | 12.6979 | 5.3413 | 5.5269 | 0.9098 | 28.3453 | 4.2900 | 4.8351 | 1.5231 | 27.9966 | 9.0575 | 11.9563 | 0.3614 | 6.0158 | 2.8471 | 3.0412 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 1.1868 | 14.2606 | 5.5951 | 5.7924 | 1.0131 | 33.6624 | 4.9248 | 5.5936 | 1.5491 | 24.2787 | 7.2518 | 9.9079 | 0.7400 | 9.7601 | 4.0635 | 4.3856 |
+| DEFOMStereo-S | [defomstereo_vits_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0819 | 13.6233 | 4.9982 | 5.1943 | 0.9024 | 23.5715 | 4.3982 | 4.8102 | 1.9487 | 23.8614 | 6.0614 | 8.7609 | 0.2733 | 4.9148 | 2.0263 | 2.1937 |
+| DEFOMStereo-L | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0725 | 12.5722 | 4.7921 | 4.9853 | 0.8433 | 21.9474 | 3.8260 | 4.2137 | 0.8884 | 20.6396 | 4.3891 | 6.9092 | 0.2533 | 5.1446 | 2.0820 | 2.2437 |
 
 
 ## 🙏 Acknowledgements
