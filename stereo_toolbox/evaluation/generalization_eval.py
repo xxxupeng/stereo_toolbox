@@ -28,8 +28,8 @@ def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], split
                                     batch_size=1, num_workers=16, shuffle=False, drop_last=False)
         
         image_num = np.zeros(4)
-        for left, right, gt_disp, noc_mask, _, _ in testdataloader:
-            left, right, gt_disp, noc_mask = left.to(device), right.to(device), gt_disp.to(device).squeeze(), noc_mask.to(device).squeeze()
+        for data in testdataloader:
+            left, right, gt_disp, noc_mask = data['left'].to(device), data['right'].to(device), data['gt_disp'].to(device).squeeze(), data['noc_mask'].to(device).squeeze()
 
             all_mask = (gt_disp > 0) * (gt_disp < maxdisp-1)
             noc_mask = noc_mask.bool() * all_mask

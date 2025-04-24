@@ -23,8 +23,8 @@ def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress
     
     metrics = np.zeros(4)
 
-    for idx, (left, right, gt_disp, _, _, _) in enumerate(testdataloader):
-        left, right, gt_disp = left.to(device), right.to(device), gt_disp.to(device).squeeze()
+    for idx, data in enumerate(testdataloader):
+        left, right, gt_disp = data['left'].to(device), data['right'].to(device), data['gt_disp'].to(device).squeeze()
 
         mask = (gt_disp > 0) * (gt_disp < maxdisp-1)
         valid_num = mask.sum().item()

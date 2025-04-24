@@ -105,5 +105,11 @@ class MiddleburyEval3_Dataset(Dataset):
         else:
             mask_image = torch.full(left_image.shape[1:], float('nan'), dtype=left_image.dtype, device=left_image.device)
 
-        return left_image, right_image, disp_image, mask_image, raw_left_image, raw_right_image
-        
+        return {
+            'left': left_image,
+            'right': right_image,
+            'gt_disp': disp_image,
+            'noc_mask': mask_image,
+            'raw_left': raw_left_image,
+            'raw_right': raw_right_image
+        }        
