@@ -60,8 +60,8 @@ pip install stereo_toolbox
 | ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024 |
-| ❌ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025 |
-| ❌ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025 |
+| ✅ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025 |
+| ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025 |
 
 - Unless otherwise specified, the maximum search disparity for cost volume filtering methods is defined as 192.
 - Please refer to `stereo_toolbox/models/__init__.py` to see the changes in detail.
