@@ -10,6 +10,7 @@ from .MonSter.monster import Monster
 from .DEFOMStereo.defom_stereo import DEFOMStereo
 from .depth_anything_v2.dpt import DepthAnythingV2
 from .STTR.sttr import STTR
+from .ACVNet.acv import ACVNet
 
 
 

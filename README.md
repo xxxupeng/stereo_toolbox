@@ -53,7 +53,7 @@ pip install stereo_toolbox
 | ❌ | [DSMNet](https://github.com/feihuzhang/DSMNet) | 3D Conv. | ECCV 2020, need to compile. |
 | ✅ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021, `mish` avtivation function only, return `pred1_s2` only when evaluation. |
 | ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021, add default `self.args` in `__init__()`, reset left as positive direction (i.e. invert all outputs), add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
-| ❌ | [ACVNet](https://github.com/gangweix/acvnet) | 3D Conv. | CVPR 2022. |
+| ✅ | [ACVNet](https://github.com/gangweix/acvnet) | 3D Conv. | CVPR 2022. |
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022, rename class `PWCNet` as `PCWNet`, two models `PCWNet_G` and `PCWNet_GC`, `mish` avtivation function only, return `disp_finetune` only when evaluation. |
 | ❌ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021 |
 | ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine) |
@@ -65,6 +65,7 @@ pip install stereo_toolbox
 | ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, note that the used depthanythingv2 has additional interpolation step. |
 
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
+- All predictions are output as a list during training, and only the final disparity map is output during inference.
 
 
 ## 📉 Loss Functions
@@ -117,6 +118,7 @@ pip install stereo_toolbox
 | GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 0.9514 | 8.1138 | 4.6241 | 3.4730 |
 | CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.2879 | 10.7195 | 7.3116 | 5.9251 |
 | RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 0.7863 | 7.7104 | 4.8658 | 3.7327 |
+| ACVNet | [sceneflow.ckpt](https://drive.google.com/drive/folders/1oY472efAgwCCSxtewbbA2gEtee-dlWSG) | 0.6860 | 5.1409 | 2.9201 | 2.1832 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  1.0391 | 8.1380 | 4.6462 | 3.5443 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 0.6790 | 5.7491 | 3.7320 | 2.9069 |
 | MonSter | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.5201 | 4.5608 | 2.9705 | 2.3052 |
@@ -133,6 +135,7 @@ pip install stereo_toolbox
 | GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 2.3801 | 29.0696 | 12.1746 | 12.5331 | 1.7062 | 45.6458 | 11.9081 | 12.6712 | 6.0044 | 47.1304 | 20.4144 | 24.1094 | 1.9213 | 21.3749 | 10.4911 | 11.0878 |
 | CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.9798 | 16.4189 | 5.8712 | 6.0967 | 1.0334 | 30.2510 | 4.5758 | 5.1527 | 5.7162 | 44.5492 | 16.3307 | 20.2219 | 0.5862 | 11.8926 | 5.5666 | 5.8700 |
 | RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 1.1283 | 12.6979 | 5.3413 | 5.5269 | 0.9098 | 28.3453 | 4.2900 | 4.8351 | 1.5231 | 27.9966 | 9.0575 | 11.9563 | 0.3614 | 6.0158 | 2.8471 | 3.0412 |
+| ACVNet | [sceneflow.ckpt](https://drive.google.com/drive/folders/1oY472efAgwCCSxtewbbA2gEtee-dlWSG) | 2.5105 | 32.8509 | 11.2934 | 11.7108 | 2.0233 | 54.4658 | 12.9433 | 13.8876 | 6.2429 | 47.3617 | 22.0709 | 25.6607 | 2.4436p | 19.6435 | 8.6531 | 9.1933 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 1.1868 | 14.2606 | 5.5951 | 5.7924 | 1.0131 | 33.6624 | 4.9248 | 5.5936 | 1.5491 | 24.2787 | 7.2518 | 9.9079 | 0.7400 | 9.7601 | 4.0635 | 4.3856 |
 | MonSter | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.8884 | 9.6433 | 3.3003 | 3.4495 | 0.7334 | 18.8246 | 3.0310 | 3.3710 | 0.9325 | 18.4153 | 5.8567 | 7.6997 | 0.2724 | 3.5259 | 1.3234 | 1.4525 |
@@ -149,6 +152,7 @@ pip install stereo_toolbox
 | GwcNet_GC | 0.0386 | 1882.58 | 0.1326 | 5251.74 | 0.3093 | 11326.84 |
 | CFNet | 0.0481 | 1966.13 | 0.1434 | 5374.05 | 0.3343 | 11526.54 |
 | RAFTStereo | 0.1967 | 914.25 | 0.3624 | 2227.85 | 0.7613 | 4598.91 |
+| ACVNet | 0.0494 | 2098.31 | 0.1664 | 6344.20 | 0.3848 | 14021.82 |
 | PCWNet_GC | 0.0888 | 3067.07 | 0.2769 | 8629.70 | 0.6419 | 18680.02 |
 | IGEVStereo | 0.2363 | 686.43 | 0.3501 | 1504.02 | 0.6741 | 2988.35 |
 | MonSter | 0.3375 | 2399.86 | 0.7188 | 3841.63 | 1.8735 | 6537.50 |
