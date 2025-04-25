@@ -66,6 +66,7 @@ pip install stereo_toolbox
 
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
 - All predictions are output as a list during training, and only the final disparity map is output during inference.
+- For all iterative methods, the default training and validation iterations are set to 22 and 32, respectively.
 
 
 ## 📉 Loss Functions
