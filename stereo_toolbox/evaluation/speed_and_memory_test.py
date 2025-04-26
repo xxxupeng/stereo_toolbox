@@ -68,7 +68,6 @@ def speed_and_memory_test(model, resolution=None, batch_size=1, num_iterations=1
         avg_times.append(np.mean(times))
         avg_memories.append(np.mean(mems))
 
-    for res, time, mem in zip(resolutions, avg_times, avg_memories):
-        print(f'Resolution: {res}, Avg Time: {time:.4f} s, Avg Frequency: {1/time:.4f} Hz,Avg Memory: {mem:.2f} MB')
+        print(f'Resolution: {resolution}, Avg Time: {np.mean(times):.4f} s, Avg Frequency: {1/np.mean(times):.4f} Hz,Avg Memory: {np.mean(mems):.2f} MB')
 
     return resolutions, avg_times, avg_memories
