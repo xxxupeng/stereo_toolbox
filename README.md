@@ -52,11 +52,11 @@ pip install stereo_toolbox
 | ❌ | [AANet](https://github.com/haofeixu/aanet) | 2D Conv. | CVPR 2020, need to compile. |
 | ❌ | [DSMNet](https://github.com/feihuzhang/DSMNet) | 3D Conv. | ECCV 2020, need to compile. |
 | ✅ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021, `mish` avtivation function only, return `pred1_s2` only when evaluation. |
+| ✅ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021, return `output['disp_pred']` only when evaluation. |
 | ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021, add default `self.args` in `__init__()`, reset left as positive direction (i.e. invert all outputs), add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
 | ✅ | [ACVNet](https://github.com/gangweix/acvnet) | 3D Conv. | CVPR 2022. |
-| ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022, rename class `PWCNet` as `PCWNet`, two models `PCWNet_G` and `PCWNet_GC`, `mish` avtivation function only, return `disp_finetune` only when evaluation. |
-| ❌ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021 |
 | ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine) |
+| ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022, rename class `PWCNet` as `PCWNet`, two models `PCWNet_G` and `PCWNet_GC`, `mish` avtivation function only, return `disp_finetune` only when evaluation. |
 | ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
 | ❌ | [Selective-IGEVStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024 |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
@@ -118,6 +118,7 @@ pip install stereo_toolbox
 | PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 1.1572 | 11.2908 | 6.4028 | 4.7803 |
 | GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 0.9514 | 8.1138 | 4.6241 | 3.4730 |
 | CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.2879 | 10.7195 | 7.3116 | 5.9251 |
+| STTR (w/o occ mask input) | [sceneflow_pretrained_model.pth.tar](https://drive.google.com/file/d/1R0YUpFzDRTKvjRfngF8SPj2JR2M1mMTF/view) | 4.5613 | 15.6220 | 12.3084 | 11.3189 |
 | RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 0.7863 | 7.7104 | 4.8658 | 3.7327 |
 | ACVNet | [sceneflow.ckpt](https://drive.google.com/drive/folders/1oY472efAgwCCSxtewbbA2gEtee-dlWSG) | 0.6860 | 5.1409 | 2.9201 | 2.1832 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  1.0391 | 8.1380 | 4.6462 | 3.5443 |
@@ -135,6 +136,7 @@ pip install stereo_toolbox
 | PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 4.0584 | 47.6432 | 28.1250 | 28.4160 | 3.8022 | 63.1951 | 26.5022 | 27.3239 | 9.8662 | 62.2950 | 30.1842 | 34.5084 | 2.3997 | 28.5613 | 14.7393 | 15.3888 |
 | GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 2.3801 | 29.0696 | 12.1746 | 12.5331 | 1.7062 | 45.6458 | 11.9081 | 12.6712 | 6.0044 | 47.1304 | 20.4144 | 24.1094 | 1.9213 | 21.3749 | 10.4911 | 11.0878 |
 | CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.9798 | 16.4189 | 5.8712 | 6.0967 | 1.0334 | 30.2510 | 4.5758 | 5.1527 | 5.7162 | 44.5492 | 16.3307 | 20.2219 | 0.5862 | 11.8926 | 5.5666 | 5.8700 |
+| STTR | [sceneflow_pretrained_model.pth.tar](https://drive.google.com/file/d/1R0YUpFzDRTKvjRfngF8SPj2JR2M1mMTF/view) | 2.1786 | 90.9327 | 6.8101% | 8.3029 | 2.8117 | 94.3034 | 7.1706 | 9.1719 | OOM | OOM | OOM | OOM | 2.2964 | 50.0450 | 15.8716 | 17.5654 |
 | RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) | 1.1283 | 12.6979 | 5.3413 | 5.5269 | 0.9098 | 28.3453 | 4.2900 | 4.8351 | 1.5231 | 27.9966 | 9.0575 | 11.9563 | 0.3614 | 6.0158 | 2.8471 | 3.0412 |
 | ACVNet | [sceneflow.ckpt](https://drive.google.com/drive/folders/1oY472efAgwCCSxtewbbA2gEtee-dlWSG) | 2.5105 | 32.8509 | 11.2934 | 11.7108 | 2.0233 | 54.4658 | 12.9433 | 13.8876 | 6.2429 | 47.3617 | 22.0709 | 25.6607 | 2.4436p | 19.6435 | 8.6531 | 9.1933 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
@@ -144,7 +146,7 @@ pip install stereo_toolbox
 | DEFOMStereo-L | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0725 | 12.5722 | 4.7921 | 4.9853 | 0.8433 | 21.9474 | 3.8260 | 4.2137 | 0.8884 | 20.6396 | 4.3891 | 6.9092 | 0.2533 | 5.1446 | 2.0820 | 2.2437 |
 
 
-**Table 3: Inference speed (s) and memory (MB) usage.** Device: NVIDIA GeForce RTX 4090.
+**Table 3: Inference speed (s) and memory (MB) usage.** Device: NVIDIA GeForce RTX 4090 24GB.
 
 | Model | (480, 640) | |  (736, 1280) | | (1088, 1920) | |
 | ----- | :---: | :----: | :---: | :----: | :---: | :----: |
@@ -152,6 +154,7 @@ pip install stereo_toolbox
 | PSMNet | 0.0396 | 1787.69 | 0.1245 | 4956.50 | 0.2866 | 10687.22 |
 | GwcNet_GC | 0.0386 | 1882.58 | 0.1326 | 5251.74 | 0.3093 | 11326.84 |
 | CFNet | 0.0481 | 1966.13 | 0.1434 | 5374.05 | 0.3343 | 11526.54 |
+| STTR | 0.1556 | 3036.80 | 0.8468 | 16588.08 | OOM | OOM |
 | RAFTStereo | 0.1967 | 914.25 | 0.3624 | 2227.85 | 0.7613 | 4598.91 |
 | ACVNet | 0.0494 | 2098.31 | 0.1664 | 6344.20 | 0.3848 | 14021.82 |
 | PCWNet_GC | 0.0888 | 3067.07 | 0.2769 | 8629.70 | 0.6419 | 18680.02 |
