@@ -18,13 +18,15 @@ class BasicConv(nn.Module):
                 self.conv = nn.ConvTranspose3d(in_channels, out_channels, bias=False, **kwargs)
             else:
                 self.conv = nn.Conv3d(in_channels, out_channels, bias=False, **kwargs)
-            self.bn = nn.BatchNorm3d(out_channels)
+            if self.use_bn:
+                self.bn = nn.BatchNorm3d(out_channels)
         else:
             if deconv:
                 self.conv = nn.ConvTranspose2d(in_channels, out_channels, bias=False, **kwargs)
             else:
                 self.conv = nn.Conv2d(in_channels, out_channels, bias=False, **kwargs)
-            self.bn = nn.BatchNorm2d(out_channels)
+            if self.use_bn:
+                self.bn = nn.BatchNorm2d(out_channels)
 
     def forward(self, x):
         x = self.conv(x)
