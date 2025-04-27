@@ -131,7 +131,8 @@ class Trainer:
                 dataset,
                 num_replicas=self.world_size,
                 rank=self.global_rank,
-                shuffle=shuffle
+                shuffle=shuffle,
+                drop_last=True
             )
             dataloader = DataLoader(
                 dataset,
@@ -247,13 +248,13 @@ class Trainer:
 
                 self.current_iteration += 1
 
-            torch.cuda.synchronize()
-
             # 定期保存检查点
             if (epoch + 1) % self.config.save_every == 0 if hasattr(self.config, 'save_every') else False:
                 self.save_checkpoint(
                     model, optimizer, scheduler, scaler,
                 )
+
+            torch.cuda.synchronize()
             
         # 清理分布式环境
         if self.is_distributed():

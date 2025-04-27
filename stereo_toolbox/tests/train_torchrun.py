@@ -37,9 +37,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
-    args = parse_args()
-
+def main(args):
     trainer = Trainer(args)
 
     trainset = SceneFlow_Dataset(split='train_finalpass', training=True)
@@ -75,7 +73,8 @@ def main():
 
 
 if __name__ == "__main__":
+    args = parse_args()
     main()
 
 
-## torchrun --nproc_per_node=4 train.py  --amp --sync-bn 
+## torchrun --nproc_per_node=4 train.py  --amp --sync-bn --output-dir ./checkpoint_torchrun
