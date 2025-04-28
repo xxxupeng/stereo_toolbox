@@ -4,7 +4,7 @@ sys.path.insert(0, '/home/xp/stereo_toolbox/')
 import numpy as np
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, ConcatDataset
 import torch.nn.functional as F
 import torch.optim as optim
 from tqdm import tqdm
@@ -18,6 +18,7 @@ from accelerate import DataLoaderConfiguration
 from accelerate.utils import DistributedDataParallelKwargs
 from pathlib import Path
 import tensorboard
+import math
 
 from stereo_toolbox.datasets import *
 from stereo_toolbox.models import *
@@ -39,6 +40,8 @@ def parse_args():
     parser.add_argument('--clip-grad', type=float, default=0, help='梯度裁剪阈值, 0 为不裁剪')
     parser.add_argument('--find-unused_parameters', action='store_true', help='查找未使用的参数')
     parser.add_argument('--max-disp', type=int, default=192, help='最大视差')
+    parser.add_argument('--num-worker', type=int, default=8, help='数据加载器的工作线程数')
+
 
     return parser.parse_args()
 
@@ -60,6 +63,12 @@ def train_iteration(model, data, optimizer, scheduler, accelerator, args):
         loss = F.smooth_l1_loss(init_disp.squeeze()[mask], gt_disp[mask], reduction='mean')
         for i in range(n_predictions):
             loss += F.smooth_l1_loss(disp_preds[i].squeeze()[mask], gt_disp[mask], reduction='mean') / (2**i)
+
+    if not math.isfinite(loss.item()):
+        print("Loss 为 NaN，跳过本次迭代。")
+        loss = torch.tensor(0.0, device=accelerator.device)
+        accelerator.wait_for_everyone()
+        return loss.item()
 
     accelerator.backward(loss)
     if args.clip_grad:
@@ -85,12 +94,23 @@ def main(args):
         step_scheduler_with_optimizer=False
     )
 
-    trainset = SceneFlow_Dataset(split='train_finalpass', training=True)
+    sceneflow_trainset = SceneFlow_Dataset(split='train_finalpass', training=True)
+    sintel_trainset = Sintel_Dataset(split='train_final', training=True)
+    hr_vs_dataset = HR_VS_Dataset(split='train', training=True)
+    crestereo_dataset = CREStereo_Dataset(split='train', training=True)
+
+    trainset = ConcatDataset([
+        sceneflow_trainset,
+        sintel_trainset,
+        hr_vs_dataset,
+        crestereo_dataset,
+    ])
+    
     train_loader = DataLoader(
         trainset,
         batch_size=args.batch_size, 
         shuffle=True, 
-        num_workers=8, 
+        num_workers=args.num_worker, 
         pin_memory=True, 
         drop_last=True
     )
@@ -109,10 +129,22 @@ def main(args):
         cycle_momentum=False
     )
 
+    if args.resume:
+        checkpoint = torch.load(args.resume, map_location='cpu')
+        model.load_state_dict(checkpoint['model'])
+        optimizer.load_state_dict(checkpoint['optimizer'])
+        scheduler.load_state_dict(checkpoint['scheduler'])
+        start_epoch = checkpoint['epoch'] + 1
+        if accelerator.is_main_process:
+            print(f"Loaded checkpoint from {args.resume}")
+            print(f"Resuming training from epoch {start_epoch}")
+    else:
+        start_epoch = 0
+
     train_loader, model, optimizer, scheduler = accelerator.prepare(train_loader, model, optimizer, scheduler)
     model.to(accelerator.device)
 
-    for epoch in range(args.epochs):
+    for epoch in range(start_epoch, args.epochs):
         data_loader_with_progress = (
             tqdm(train_loader, desc=f'Ep.{epoch}/{args.epochs}', ncols=100,)
             if accelerator.is_main_process else train_loader
@@ -135,10 +167,8 @@ def main(args):
                 'model': accelerator.unwrap_model(model).state_dict(),
                 'optimizer': optimizer.state_dict(),
                 'scheduler': scheduler.state_dict(),
-                'epoch': epoch,
             }
             torch.save(checkpoint, f"{args.output_dir}/checkpoint_epoch_{epoch:04d}.pth")
-
 
 
 if __name__ == "__main__":
