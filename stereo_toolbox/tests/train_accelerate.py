@@ -60,8 +60,12 @@ def train_iteration(model, data, optimizer, scheduler, accelerator, args):
 
         n_predictions = len(disp_preds)
         loss = F.smooth_l1_loss(init_disp.squeeze()[mask], gt_disp[mask], reduction='mean')
+        if not hasattr(args, 'loss_gamma'):
+            args.loss_gamma = 0.9
+        adjusted_loss_gamma = args.loss_gamma**(15/(n_predictions - 1))
         for i in range(n_predictions):
-            loss += F.smooth_l1_loss(disp_preds[i].squeeze()[mask], gt_disp[mask], reduction='mean') / (2**i)
+            i_weight = adjusted_loss_gamma**(n_predictions - i - 1)
+            loss += i_weight * F.smooth_l1_loss(disp_preds[i].squeeze()[mask], gt_disp[mask], reduction='mean')
 
     # if not math.isfinite(loss.item()):
     #     print("Loss 为 NaN，跳过本次迭代。")
