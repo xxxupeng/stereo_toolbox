@@ -12,3 +12,4 @@
 **/*.ckpt
 **/.pypirc
 **/tmp.py
+**/*.tar.gz
