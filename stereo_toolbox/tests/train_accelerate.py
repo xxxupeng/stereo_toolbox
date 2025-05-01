@@ -37,11 +37,10 @@ def parse_args():
     parser.add_argument('--amp', action='store_true', help='使用混合精度训练')
     parser.add_argument('--save-every', type=int, default=1, help='每 x epochs保存一次')
     parser.add_argument('--resume', type=str, default=None, help='恢复训练的检查点路径')
-    parser.add_argument('--clip-grad', type=float, default=0, help='梯度裁剪阈值, 0 为不裁剪')
+    parser.add_argument('--clip-grad', type=float, default=1, help='梯度裁剪阈值, 0 为不裁剪')
     parser.add_argument('--find-unused_parameters', action='store_true', help='查找未使用的参数')
     parser.add_argument('--max-disp', type=int, default=192, help='最大视差')
     parser.add_argument('--num-worker', type=int, default=8, help='数据加载器的工作线程数')
-
 
     return parser.parse_args()
 
@@ -64,16 +63,13 @@ def train_iteration(model, data, optimizer, scheduler, accelerator, args):
         for i in range(n_predictions):
             loss += F.smooth_l1_loss(disp_preds[i].squeeze()[mask], gt_disp[mask], reduction='mean') / (2**i)
 
-    if not math.isfinite(loss.item()):
-        print("Loss 为 NaN，跳过本次迭代。")
-        loss = torch.tensor(0.0, device=accelerator.device)
-        accelerator.wait_for_everyone()
-        return loss.item()
+    # if not math.isfinite(loss.item()):
+    #     print("Loss 为 NaN，跳过本次迭代。")
+    #     loss = torch.tensor(0.0, device=accelerator.device)
 
     accelerator.backward(loss)
     if args.clip_grad:
         accelerator.clip_grad_norm_(model.parameters(), args.clip_grad)
-
     optimizer.step()
     scheduler.step()
 
@@ -176,4 +172,4 @@ if __name__ == "__main__":
     main(args)
 
 
-## accelerate launch --gpu_ids="0,1,2,3"  --multi_gpu --num_processes=4 train_accelerate.py  --amp --sync-bn --output-dir ./checkpoint_accelerate
+## accelerate launch --gpu_ids="0,1,2,3"  --multi_gpu --num_processes=4 --main_process_port 8888 train_accelerate.py  --amp --sync-bn --output-dir ./checkpoint_accelerate
