@@ -85,7 +85,7 @@ def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85):
         ssim_weight (float): SSIM损失的权重，默认为0.85
         
     返回:
-        Tensor: 光度一致性损失，形状为 [B, C, H, W]
+        Tensor: 光度一致性损失，形状为 [B, 1, H, W]
     """
     if disp is None:
         warped_right_image = right_image
