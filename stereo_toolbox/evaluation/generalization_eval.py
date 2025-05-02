@@ -10,7 +10,7 @@ torch.backends.cudnn.benchmark = True
 from stereo_toolbox.datasets import KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset
 
 
-def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all'], maxdisp=192):
+def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all'], maxdisp=192, write_ckpt=None):
     """
     Generalization evaluation on training sets of public datasets.
     Outliers threshold: kitti 2015 >3px; kitti 2012 >3px; middlebury eval3 >2px; eth3d >1px.
@@ -64,5 +64,14 @@ def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], split
                 f"OCC: {metrics[idx][1]:.4f}%, "
                 f"NOC: {metrics[idx][2]:.4f}%, "
                 f"ALL: {metrics[idx][3]:.4f}%.")
+
+    if write_ckpt:
+        checkpoint = torch.load(write_ckpt, map_location='cpu')
+        if 'generalization' not in checkpoint:
+            checkpoint['generalization'] = metrics
+            torch.save(checkpoint, write_ckpt)
+        else:
+            print(f'original generalization metrics:\n{checkpoint["generalization"]}')
+            print(f'current generalization metrics:\n{metrics}')
 
     return metrics
