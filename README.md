@@ -73,7 +73,7 @@ pip install stereo_toolbox
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
 | ✅ | photometric_loss | |
-| ❌ | edge_aware_smoothness_loss | |
+| ✅ | smoothness_loss | |
 | ❌ | single_modal_cross_entropy_loss | |
 | ❌ | multi_modal_cross_entropy_loss | |
 
