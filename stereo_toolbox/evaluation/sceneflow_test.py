@@ -10,7 +10,7 @@ torch.backends.cudnn.benchmark = True
 from stereo_toolbox.datasets import SceneFlow_Dataset
 
 
-def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress=True, maxdisp=192, write_ckpt=None):
+def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress=True, maxdisp=192, write_ckpt=None, write_key='sceneflow'):
     """
     return epe / px, 1px 2px 3px ourliers / %
     """
@@ -48,11 +48,11 @@ def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress
 
     if write_ckpt:
         checkpoint = torch.load(write_ckpt, map_location='cpu')
-        if 'sceneflow' not in checkpoint:
-            checkpoint['sceneflow'] = metrics
+        if write_key not in checkpoint:
+            checkpoint[write_key] = metrics
             torch.save(checkpoint, write_ckpt)
         else:
-            print(f'original sceneflow metrics:\n{checkpoint["sceneflow"]}')
+            print(f'original sceneflow metrics:\n{checkpoint[write_key]}')
             print(f'current sceneflow metrics:\n{metrics}')
 
     return metrics
