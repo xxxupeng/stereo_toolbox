@@ -17,9 +17,9 @@ from .ACVNet.acv import ACVNet
 
 def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
     if state_dict_key is not None:
-        state_dict = torch.load(checkpoint_path, map_location='cpu')[state_dict_key]
+        state_dict = torch.load(checkpoint_path, map_location='cpu', weights_only=False)[state_dict_key]
     else:
-        state_dict = torch.load(checkpoint_path, map_location='cpu')
+        state_dict = torch.load(checkpoint_path, map_location='cpu', weights_only=False)
     
     new_state_dict = {}
     model_dict = model.state_dict()
