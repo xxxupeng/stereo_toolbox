@@ -20,7 +20,13 @@ class Sintel_Dataset(Dataset):
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/Sintel/'):
+    def __init__(self, split: str, training: bool, root_dir='/data1/xp/Sintel/'):
+        if not os.path.exists(root_dir):
+            print(f"Dataset root directory {root_dir} does not exist. Trying to replace '/data1' with '/data'.")
+            root_dir = root_dir.replace('/data1', '/data')
+            if not os.path.exists(root_dir):
+                raise ValueError(f"Dataset root directory {root_dir} does not exist.")
+            
         assert split in ['train_clean', 'train_final'], "Invalid split name"
         self.split = split
         self.training = training

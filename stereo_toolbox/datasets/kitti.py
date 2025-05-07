@@ -20,12 +20,18 @@ class KITTI_Dataset(Dataset):
     Outputs: left image, right image, disparity image, non-occulusion mask, raw left image, raw right image
     - disparity and noc mask are filled with nan if not available.
     """
-    def __init__(self, split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
+    def __init__(self, split: str, training: bool, root_dir='/data1/xp/KITTI_2015/'):
+        if not os.path.exists(root_dir):
+            print(f"Dataset root directory {root_dir} does not exist. Trying to replace '/data1' with '/data'.")
+            root_dir = root_dir.replace('/data1', '/data')
+            if not os.path.exists(root_dir):
+                raise ValueError(f"Dataset root directory {root_dir} does not exist.")
+            
         assert split in ['train', 'train_all', 'val', 'test'], "Invalid split name"
         self.split = split
         self.training = training
 
-        year = re.findall(r'\d+', root_dir)[0]
+        year = os.path.dirname(root_dir).split('/')[-1][-4:]
         dataset_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     f'datasets_lists/kitti{year}/{self.split}.txt')
         self.left_images, self.right_images, self.disp_images = read_lines(dataset_file)
@@ -106,10 +112,10 @@ class KITTI_Dataset(Dataset):
             'raw_right': raw_right_image
         }        
 
-def KITTI2015_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2015/'):
-    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2015/')
+def KITTI2015_Dataset(split: str, training: bool, root_dir='/data1/xp/KITTI_2015/'):
+    return KITTI_Dataset(split, training, root_dir=root_dir)
 
 
-def KITTI2012_Dataset(split: str, training: bool, root_dir='/data/xp/KITTI_2012/'):
-    return KITTI_Dataset(split, training, root_dir='/data/xp/KITTI_2012/')
+def KITTI2012_Dataset(split: str, training: bool, root_dir='/data1/xp/KITTI_2012/'):
+    return KITTI_Dataset(split, training, root_dir=root_dir)
 
