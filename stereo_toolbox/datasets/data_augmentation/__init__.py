@@ -19,7 +19,7 @@ def random_jitter(left, right):
     return left, right
 
 
-def random_crop(left, right, disp=None, mask=None, crop_size=[256, 512]):
+def random_crop(left, right, disp=None, mask=None, crop_size=[384, 512]):
     left = np.array(left)
     right = np.array(right)
 
