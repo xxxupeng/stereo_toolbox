@@ -13,3 +13,4 @@
 **/.pypirc
 **/tmp.py
 **/*.tar.gz
+**/*.safetensors
