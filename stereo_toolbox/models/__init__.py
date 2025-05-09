@@ -11,8 +11,8 @@ from .DEFOMStereo.defom_stereo import DEFOMStereo
 from .depth_anything_v2.dpt import DepthAnythingV2
 from .STTR.sttr import STTR
 from .ACVNet.acv import ACVNet
-
-
+from .SelectiveStereo.SelectiveIGEV.igev_stereo import IGEVStereo as SelectiveIGEV
+from .SelectiveStereo.SelectiveRAFT.raft import RAFT as SelectiveRAFT
 
 
 def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
