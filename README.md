@@ -75,6 +75,7 @@ pip install stereo_toolbox
 | :----: | ---------- | ----------- |
 | ✅ | photometric_loss | |
 | ✅ | smoothness_loss | |
+| ❌ | triplet_photometric_loss | CVPR 2023, [NerfStereo](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo) |
 | ❌ | single_modal_cross_entropy_loss | |
 | ❌ | multi_modal_cross_entropy_loss | |
 
@@ -147,7 +148,7 @@ pip install stereo_toolbox
 | ACVNet | [sceneflow.ckpt](https://drive.google.com/drive/folders/1oY472efAgwCCSxtewbbA2gEtee-dlWSG) | 2.5105 | 32.8509 | 11.2934 | 11.7108 | 2.0233 | 54.4658 | 12.9433 | 13.8876 | 6.2429 | 47.3617 | 22.0709 | 25.6607 | 2.4436 | 19.6435 | 8.6531 | 9.1933 |
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 1.1868 | 14.2606 | 5.5951 | 5.7924 | 1.0131 | 33.6624 | 4.9248 | 5.5936 | 1.5491 | 24.2787 | 7.2518 | 9.9079 | 0.7400 | 9.7601 | 4.0635 | 4.3856 |
-| [NerfStero-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) | 1.1330 | 14.6178 | 5.2269 | 5.4257 | 0.8592 | 26.9731 | 3.5119 | 4.0440 | 1.6247 | 31.0983 | 6.7877 | 10.3770 | 0.2992 | 8.3545 | 2.7778 | 3.0729 |
+| [NerfStereo-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) | 1.1330 | 14.6178 | 5.2269 | 5.4257 | 0.8592 | 26.9731 | 3.5119 | 4.0440 | 1.6247 | 31.0983 | 6.7877 | 10.3770 | 0.2992 | 8.3545 | 2.7778 | 3.0729 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) | 1.2629 | 17.7190 | 6.0989 | 6.3532 | 1.0889 | 28.0310 | 4.9432 | 5.4576 | 1.6684 | 26.7379 | 7.5835 | 10.5572 | 0.3958 | 8.8286 | 3.8131 | 4.2670 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) | 1.2124 | 13.8184 | 5.7032 | 5.8859 | 1.0068 | 31.8457 | 5.0626 | 5.6780 | 1.3974 | 22.5942 | 6.7270 | 9.1742 | 0.4373 | 9.8115 | 4.0689 | 4.4284 |
 | MonSter<sup>&Dagger;</sup> | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.8884 | 9.6433 | 3.3003 | 3.4495 | 0.7334 | 18.8246 | 3.0310 | 3.3710 | 0.9325 | 18.4153 | 5.8567 | 7.6997 | 0.2724 | 3.5259 | 1.3234 | 1.4525 |
