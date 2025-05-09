@@ -13,3 +13,4 @@ from .argoverse import Argoverse_Dataset
 from .holopix50k import Holopix50k_Dataset
 from .monotrap import MonoTrap_Dataset
 from .fallingthings import FallingThings_Dataset
+from .virtualkitti2 import VirtualKITTI2_Dataset
