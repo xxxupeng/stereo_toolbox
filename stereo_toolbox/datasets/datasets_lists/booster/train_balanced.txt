@@ -89,7 +89,7 @@ train/balanced/Case/camera_00/im2.png train/balanced/Case/camera_02/im2.png trai
 train/balanced/Case/camera_00/im4.png train/balanced/Case/camera_02/im4.png train/balanced/Case/disp_00.npy
 train/balanced/Case/camera_00/im3.png train/balanced/Case/camera_02/im3.png train/balanced/Case/disp_00.npy
 train/balanced/Case/camera_00/im6.png train/balanced/Case/camera_02/im6.png train/balanced/Case/disp_00.npy
-train/balanced/Case/camera_00/im10.png train/balanced/Case/camera_02/im10.png train/balanced/Case/cdisp_00.npy
+train/balanced/Case/camera_00/im10.png train/balanced/Case/camera_02/im10.png train/balanced/Case/disp_00.npy
 train/balanced/Case/camera_00/im0.png train/balanced/Case/camera_02/im0.png train/balanced/Case/disp_00.npy
 train/balanced/Case/camera_00/im9.png train/balanced/Case/camera_02/im9.png train/balanced/Case/disp_00.npy
 train/balanced/Case/camera_00/im5.png train/balanced/Case/camera_02/im5.png train/balanced/Case/disp_00.npy
