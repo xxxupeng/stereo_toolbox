@@ -19,6 +19,7 @@ stereo_toolbox/datasets/booster.py
 stereo_toolbox/datasets/crestereo.py
 stereo_toolbox/datasets/drivingstereo.py
 stereo_toolbox/datasets/eth3d.py
+stereo_toolbox/datasets/fallingthings.py
 stereo_toolbox/datasets/holopix50k.py
 stereo_toolbox/datasets/hr_vs.py
 stereo_toolbox/datasets/instereo2k.py
@@ -29,6 +30,7 @@ stereo_toolbox/datasets/monotrap.py
 stereo_toolbox/datasets/sceneflow.py
 stereo_toolbox/datasets/sintel.py
 stereo_toolbox/datasets/utils.py
+stereo_toolbox/datasets/virtualkitti2.py
 stereo_toolbox/datasets/data_augmentation/__init__.py
 stereo_toolbox/datasets/datasets_lists/argoverse/test.txt
 stereo_toolbox/datasets/datasets_lists/argoverse/train.txt
@@ -58,6 +60,7 @@ stereo_toolbox/datasets/datasets_lists/eth3d/test.txt
 stereo_toolbox/datasets/datasets_lists/eth3d/train.txt
 stereo_toolbox/datasets/datasets_lists/eth3d/train_all.txt
 stereo_toolbox/datasets/datasets_lists/eth3d/val.txt
+stereo_toolbox/datasets/datasets_lists/fallingthings/train.txt
 stereo_toolbox/datasets/datasets_lists/holopix50k/test.txt
 stereo_toolbox/datasets/datasets_lists/holopix50k/train.txt
 stereo_toolbox/datasets/datasets_lists/holopix50k/val.txt
@@ -84,6 +87,7 @@ stereo_toolbox/datasets/datasets_lists/sceneflow/train_cleanpass.txt
 stereo_toolbox/datasets/datasets_lists/sceneflow/train_finalpass.txt
 stereo_toolbox/datasets/datasets_lists/sintel/train_clean.txt
 stereo_toolbox/datasets/datasets_lists/sintel/train_final.txt
+stereo_toolbox/datasets/datasets_lists/virtualkitti2/train.txt
 stereo_toolbox/disparity_estimators/__init__.py
 stereo_toolbox/disparity_estimators/dominant_modal_disparity_estimator.py
 stereo_toolbox/disparity_estimators/unimodal_disparity_estimator.py
@@ -92,7 +96,10 @@ stereo_toolbox/evaluation/generalization_eval.py
 stereo_toolbox/evaluation/sceneflow_test.py
 stereo_toolbox/evaluation/speed_and_memory_test.py
 stereo_toolbox/loss_functions/__init__.py
+stereo_toolbox/loss_functions/auto_mask.py
 stereo_toolbox/loss_functions/photometric_loss.py
+stereo_toolbox/loss_functions/smoothness_loss.py
+stereo_toolbox/loss_functions/split_mode.py
 stereo_toolbox/models/__init__.py
 stereo_toolbox/models/ACVNet/acv.py
 stereo_toolbox/models/ACVNet/submodule.py
@@ -162,6 +169,22 @@ stereo_toolbox/models/STTR/regression_head.py
 stereo_toolbox/models/STTR/sttr.py
 stereo_toolbox/models/STTR/transformer.py
 stereo_toolbox/models/STTR/utilities/misc.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/__init__.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/extractor.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/geometry.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/igev_stereo.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/submodule.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/update.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/utils/__init__.py
+stereo_toolbox/models/SelectiveStereo/SelectiveIGEV/utils/utils.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/__init__.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/corr.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/extractor.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/raft.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/submodule.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/update.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/utils/__init__.py
+stereo_toolbox/models/SelectiveStereo/SelectiveRAFT/utils/utils.py
 stereo_toolbox/models/depth_anything_v2/dinov2.py
 stereo_toolbox/models/depth_anything_v2/dpt.py
 stereo_toolbox/models/depth_anything_v2/dinov2_layers/__init__.py
@@ -176,6 +199,7 @@ stereo_toolbox/models/depth_anything_v2/util/blocks.py
 stereo_toolbox/models/depth_anything_v2/util/transform.py
 stereo_toolbox/tests/datasets.ipynb
 stereo_toolbox/tests/models.ipynb
+stereo_toolbox/tests/multi_modal_statistic.ipynb
 stereo_toolbox/tests/train_accelerate.py
 stereo_toolbox/tests/train_torchrun.py
 stereo_toolbox/tests/visualization.ipynb
