@@ -29,7 +29,12 @@ def warp_right_to_left(right_image, disp):
                                  mode='bilinear', 
                                  padding_mode='zeros')
     
-    return warped_right
+    valid_mask = F.grid_sample(torch.ones_like(right_image), 
+                                 (flow_field * 2 - 1),
+                                 mode='bilinear', 
+                                 padding_mode='zeros').detach()
+    
+    return warped_right, valid_mask
 
 
 def ssim(x, y, window_size=7, pad_mode='reflect'):
@@ -72,7 +77,7 @@ def ssim(x, y, window_size=7, pad_mode='reflect'):
     return torch.clamp((1 - ssim_n / ssim_d) / 2, 0, 1)
 
 
-def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85):
+def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85, enable_mask=True):
     """计算光度一致性损失
     
     结合SSIM损失和L1损失的加权和，用于评估视差预测的准确性。
@@ -90,7 +95,10 @@ def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85):
     if disp is None:
         warped_right_image = right_image
     else:
-        warped_right_image = warp_right_to_left(right_image, disp)
+        warped_right_image, valid_mask = warp_right_to_left(right_image, disp)
 
-    # 计算光度一致性损失
-    return ssim_weight * ssim(left_image, warped_right_image).mean(1, True) + (1-ssim_weight) * torch.abs(left_image - warped_right_image).mean(1, True)
+    loss = ssim_weight * ssim(left_image, warped_right_image) + (1-ssim_weight) * torch.abs(left_image - warped_right_image)
+    if enable_mask:
+        loss = loss * valid_mask
+
+    return loss.mean(1, True)
