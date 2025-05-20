@@ -18,10 +18,14 @@ def smoothness_loss(disp, img):
     # 确保输入图像已归一化到0-1范围
     if img.max() > 1.0:
         print("Warning: Image may not be normalized. Expected range: [0,1]")
+
+    # 视差归一化（消除绝对尺度的影响，使损失关注局部结构)
+    mean_disp = disp.mean(2, True).mean(3, True)
+    norm_disp = disp / (mean_disp + 1e-7)
     
     # 计算视差梯度
-    disp_dx = torch.abs(disp[:, :, :, :-1] - disp[:, :, :, 1:])
-    disp_dy = torch.abs(disp[:, :, :-1, :] - disp[:, :, 1:, :])
+    disp_dx = torch.abs(norm_disp[:, :, :, :-1] - norm_disp[:, :, :, 1:])
+    disp_dy = torch.abs(norm_disp[:, :, :-1, :] - norm_disp[:, :, 1:, :])
     
     # 计算图像梯度 (对归一化后的图像)
     img_dx = torch.mean(torch.abs(img[:, :, :, :-1] - img[:, :, :, 1:]), 1, keepdim=True)
