@@ -11,7 +11,7 @@ def auto_mask(left_image, right_image, disp, denorm=False):
         left_image = left_image * std + mean
         right_image = right_image * std + mean
 
-    reproj_error = photometric_loss(left_image, right_image, disp.detach())
-    identity_error = photometric_loss(left_image, right_image)
+    reproj_error = photometric_loss(left_image, right_image, disp.detach(), enable_mask=False)
+    identity_error = photometric_loss(left_image, right_image, enable_mask=False)
 
     return reproj_error < identity_error
