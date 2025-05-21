@@ -21,5 +21,5 @@ setup(
     packages = find_packages(),
     include_package_data = True,
     platforms = "any",
-    install_requires = ["numpy", "pillow", "torch", "opencv-python", "matplotlib", "jupyter", "matplotlib", "cmapy", "torchvision", 'xformers', 'accelerate']
+    install_requires = ["numpy", "pillow", "torch", "opencv-python", "matplotlib", "jupyter", "matplotlib", "cmapy", "torchvision", 'xformers', 'accelerate', 'opt_einsum', 'timm', 'flash-attn']
 )

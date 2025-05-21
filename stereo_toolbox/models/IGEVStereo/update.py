@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 class FlowHead(nn.Module):
     def __init__(self, input_dim=128, hidden_dim=256, output_dim=2):
-        super(FlowHead, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2d(input_dim, hidden_dim, 3, padding=1)
         self.conv2 = nn.Conv2d(hidden_dim, output_dim, 3, padding=1)
         self.relu = nn.ReLU(inplace=True)
@@ -14,7 +14,7 @@ class FlowHead(nn.Module):
 
 class DispHead(nn.Module):
     def __init__(self, input_dim=128, hidden_dim=256, output_dim=1):
-        super(DispHead, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2d(input_dim, hidden_dim, 3, padding=1)
         self.conv2 = nn.Conv2d(hidden_dim, output_dim, 3, padding=1)
         self.relu = nn.ReLU(inplace=True)
@@ -24,7 +24,7 @@ class DispHead(nn.Module):
 
 class ConvGRU(nn.Module):
     def __init__(self, hidden_dim, input_dim, kernel_size=3):
-        super(ConvGRU, self).__init__()
+        super().__init__()
         self.convz = nn.Conv2d(hidden_dim+input_dim, hidden_dim, kernel_size, padding=kernel_size//2)
         self.convr = nn.Conv2d(hidden_dim+input_dim, hidden_dim, kernel_size, padding=kernel_size//2)
         self.convq = nn.Conv2d(hidden_dim+input_dim, hidden_dim, kernel_size, padding=kernel_size//2)
@@ -41,7 +41,7 @@ class ConvGRU(nn.Module):
 
 class SepConvGRU(nn.Module):
     def __init__(self, hidden_dim=128, input_dim=192+128):
-        super(SepConvGRU, self).__init__()
+        super().__init__()
         self.convz1 = nn.Conv2d(hidden_dim+input_dim, hidden_dim, (1,5), padding=(0,2))
         self.convr1 = nn.Conv2d(hidden_dim+input_dim, hidden_dim, (1,5), padding=(0,2))
         self.convq1 = nn.Conv2d(hidden_dim+input_dim, hidden_dim, (1,5), padding=(0,2))
@@ -71,7 +71,7 @@ class SepConvGRU(nn.Module):
 
 class BasicMotionEncoder(nn.Module):
     def __init__(self, args):
-        super(BasicMotionEncoder, self).__init__()
+        super().__init__()
         self.args = args
         cor_planes = args.corr_levels * (2*args.corr_radius + 1) * (8+1)
         self.convc1 = nn.Conv2d(cor_planes, 64, 1, padding=0)

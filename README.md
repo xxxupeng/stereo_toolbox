@@ -68,6 +68,15 @@ pip install stereo_toolbox
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
 - All predictions are output as a list during training, and only the final disparity map is output during inference.
 - For all iterative methods, the default training and validation iterations are set to 22 and 32, respectively.
+- Due to version dependency, please additionally install timm==0.5.4 and rename it to timm_0_5_4:
+    ```
+    wget https://github.com/huggingface/pytorch-image-models/archive/refs/tags/v0.5.4.zip
+    # unzip the zip file
+    cd pytorch-image-models-0.5.4
+    # replace 'timm' in 'setup.py' with 'timm_0_5_4'
+    # replace all the 'import timm' and 'from timm' with 'import timm_0_5_4' and 'from timm_0_5_4', respectively
+    pip install .
+    ```
 
 
 ## 📉 Loss Functions

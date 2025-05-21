@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import timm
+import timm_0_5_4 as timm
 import math
 
 from .submodule import *

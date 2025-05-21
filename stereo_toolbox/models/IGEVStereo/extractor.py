@@ -1,14 +1,15 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import timm
+import timm_0_5_4 as timm
+import math
 
 from .submodule import *
 
 
 class ResidualBlock(nn.Module):
     def __init__(self, in_planes, planes, norm_fn='group', stride=1):
-        super(ResidualBlock, self).__init__()
+        super().__init__()
   
         self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, padding=1, stride=stride)
         self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, padding=1)
@@ -66,7 +67,7 @@ class ResidualBlock(nn.Module):
 
 class BottleneckBlock(nn.Module):
     def __init__(self, in_planes, planes, norm_fn='group', stride=1):
-        super(BottleneckBlock, self).__init__()
+        super().__init__()
   
         self.conv1 = nn.Conv2d(in_planes, planes//4, kernel_size=1, padding=0)
         self.conv2 = nn.Conv2d(planes//4, planes//4, kernel_size=3, padding=1, stride=stride)
@@ -124,7 +125,7 @@ class BottleneckBlock(nn.Module):
 
 class BasicEncoder(nn.Module):
     def __init__(self, output_dim=128, norm_fn='batch', dropout=0.0, downsample=3):
-        super(BasicEncoder, self).__init__()
+        super().__init__()
         self.norm_fn = norm_fn
         self.downsample = downsample
 
@@ -198,7 +199,7 @@ class BasicEncoder(nn.Module):
 
 class MultiBasicEncoder(nn.Module):
     def __init__(self, output_dim=[128], norm_fn='batch', dropout=0.0, downsample=3):
-        super(MultiBasicEncoder, self).__init__()
+        super().__init__()
         self.norm_fn = norm_fn
         self.downsample = downsample
 
@@ -305,7 +306,7 @@ class MultiBasicEncoder(nn.Module):
 
 class SubModule(nn.Module):
     def __init__(self):
-        super(SubModule, self).__init__()
+        super().__init__()
 
     def weight_init(self):
         for m in self.modules():
@@ -325,7 +326,7 @@ class SubModule(nn.Module):
 
 class Feature(SubModule):
     def __init__(self):
-        super(Feature, self).__init__()
+        super().__init__()
         pretrained =  True
         model = timm.create_model('mobilenetv2_100', pretrained=pretrained, features_only=True)
         layers = [1,2,3,5,6]

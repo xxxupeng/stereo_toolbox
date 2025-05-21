@@ -9,7 +9,7 @@ import numpy as np
 class BasicConv(nn.Module):
 
     def __init__(self, in_channels, out_channels, deconv=False, is_3d=False, bn=True, relu=True, **kwargs):
-        super(BasicConv, self).__init__()
+        super().__init__()
 
         self.relu = relu
         self.use_bn = bn
@@ -40,7 +40,7 @@ class BasicConv(nn.Module):
 class Conv2x(nn.Module):
 
     def __init__(self, in_channels, out_channels, deconv=False, is_3d=False, concat=True, keep_concat=True, bn=True, relu=True, keep_dispc=False):
-        super(Conv2x, self).__init__()
+        super().__init__()
         self.concat = concat
         self.is_3d = is_3d 
         if deconv and is_3d: 
@@ -82,7 +82,7 @@ class Conv2x(nn.Module):
 class BasicConv_IN(nn.Module):
 
     def __init__(self, in_channels, out_channels, deconv=False, is_3d=False, IN=True, relu=True, **kwargs):
-        super(BasicConv_IN, self).__init__()
+        super().__init__()
 
         self.relu = relu
         self.use_in = IN
@@ -111,7 +111,7 @@ class BasicConv_IN(nn.Module):
 class Conv2x_IN(nn.Module):
 
     def __init__(self, in_channels, out_channels, deconv=False, is_3d=False, concat=True, keep_concat=True, IN=True, relu=True, keep_dispc=False):
-        super(Conv2x_IN, self).__init__()
+        super().__init__()
         self.concat = concat
         self.is_3d = is_3d 
         if deconv and is_3d: 
@@ -227,7 +227,7 @@ def disparity_regression(x, maxdisp):
 
 class FeatureAtt(nn.Module):
     def __init__(self, cv_chan, feat_chan):
-        super(FeatureAtt, self).__init__()
+        super().__init__()
 
         self.feat_att = nn.Sequential(
             BasicConv(feat_chan, feat_chan//2, kernel_size=1, stride=1, padding=0),
