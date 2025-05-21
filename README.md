@@ -56,14 +56,15 @@ pip install stereo_toolbox
 | ✅ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021, return `output['disp_pred']` only when evaluation. |
 | ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021, add default `self.args` in `__init__()`, reset left as positive direction (i.e. invert all outputs), add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
 | ✅ | [ACVNet](https://github.com/gangweix/acvnet) | 3D Conv. | CVPR 2022. |
-| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine) |
+| ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine). |
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022, rename class `PWCNet` as `PCWNet`, two models `PCWNet_G` and `PCWNet_GC`, `mish` avtivation function only, return `disp_finetune` only when evaluation. |
-| ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
-| ✅ | [SelectiveStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024, two models `SelectiveRAFT` and `SelectiveIGEV`, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
-| ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024 |
-| ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024 |
-| ✅ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
-| ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, note that the used depthanythingv2 has additional interpolation step. |
+| ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
+| ✅ | [SelectiveStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024, two models `SelectiveRAFT` and `SelectiveIGEV`, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
+| ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024. |
+| ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024. |
+| ✅ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
+| ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, note that the used depthanythingv2 has additional interpolation step, timm<=0.6.5|
+| ✅ | [FoundationStereo](https://github.com/NVlabs/FoundationStereo) | Iterative | CVPR 2025 Best Paper Nomination,  add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, timm==0.6.5. |
 
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
 - All predictions are output as a list during training, and only the final disparity map is output during inference.
@@ -84,7 +85,7 @@ pip install stereo_toolbox
 | :----: | ---------- | ----------- |
 | ✅ | photometric_loss | |
 | ✅ | smoothness_loss | |
-| ❌ | triplet_photometric_loss | CVPR 2023, [NerfStereo](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo) |
+| ❌ | triplet_photometric_loss | CVPR 2023, [NerfStereo](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo). |
 | ❌ | single_modal_cross_entropy_loss | |
 | ❌ | multi_modal_cross_entropy_loss | |
 
@@ -93,10 +94,10 @@ pip install stereo_toolbox
 
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
-| ✅ | softargmax_disparity_estimator | ICCV 2017 |
+| ✅ | softargmax_disparity_estimator | [ICCV 2017](https://arxiv.org/abs/1703.04309). |
 | ✅ | argmax_disparity_estimator | |
-| ✅ | unimodal_disparity_estimator | ICCV 2019 |
-| ✅ | dominant_modal_disparity_estimator | CVPR 2024 |
+| ✅ | unimodal_disparity_estimator | [ICCV 2019](https://openaccess.thecvf.com/content_ICCV_2019/papers/Chen_On_the_Over-Smoothing_Problem_of_CNN_Based_Disparity_Estimation_ICCV_2019_paper.pdf). |
+| ✅ | dominant_modal_disparity_estimator | [CVPR 2024](https://github.com/xxxupeng/ADL). |
 
 
 ## 🎨 Visualization
@@ -139,6 +140,8 @@ pip install stereo_toolbox
 | MonSter<sup>&Dagger;</sup> | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.5201 | 4.5608 | 2.9705 | 2.3052 |
 | DEFOMStereo-S<sup>&Dagger;</sup> | [defomstereo_vits_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.5592 | 5.9396 | 3.7223 | 2.8441 |
 | DEFOMStereo-L<sup>&Dagger;</sup> | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.4832 | 5.4918 | 3.4421 | 2.6136 |
+| FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.5165 | 4.0213 | 2.4983 | 1.9194 |
+| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) |
 
 - <sup>&dagger;</sup>w/o occluded mask input
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
@@ -165,8 +168,11 @@ pip install stereo_toolbox
 | DEFOMStereo-L<sup>&Dagger;</sup> | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 1.0725 | 12.5722 | 4.7921 | 4.9853 | 0.8433 | 21.9474 | 3.8260 | 4.2137 | 0.8884 | 20.6396 | 4.3891 | 6.9092 | 0.2533 | 5.1446 | 2.0820 | 2.2437 |
 | [ZeroStereo-RAFT](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model.safetensors](https://drive.google.com/drive/folders/1x2SdUgXLv1rpiNT9xbY82wZch0ebZaJe) | 1.0306 | 11.1673 | 4.4509 | 4.6312 | 0.7484 | 20.5038 | 3.1816 | 3.5517 | 1.3451 | 23.8572 | 4.6174 | 7.5843 | 0.2346 | 6.3722 | 1.9073 | 2.2238 |
 | [ZeroStereo-IGEV](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model_192.safetensors](https://drive.google.com/drive/folders/1Wkvhw455SAgXukTzyzU2ltcv4lzDJB6F) | 1.0061 | 10.5266 | 4.3593 | 4.5312 | 0.7394 | 19.4140 | 3.1647 | 3.5043 | 1.1126 | 21.2663 | 4.8955 | 7.3997 | 0.2297 | 6.2541 | 1.9331 | 2.1894 |
+| FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.8812 | 9.3458 | 3.1114 | 3.2651 | 0.6646 | 16.5310 | 2.5713 | 2.8640 | 0.5377 | 10.6189 | 1.3074 | 2.7566 | 0.1612 | 2.5606 | 0.7094 | 0.7776 |
+| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) |
 
-- <sup>&dagger;</sup>train on real-world data without GT.
+
+- <sup>&dagger;</sup>trained on extra synthetic/real data.
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
 
 **Table 3: Inference speed (s) and memory (MB) usage.** Device: NVIDIA GeForce RTX 4090 24GB.
@@ -187,6 +193,8 @@ pip install stereo_toolbox
 | MonSter | 0.3375 | 2399.86 | 0.7188 | 3841.63 | 1.8735 | 6537.50 |
 | DEFOMStereo-S | 0.1957 | 1062.00 | 0.3423 | 2424.38 | 0.8829 | 4886.10 |
 | DEFOMStereo-L | 0.2483 | 2451.85 | 0.5966 | 4005.69 | 1.7410 | 6816.45 |
+| FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 |
+| FoundationStereo-L |
 
 
 ## 🙏 Acknowledgements
