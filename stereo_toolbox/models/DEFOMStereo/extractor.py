@@ -2,7 +2,7 @@ import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from timm.models.layers import DropPath
+from timm_0_5_4.models.layers import DropPath
 from pathlib import Path
 
 from .depth_anything_v2.dpt import DepthAnythingV2
