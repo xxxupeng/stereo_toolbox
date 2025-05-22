@@ -141,7 +141,7 @@ pip install stereo_toolbox
 | DEFOMStereo-S<sup>&Dagger;</sup> | [defomstereo_vits_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.5592 | 5.9396 | 3.7223 | 2.8441 |
 | DEFOMStereo-L<sup>&Dagger;</sup> | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.4832 | 5.4918 | 3.4421 | 2.6136 |
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.5165 | 4.0213 | 2.4983 | 1.9194 |
-| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) |
+| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) | 0.4966 | 3.6243 | 2.2180 | 1.7123 |
 
 - <sup>&dagger;</sup>w/o occluded mask input
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
@@ -169,7 +169,7 @@ pip install stereo_toolbox
 | [ZeroStereo-RAFT](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model.safetensors](https://drive.google.com/drive/folders/1x2SdUgXLv1rpiNT9xbY82wZch0ebZaJe) | 1.0306 | 11.1673 | 4.4509 | 4.6312 | 0.7484 | 20.5038 | 3.1816 | 3.5517 | 1.3451 | 23.8572 | 4.6174 | 7.5843 | 0.2346 | 6.3722 | 1.9073 | 2.2238 |
 | [ZeroStereo-IGEV](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model_192.safetensors](https://drive.google.com/drive/folders/1Wkvhw455SAgXukTzyzU2ltcv4lzDJB6F) | 1.0061 | 10.5266 | 4.3593 | 4.5312 | 0.7394 | 19.4140 | 3.1647 | 3.5043 | 1.1126 | 21.2663 | 4.8955 | 7.3997 | 0.2297 | 6.2541 | 1.9331 | 2.1894 |
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.8812 | 9.3458 | 3.1114 | 3.2651 | 0.6646 | 16.5310 | 2.5713 | 2.8640 | 0.5377 | 10.6189 | 1.3074 | 2.7566 | 0.1612 | 2.5606 | 0.7094 | 0.7776 |
-| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) |
+| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) | 0.8746 | 8.1694 | 3.1106 | 3.2388 | 0.6692 | 15.3932 | 2.6666 | 2.9389 | 0.5060 | 8.5997 | 1.1179 | 2.2698 | 0.1517 | 2.2747 | 0.5694 | 0.6525 |
 
 
 - <sup>&dagger;</sup>trained on extra synthetic/real data.
@@ -194,7 +194,7 @@ pip install stereo_toolbox
 | DEFOMStereo-S | 0.1957 | 1062.00 | 0.3423 | 2424.38 | 0.8829 | 4886.10 |
 | DEFOMStereo-L | 0.2483 | 2451.85 | 0.5966 | 4005.69 | 1.7410 | 6816.45 |
 | FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 |
-| FoundationStereo-L |
+| FoundationStereo-L | 0.3327 | 2811.62 | 0.8369  | 5569.83 | 1.7758 | 10555.90 |
 
 
 ## 🙏 Acknowledgements
