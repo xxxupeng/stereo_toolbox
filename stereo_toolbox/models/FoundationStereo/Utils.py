@@ -12,7 +12,7 @@ import torch.nn.functional as F
 import torch.nn as nn
 from functools import partial
 import pandas as pd
-import open3d as o3d
+# import open3d as o3d
 import cv2
 import numpy as np
 from transformations import *
@@ -40,16 +40,16 @@ def set_seed(random_seed):
   torch.backends.cudnn.benchmark = False
 
 
-def toOpen3dCloud(points,colors=None,normals=None):
-  cloud = o3d.geometry.PointCloud()
-  cloud.points = o3d.utility.Vector3dVector(points.astype(np.float64))
-  if colors is not None:
-    if colors.max()>1:
-      colors = colors/255.0
-    cloud.colors = o3d.utility.Vector3dVector(colors.astype(np.float64))
-  if normals is not None:
-    cloud.normals = o3d.utility.Vector3dVector(normals.astype(np.float64))
-  return cloud
+# def toOpen3dCloud(points,colors=None,normals=None):
+#   cloud = o3d.geometry.PointCloud()
+#   cloud.points = o3d.utility.Vector3dVector(points.astype(np.float64))
+#   if colors is not None:
+#     if colors.max()>1:
+#       colors = colors/255.0
+#     cloud.colors = o3d.utility.Vector3dVector(colors.astype(np.float64))
+#   if normals is not None:
+#     cloud.normals = o3d.utility.Vector3dVector(normals.astype(np.float64))
+#   return cloud
 
 
 
