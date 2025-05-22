@@ -65,6 +65,7 @@ pip install stereo_toolbox
 | ✅ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
 | ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, note that the used depthanythingv2 has additional interpolation step, timm<=0.6.5|
 | ✅ | [FoundationStereo](https://github.com/NVlabs/FoundationStereo) | Iterative | CVPR 2025 Best Paper Nomination,  add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, timm==0.6.5. |
+| ✅ | [StereoAnywhere](https://github.com/bartn8/stereoanywhere) | Iterative | CVPR 2025, integrate depthanythingv2 into the forward process, withdraw the input normalization as it has been done in our dataloader. |
 
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
 - All predictions are output as a list during training, and only the final disparity map is output during inference.
@@ -142,6 +143,7 @@ pip install stereo_toolbox
 | DEFOMStereo-L<sup>&Dagger;</sup> | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) | 0.4832 | 5.4918 | 3.4421 | 2.6136 |
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.5165 | 4.0213 | 2.4983 | 1.9194 |
 | FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) | 0.4966 | 3.6243 | 2.2180 | 1.7123 |
+| StereoAnywhere<sup>&Dagger;</sup> | [sceneflow.tar](https://drive.google.com/drive/folders/1uQqNJo2iWoPtXlSsv2koAt2OPYHpuh1x) | 0.9109 | 7.9459% | 5.0610 | 4.0071 |
 
 - <sup>&dagger;</sup>w/o occluded mask input
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
@@ -170,6 +172,7 @@ pip install stereo_toolbox
 | [ZeroStereo-IGEV](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model_192.safetensors](https://drive.google.com/drive/folders/1Wkvhw455SAgXukTzyzU2ltcv4lzDJB6F) | 1.0061 | 10.5266 | 4.3593 | 4.5312 | 0.7394 | 19.4140 | 3.1647 | 3.5043 | 1.1126 | 21.2663 | 4.8955 | 7.3997 | 0.2297 | 6.2541 | 1.9331 | 2.1894 |
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.8812 | 9.3458 | 3.1114 | 3.2651 | 0.6646 | 16.5310 | 2.5713 | 2.8640 | 0.5377 | 10.6189 | 1.3074 | 2.7566 | 0.1612 | 2.5606 | 0.7094 | 0.7776 |
 | FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) | 0.8746 | 8.1694 | 3.1106 | 3.2388 | 0.6692 | 15.3932 | 2.6666 | 2.9389 | 0.5060 | 8.5997 | 1.1179 | 2.2698 | 0.1517 | 2.2747 | 0.5694 | 0.6525 |
+| StereoAnywhere<sup>&Dagger;</sup> | [sceneflow.tar](https://drive.google.com/drive/folders/1uQqNJo2iWoPtXlSsv2koAt2OPYHpuh1x) | 0.9531 | 11.2782 | 3.6955 | 3.8666 | 0.8347 | 21.6785 | 3.5198 | 3.9184 | 1.2584 | 20.7357 | 5.3881 | 7.629 | 0.2362 | 4.2515 | 1.5314 | 1.7172 |
 
 
 - <sup>&dagger;</sup>trained on extra synthetic/real data.
@@ -195,7 +198,7 @@ pip install stereo_toolbox
 | DEFOMStereo-L | 0.2483 | 2451.85 | 0.5966 | 4005.69 | 1.7410 | 6816.45 |
 | FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 |
 | FoundationStereo-L | 0.3327 | 2811.62 | 0.8369  | 5569.83 | 1.7758 | 10555.90 |
-
+| StereoAnywhere | 0.4172 | 2785.66 | 0.8389 | 7810.07 | 2.6662 | 22433.76 |
 
 ## 🙏 Acknowledgements
 
