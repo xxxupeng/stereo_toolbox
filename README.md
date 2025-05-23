@@ -122,6 +122,7 @@ pip install stereo_toolbox
 | ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
 | ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
 | ✅ | speed_and_memery_test | Test inference speed and memory usage. |
+| ✅ | drivingstereo_weather_test | Test generalization performance on different weathers of DrivingStereo test sets (half). |
 
 
 **Table 1: Evaluation on SceneFlow finalpass test set.**
@@ -178,7 +179,7 @@ pip install stereo_toolbox
 - <sup>&dagger;</sup>trained on extra synthetic/real data.
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
 
-**Table 3: Inference speed (s) and memory (MB) usage.** Device: NVIDIA GeForce RTX 4090 24GB.
+**Table 3: Inference speed (s) and memory (MB) usage.** Device: NVIDIA GeForce RTX 4090.
 
 | Model | (480, 640) | |  (736, 1280) | | (1088, 1920) | |
 | ----- | :---: | :----: | :---: | :----: | :---: | :----: |
@@ -199,6 +200,32 @@ pip install stereo_toolbox
 | FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 |
 | FoundationStereo-L | 0.3327 | 2811.62 | 0.8369  | 5569.83 | 1.7758 | 10555.90 |
 | StereoAnywhere | 0.4172 | 2785.66 | 0.8389 | 7810.07 | 2.6662 | 22433.76 |
+
+
+**Table 4: Generalization across different weathers.** The outlier threshold is set to 3.
+| Model | Checkpoint | Sunny | | Cloudy | | Rainy | | Foggy | |
+| ----- | ---------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+|       |            | EPE | Outliers | EPE | Outliers | EPE | Outliers | EPE | Outliers | EPE | Outliers |
+| PSMNet | [pretrained_sceneflow_new.tar](https://drive.google.com/file/d/1NDKrWHkwgMKtDwynXVU12emK3G5d5kkp/view) | 7.9699 | 40.1363 | 12.8784 | 43.9466 | 24.5091 | 56.187 | 31.558 | 69.6891 |
+| GwcNet_GC | [checkpoint_000015.ckpt](https://drive.google.com/file/d/1qiOTocPfLaK9effrLmBadqNtBKT4QX4S/view) | 2.2694 | 17.1220 | 3.5672 | 25.5583 | 4.9620 | 28.1909 | 3.3859 | 29.2295 |
+| CFNet | [sceneflow_pretraining.ckpt](https://drive.google.com/file/d/1gFNUc4cOCFXbGv6kkjjcPw2cJWmodypv/view) | 1.1168 |  4.6957 |  1.0915 |  5.3006 |  1.8753 |  12.4819 |  1.1242 |  5.5388 |
+| STTR | [sceneflow_pretrained_model.pth.tar](https://drive.google.com/file/d/1R0YUpFzDRTKvjRfngF8SPj2JR2M1mMTF/view) |  2.6073 | 6.9961 | 2.4905 | 7.9241 | 7.8698 | 23.7624 | 2.2568 | 8.3199 |
+| RAFTStereo | [raftstereo-sceneflow.pth](https://drive.google.com/drive/folders/1booUFYEXmsdombVuglatP0nZXb5qI89J) |  1.1015 | 4.2288 | 1.0457 | 4.1902 | 2.0409 | 12.7736 | 0.9909 | 3.0875 |
+| ACVNet | [sceneflow.ckpt](https://drive.google.com/drive/folders/1oY472efAgwCCSxtewbbA2gEtee-dlWSG) |  2.5432 | 19.6405 | 4.1897 | 29.8733 | 12.3508 | 41.3112 | 5.8133 | 38.0457 |
+| PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  0.9841 | 3.5835 | 1.0074 | 3.6724 | 1.9833 | 10.5247 | 1.1282 | 5.1968 |
+| IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) |  1.0485 | 4.5893 | 1.1052 | 5.1544 | 2.2975 | 15.4724 | 1.0657 | 4.4922 |
+| [NerfStereo-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) |  0.9003 | 2.8822 | 0.9145 | 2.9105 | 1.7485 | 10.2047 | 1.0682 | 3.9268 |
+| SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) |  1.1099 | 4.8376 | 1.0555 | 4.4836 | 1.8238 | 13.9435 | 0.9648 | 3.4256 |
+| SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) |  1.1242 | 5.0513 | 1.1139 | 5.2406 | 2.0507 | 13.5095 | 1.0679 | 4.1028 |
+| MonSter<sup>&Dagger;</sup> | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) |  0.9857 | 3.4775 | 0.9318 | 3.1687 | 1.1267 | 5.2665 | 1.1023 | 5.0289 |
+| DEFOMStereo-S<sup>&Dagger;</sup> | [defomstereo_vits_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) |  0.9678 | 3.7935 | 0.9836 | 4.0202 | 1.4416 | 12.9997 | 0.9787 | 3.4861 |
+| DEFOMStereo-L<sup>&Dagger;</sup> | [defomstereo_vitl_sceneflow.pth](https://drive.google.com/drive/folders/1cZLcIjHlmUo986gkR6FbofG1cj5BT36x) |  0.9740 | 3.6134 | 0.9970 | 3.7463 | 1.5175 | 13.5251 | 0.9330 | 2.8767 |
+| [ZeroStereo-RAFT](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model.safetensors](https://drive.google.com/drive/folders/1x2SdUgXLv1rpiNT9xbY82wZch0ebZaJe) |  0.8423 | 2.6192 | 0.8457 | 2.4586 | 2.2867 | 13.6386 | 0.8388 | 1.7887 |
+| [ZeroStereo-IGEV](https://github.com/Windsrain/ZeroStereo/tree/main)<sup>&dagger;</sup> | [model_192.safetensors](https://drive.google.com/drive/folders/1Wkvhw455SAgXukTzyzU2ltcv4lzDJB6F) |  0.8487 | 2.5887 | 0.8379 | 2.3636 | 1.7912 | 13.0688 | 0.8483 | 1.8949 |
+| FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) |  0.8651 | 2.7184 | 0.8791 | 2.5519 | 1.5783 | 13.4365 | 1.0134 | 3.3486 |
+| FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) |  0.9427 | 3.1979 | 0.8918 | 2.6189 | 5.3590 | 26.9548 | 2.1145 | 5.6173 |
+| StereoAnywhere<sup>&Dagger;</sup> | [sceneflow.tar](https://drive.google.com/drive/folders/1uQqNJo2iWoPtXlSsv2koAt2OPYHpuh1x) |  0.9713 | 3.5070 | 0.9068 | 2.9285 | 1.3656 | 10.8506 | 0.9408 | 2.8968 |
+
 
 ## 🙏 Acknowledgements
 

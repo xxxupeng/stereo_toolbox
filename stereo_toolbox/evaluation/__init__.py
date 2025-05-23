@@ -1,3 +1,4 @@
 from .sceneflow_test import sceneflow_test
 from .generalization_eval import generalization_eval
 from .speed_and_memory_test import speed_and_memory_test
+from .drivingstereo_weather_test import drivingstereo_weather_test
