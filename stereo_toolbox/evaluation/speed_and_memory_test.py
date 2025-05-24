@@ -26,6 +26,12 @@ def speed_and_memory_test(model, resolution=None, batch_size=1, num_iterations=1
 
     model = model.to(device).eval()
 
+    # Count the total number of parameters in the model (including both learnable and non-learnable)
+    total_params = sum(p.numel() for p in model.parameters())
+    learnable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f'Total number of parameters: {total_params / 1e6:.2f}M')
+    print(f'Learnable parameters: {learnable_params / 1e6:.2f}M')
+
     resolutions = [(480, 640), (736,1280), (1088,1920)]
     if resolution is not None:
         resolutions.append(resolution)
