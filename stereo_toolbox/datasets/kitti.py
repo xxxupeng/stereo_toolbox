@@ -80,7 +80,7 @@ class KITTI_Dataset(Dataset):
             mask_image = self.load_noc_mask(None)
 
         if self.training:
-            left_image, right_image, disp_image, mask_image = random_crop(left_image, right_image, disp_image, mask_image)
+            left_image, right_image, disp_image, mask_image = random_crop(left_image, right_image, disp_image, mask_image, [288, 512])
             raw_left_image = transforms.ToTensor()(left_image)
             raw_right_image = transforms.ToTensor()(right_image)
             left_image, right_image = random_jitter(left_image, right_image)
