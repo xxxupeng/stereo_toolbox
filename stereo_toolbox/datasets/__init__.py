@@ -14,3 +14,4 @@ from .holopix50k import Holopix50k_Dataset
 from .monotrap import MonoTrap_Dataset
 from .fallingthings import FallingThings_Dataset
 from .virtualkitti2 import VirtualKITTI2_Dataset
+from .layeredflow import LayeredFlow_Dataset

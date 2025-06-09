@@ -31,8 +31,10 @@ pip install stereo_toolbox
 | ✅ | [Holopix50k_Dataset](https://github.com/LeiaInc/holopix50k) |  41K+ | 4.9K+ | 2.4K+ | ❌ | In-the-wild Dataset contributed by users of the Holopix™ mobile social platform. |
 | ✅ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | 61K+ | 0 | 0 | ❌ | Synthetic dataset with object models and backgrounds of complex composition and high graphical quality. |
 | ✅ | [VirtualKITTI2](https://europe.naverlabs.com/proxy-virtual-worlds-vkitti-2/) | 21K+ | 0 | 0 | ❌ | A more photo-realistic and better-featured version of the original virtual KITTI dataset. |
-| ❌ | [LayeredFlow](https://layeredflow.cs.princeton.edu) |
+| ✅ | [LayeredFlow](https://layeredflow.cs.princeton.edu) | ❌ | 400 | 600 | ❌ |  Indoor and outdoor dataset with non-Lambertian objects. |
 | ❌ | [TartanAir_Dataset]() | | |
+| ❌ | [SCARED]() | 
+
 
 **Dataloader Return:**
 - left image (color jitter if training)
