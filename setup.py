@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "stereo_toolbox",
-    version = "0.2.1",
+    version = "0.3.0",
     keywords = ["pip", "stereo matching"],
     description = "stereo toolbox.",
     long_description = "A comprehensive stereo matching toolbox for efficient development and research.",
@@ -21,5 +21,5 @@ setup(
     packages = find_packages(),
     include_package_data = True,
     platforms = "any",
-    install_requires = ["numpy", "pillow", "torch", "opencv-python", "matplotlib", "jupyter", "matplotlib", "cmapy", "torchvision", 'xformers', 'accelerate', 'opt_einsum', 'timm', 'flash-attn']
+    install_requires = ["numpy", "pillow", "torch", "opencv-python", "matplotlib", "jupyter", "matplotlib", "cmapy", "torchvision", 'xformers', 'accelerate', 'opt_einsum', 'timm==0.6.5', 'flash-attn']
 )
