@@ -77,5 +77,5 @@ def pad_to_2x(left, right, disp=None, mask=None):
         assert disp.ndim == 2
         mask = np.lib.pad(mask, ((top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
 
-    return left, right, disp, mask
+    return left, right, disp, mask, top_pad, right_pad
 

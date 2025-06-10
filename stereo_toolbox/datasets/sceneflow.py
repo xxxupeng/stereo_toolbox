@@ -76,7 +76,7 @@ class SceneFlow_Dataset(Dataset):
             left_image, right_image = random_jitter(left_image, right_image)
             right_image = random_mask(right_image)
         else:
-            left_image, right_image, disp_image, mask_image = pad_to_2x(left_image, right_image, disp_image, mask_image)
+            left_image, right_image, disp_image, mask_image, top_pad, right_pad = pad_to_2x(left_image, right_image, disp_image, mask_image)
             raw_left_image = transforms.ToTensor()(left_image)
             raw_right_image = transforms.ToTensor()(right_image)
         
@@ -99,5 +99,7 @@ class SceneFlow_Dataset(Dataset):
             'gt_disp': disp_image,
             'noc_mask': mask_image,
             'raw_left': raw_left_image,
-            'raw_right': raw_right_image
+            'raw_right': raw_right_image,
+            'top_pad': top_pad if not self.training else -1,
+            'right_pad': right_pad if not self.training else -1,
         }
