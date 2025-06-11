@@ -119,12 +119,9 @@ pip install stereo_toolbox
 | :----: | ---------- | ----------- |
 | ✅ | sceneflow_test | Evaluation on SceneFlow **finalpass** test set. EPE and outliers are reported. Valid disparity range `0~maxdisp-1`, default `0~191`. |
 | ✅ | generalization_eval | Test generalization performance on the training sets of KITTI 2015/2012, Middlebury Eval3, and ETH3D. Outliers in the occ, noc, and all regions are reported. Valid disparity range `0~maxdisp-1`, default `0~191`.|
-| ❌ | kitti2015_sub | Generate dispairty maps in KITTI 2015 submission format. |
-| ❌ | kitti2012_sub |  Generate dispairty maps in KITTI 2012 submission format. |
-| ❌ | middeval3_sub |  Generate dispairty maps in Middlebury Eval3 submission format. |
-| ❌ | eth3d_sub |  Generate dispairty maps in ETH3D submission format. |
 | ✅ | speed_and_memery_test | Test inference speed and memory usage. |
 | ✅ | drivingstereo_weather_test | Test generalization performance on different weathers of DrivingStereo test sets (half). |
+| ✅ | benchmark_submission | Generate zip files for submitting to benchmarks (KITTI 2015 (verified), KITTI 2012 (verified), MiddEval3, and ETH3D). |
 
 
 **Table 1: Evaluation on SceneFlow finalpass test set.**
