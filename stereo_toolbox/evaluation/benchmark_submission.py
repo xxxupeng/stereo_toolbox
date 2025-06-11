@@ -111,7 +111,6 @@ def benchmark_submission(model, device='cuda:0', save_dir='./tmp/'):
     os.system(f'cd {save_dir}/eth3d/ && zip -r ../eth3d.zip .')
 
 
-
                 
 
 
