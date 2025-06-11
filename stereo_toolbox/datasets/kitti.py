@@ -112,6 +112,7 @@ class KITTI_Dataset(Dataset):
             'raw_right': raw_right_image,
             'top_pad': top_pad if not self.training else -1,
             'right_pad': right_pad if not self.training else -1,
+            'left_filename': self.left_images[index],
         }        
 
 def KITTI2015_Dataset(split: str, training: bool, root_dir='/data1/xp/KITTI_2015/'):

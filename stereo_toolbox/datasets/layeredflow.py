@@ -99,4 +99,5 @@ class LayeredFlow_Dataset(Dataset):
             'raw_right': raw_right_image,
             'top_pad': top_pad if not self.training else -1,
             'right_pad': right_pad if not self.training else -1,
+            'left_filename': self.left_images[index],
         }
