@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 
 
-def warp_right_to_left(right_image, disp):
+def warp_right_to_left(right_image, disp, reverse=None):
     """将右图像根据视差图重投影到左图像视角
     
     使用给定的视差图将右图像变形到左图像的视角，实现视图合成。
@@ -11,17 +11,22 @@ def warp_right_to_left(right_image, disp):
     参数:
         right_image (Tensor): 右图像，形状为 [B, C, H, W]
         disp (Tensor): 预测的视差图，形状为 [B, 1, H, W]
+        revsere (Tensor): 0 target 在 reference 右侧, 1 target 在 reference 左侧, 形状为 [B,]
         
     返回:
         Tensor: 重投影到左视角的右图像
     """
     batch_size, _, height, width = right_image.size()
+
+    if reverse is None:
+        reverse = torch.zeros(batch_size, device=disp.device, dtype=disp.dtype)
+    reverse = reverse.squeeze() * 2 - 1
     
     # 生成网格坐标
     device = disp.device
     x_base = torch.linspace(0, 1, width, device=device).repeat(batch_size, height, 1)
     y_base = torch.linspace(0, 1, height, device=device).repeat(batch_size, width, 1).transpose(1, 2)
-    flow_field = torch.stack((x_base - disp.squeeze(1) / (width-1), y_base), dim=3)
+    flow_field = torch.stack((x_base + reverse.reshape(batch_size,1,1) * disp.squeeze(1) / (width-1), y_base), dim=3)
     
     # 使用grid_sample进行重投影
     warped_right = F.grid_sample(right_image, 
@@ -77,7 +82,7 @@ def ssim(x, y, window_size=7, pad_mode='reflect'):
     return torch.clamp((1 - ssim_n / ssim_d) / 2, 0, 1)
 
 
-def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85, enable_mask=True):
+def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85, enable_mask=True, reverse=None):
     """计算光度一致性损失
     
     结合SSIM损失和L1损失的加权和，用于评估视差预测的准确性。
@@ -95,7 +100,7 @@ def photometric_loss(left_image, right_image, disp=None, ssim_weight=0.85, enabl
     if disp is None:
         warped_right_image = right_image
     else:
-        warped_right_image, valid_mask = warp_right_to_left(right_image, disp)
+        warped_right_image, valid_mask = warp_right_to_left(right_image, disp, reverse=reverse)
 
     loss = ssim_weight * ssim(left_image, warped_right_image) + (1-ssim_weight) * torch.abs(left_image - warped_right_image)
     if enable_mask:
