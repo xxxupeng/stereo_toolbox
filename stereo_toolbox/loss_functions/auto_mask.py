@@ -17,7 +17,7 @@ def auto_mask(left_image, right_image, disp, denorm=False, stationary=True, occl
 
     if stationary:
         identity_error = photometric_loss(left_image, right_image, enable_mask=False, reverse=reverse)
-        mask = mask * (reproj_error < identity_error)
+        mask = mask * (reproj_error < identity_error * 1.05)
 
     if occlusion:
         occlusion_threshold = reproj_error.mean(dim=(-1,-2), keepdim=True) + reproj_error.std(dim=(-1,-2), keepdim=True)
