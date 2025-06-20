@@ -29,6 +29,10 @@ def colored_disparity_map_Spectral_r(disp, maxval=0, save_file=None):
 
     colored_disp = cv2.applyColorMap(disp, cmapy.cmap('Spectral_r'))
 
+    # 将 disp 为 0、nan、inf或者-inf的地方的 colored_disp 的颜色设置为黑色
+    mask = np.isin(disp, [0, np.nan, np.inf, -np.inf])
+    colored_disp[mask] = [0, 0, 0]
+
     if save_file is not None:
         if not os.path.exists(os.path.dirname(save_file)):
             os.makedirs(os.path.dirname(save_file))
