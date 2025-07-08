@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from .photometric_loss import photometric_loss
 
 
-def auto_mask(left_image, right_image, disp, denorm=False, stationary=True, occlusion=False, reverse=None):
+def auto_mask(left_image, right_image, disp, denorm=False, stationary=True, occlusion=False, reverse=None, occlusion_threshold=-1):
     if denorm:
         mean = torch.tensor([0.485, 0.456, 0.406], device=left_image.device).view(1, 3, 1, 1)
         std = torch.tensor([0.229, 0.224, 0.225], device=left_image.device).view(1, 3, 1, 1)
@@ -20,7 +20,8 @@ def auto_mask(left_image, right_image, disp, denorm=False, stationary=True, occl
         mask = mask * (reproj_error < identity_error * 1.05)
 
     if occlusion:
-        occlusion_threshold = reproj_error.mean(dim=(-1,-2), keepdim=True) + reproj_error.std(dim=(-1,-2), keepdim=True)
+        if occlusion_threshold == -1:
+            occlusion_threshold = reproj_error.mean(dim=(-1,-2), keepdim=True) + reproj_error.std(dim=(-1,-2), keepdim=True)
         mask = mask * (reproj_error < occlusion_threshold)
 
     return mask
