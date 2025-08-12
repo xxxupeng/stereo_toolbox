@@ -27,6 +27,9 @@ def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
     model_dict = model.state_dict()
 
     for k, v in state_dict.items():
+        if k.startswith('_orig_mod.'):
+            k = k.replace('_orig_mod.', '')  # Remove '_orig_mod.' prefix if it exists
+            
         if k in model_dict:
             name = k
         elif k.startswith('module.') and k not in model_dict:
