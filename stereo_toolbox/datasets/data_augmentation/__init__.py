@@ -64,14 +64,14 @@ def pad_to_2x(left, right, disp=None, mask=None):
     top_pad = int(np.ceil(H / scale) * scale - H)
     right_pad = int(np.ceil(W / scale) * scale - W)
 
-    left = np.lib.pad(left, ((top_pad, 0), (0, right_pad), (0, 0)), mode='constant', constant_values=0)
-    right = np.lib.pad(right, ((top_pad, 0), (0, right_pad), (0, 0)), mode='constant', constant_values=0)
+    left = np.pad(left, ((top_pad, 0), (0, right_pad), (0, 0)), mode='constant', constant_values=0)
+    right = np.pad(right, ((top_pad, 0), (0, right_pad), (0, 0)), mode='constant', constant_values=0)
     
     if disp is not None:
         if disp.ndim == 2:    # disparity
-            disp = np.lib.pad(disp, ((top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
+            disp = np.pad(disp, ((top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
         elif disp.ndim == 3:  # distribution
-            disp = np.lib.pad(disp, ((0,0), (top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
+            disp = np.pad(disp, ((0,0), (top_pad, 0), (0, right_pad)), mode='constant', constant_values=0)
         
     if mask is not None:
         assert disp.ndim == 2
