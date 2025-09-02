@@ -12,3 +12,4 @@ accelerate
 opt_einsum
 timm==0.6.5
 flash-attn
+albumentations

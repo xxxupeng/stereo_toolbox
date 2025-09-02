@@ -91,10 +91,17 @@ stereo_toolbox/datasets/datasets_lists/sceneflow/train_finalpass.txt
 stereo_toolbox/datasets/datasets_lists/sintel/train_clean.txt
 stereo_toolbox/datasets/datasets_lists/sintel/train_final.txt
 stereo_toolbox/datasets/datasets_lists/virtualkitti2/train.txt
+stereo_toolbox/datasets_v2/__init__.py
+stereo_toolbox/datasets_v2/augmentor.py
+stereo_toolbox/datasets_v2/kitti.py
+stereo_toolbox/datasets_v2/sceneflow.py
+stereo_toolbox/datasets_v2/stereodataset.py
+stereo_toolbox/datasets_v2/utils.py
 stereo_toolbox/disparity_estimators/__init__.py
 stereo_toolbox/disparity_estimators/dominant_modal_disparity_estimator.py
 stereo_toolbox/disparity_estimators/unimodal_disparity_estimator.py
 stereo_toolbox/evaluation/__init__.py
+stereo_toolbox/evaluation/benchmark_submission.py
 stereo_toolbox/evaluation/drivingstereo_weather_test.py
 stereo_toolbox/evaluation/generalization_eval.py
 stereo_toolbox/evaluation/sceneflow_test.py
@@ -380,7 +387,9 @@ stereo_toolbox/models/depth_anything_v2/dinov2_layers/patch_embed.py
 stereo_toolbox/models/depth_anything_v2/dinov2_layers/swiglu_ffn.py
 stereo_toolbox/models/depth_anything_v2/util/blocks.py
 stereo_toolbox/models/depth_anything_v2/util/transform.py
+stereo_toolbox/tests/auto_mask.ipynb
 stereo_toolbox/tests/datasets.ipynb
+stereo_toolbox/tests/datasets_v2.ipynb
 stereo_toolbox/tests/models.ipynb
 stereo_toolbox/tests/multi_modal_statistic.ipynb
 stereo_toolbox/tests/train_accelerate.py
