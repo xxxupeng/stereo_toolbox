@@ -53,7 +53,7 @@ class MiddleburyEval3_Dataset(Dataset):
 
     def load_disp(self, filename: str):
         """
-        inf: invalid dispairty
+        inf: invalid disparity
         """
         if filename is None:
             return None

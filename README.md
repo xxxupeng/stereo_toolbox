@@ -108,7 +108,7 @@ pip install stereo_toolbox
 | Status | Identifier | Description |
 | :----: | ---------- | ----------- |
 | ✅ | colored_disparity_map_Spectral_r | Disparity map pseudocolor visualization with Spectral_r colorbar. |
-| ✅ | colored_dispairty_map_KITTI | Disparity map pseudocolor visualization with KITTI colorbar. |
+| ✅ | colored_disparity_map_KITTI | Disparity map pseudocolor visualization with KITTI colorbar. |
 | ✅ | colored_error_map_KITTI | Error map pseudocolor visualization with KITTI colorbar. |
 | ❌ | colored_pointcloud | Point cloud visualization with real color derived from left image. |
 

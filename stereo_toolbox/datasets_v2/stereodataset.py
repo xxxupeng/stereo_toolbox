@@ -23,7 +23,7 @@ class Stereo_Dataset(Dataset):
         aug_params (dict): Parameters for data augmentation.
     TBD Methods:
         load_image_list(): Loads the list of image file paths.
-        load_dispairty(filename): Loads the ground truth disparity map from a file.
+        load_disparity(filename): Loads the ground truth disparity map from a file.
         load_noc_mask(index): Loads the non-occluded mask for the disparity map.
     __getitem__(index):
         Retrieves and processes a data sample at the specified index, applying augmentations if in training mode.
@@ -82,7 +82,7 @@ class Stereo_Dataset(Dataset):
         raise NotImplementedError
     
 
-    def load_dispairty(self, filename):
+    def load_disparity(self, filename):
         raise NotImplementedError
     
 
