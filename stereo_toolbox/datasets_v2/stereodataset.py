@@ -105,7 +105,7 @@ class Stereo_Dataset(Dataset):
         }
 
         if 'gt_disp' in self.requests:
-            data['gt_disp'] = self.load_dispairty(self.gt_disp_list[index])
+            data['gt_disp'] = self.load_disparity(self.gt_disp_list[index])
         if 'noc_mask' in self.requests:
             data['noc_mask'] = self.load_noc_mask(self.gt_disp_list[index])
         if 'raw_ref' in self.requests:

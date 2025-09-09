@@ -23,7 +23,7 @@ class KITTI2015_Dataset(Stereo_Dataset):
             raise ValueError(f"split must be 'train' or 'test', not {self.split}")
 
 
-    def load_dispairty(self, filename):
+    def load_disparity(self, filename):
         if filename is None:
             return None
         
@@ -59,7 +59,7 @@ class KITTI2012_Dataset(Stereo_Dataset):
             raise ValueError(f"split must be 'train' or 'test', not {self.split}")
 
 
-    def load_dispairty(self, filename):
+    def load_disparity(self, filename):
         if filename is None:
             return None
         

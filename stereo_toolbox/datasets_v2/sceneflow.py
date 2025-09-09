@@ -40,7 +40,7 @@ class SceneFlow_Dataset(Stereo_Dataset):
             raise ValueError(f"split must be 'train' or 'test', not {self.split}")
 
 
-    def load_dispairty(self, filename):
+    def load_disparity(self, filename):
         disp, _ = pfm_imread(filename)
         disp = np.ascontiguousarray(disp, dtype=np.float32)
         return disp
