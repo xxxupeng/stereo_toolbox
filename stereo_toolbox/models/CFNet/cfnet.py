@@ -271,9 +271,9 @@ class hourglass(nn.Module):
         return conv6
 
 class cfnet(nn.Module):
-    def __init__(self, maxdisp, use_concat_volume=False):
+    def __init__(self, max_disp, use_concat_volume=False):
         super(cfnet, self).__init__()
-        self.maxdisp = maxdisp
+        self.max_disp = max_disp
         self.use_concat_volume = use_concat_volume
         self.v_scale_s1 = 1
         self.v_scale_s2 = 2
@@ -444,9 +444,9 @@ class cfnet(nn.Module):
         """
 
         min_disparity = torch.clamp(input_min_disparity - torch.clamp((
-                sample_count - input_max_disparity + input_min_disparity), min=0) / 2.0, min=0, max=self.maxdisp // (2**scale) - 1)
+                sample_count - input_max_disparity + input_min_disparity), min=0) / 2.0, min=0, max=self.max_disp // (2**scale) - 1)
         max_disparity = torch.clamp(input_max_disparity + torch.clamp(
-                sample_count - input_max_disparity + input_min_disparity, min=0) / 2.0, min=0, max=self.maxdisp // (2**scale) - 1)
+                sample_count - input_max_disparity + input_min_disparity, min=0) / 2.0, min=0, max=self.max_disp // (2**scale) - 1)
 
         return min_disparity, max_disparity
 
@@ -499,21 +499,21 @@ class cfnet(nn.Module):
         features_left = self.feature_extraction(left)
         features_right = self.feature_extraction(right)
 
-        gwc_volume4 = build_gwc_volume(features_left["gw4"], features_right["gw4"], self.maxdisp // 8,
+        gwc_volume4 = build_gwc_volume(features_left["gw4"], features_right["gw4"], self.max_disp // 8,
                                        self.num_groups)
 
-        gwc_volume5 = build_gwc_volume(features_left["gw5"], features_right["gw5"], self.maxdisp // 16,
+        gwc_volume5 = build_gwc_volume(features_left["gw5"], features_right["gw5"], self.max_disp // 16,
                                        self.num_groups)
 
-        gwc_volume6 = build_gwc_volume(features_left["gw6"], features_right["gw6"], self.maxdisp // 32,
+        gwc_volume6 = build_gwc_volume(features_left["gw6"], features_right["gw6"], self.max_disp // 32,
                                        self.num_groups)
         if self.use_concat_volume:
             concat_volume4 = build_concat_volume(features_left["concat_feature4"], features_right["concat_feature4"],
-                                                 self.maxdisp // 8)
+                                                 self.max_disp // 8)
             concat_volume5 = build_concat_volume(features_left["concat_feature5"], features_right["concat_feature5"],
-                                                 self.maxdisp // 16)
+                                                 self.max_disp // 16)
             concat_volume6 = build_concat_volume(features_left["concat_feature6"], features_right["concat_feature6"],
-                                                 self.maxdisp // 32)
+                                                 self.max_disp // 32)
             volume4 = torch.cat((gwc_volume4, concat_volume4), 1)
             volume5 = torch.cat((gwc_volume5, concat_volume5), 1)
             volume6 = torch.cat((gwc_volume6, concat_volume6), 1)
@@ -535,9 +535,9 @@ class cfnet(nn.Module):
         cost2_s4 = self.classif2(out2_4)
         cost2_s4 = torch.squeeze(cost2_s4, 1)
         pred2_possibility_s4 = F.softmax(cost2_s4, dim=1)
-        pred2_s4 = disparity_regression(pred2_possibility_s4, self.maxdisp // 8).unsqueeze(1)
+        pred2_s4 = disparity_regression(pred2_possibility_s4, self.max_disp // 8).unsqueeze(1)
         pred2_s4_cur = pred2_s4.detach()
-        pred2_v_s4 = disparity_variance(pred2_possibility_s4, self.maxdisp // 8, pred2_s4_cur)  # get the variance
+        pred2_v_s4 = disparity_variance(pred2_possibility_s4, self.max_disp // 8, pred2_s4_cur)  # get the variance
         pred2_v_s4 = pred2_v_s4.sqrt()
         mindisparity_s3 = pred2_s4_cur - (self.gamma_s3 + 1) * pred2_v_s4 - self.beta_s3
         maxdisparity_s3 = pred2_s4_cur + (self.gamma_s3 + 1) * pred2_v_s4 + self.beta_s3
@@ -602,15 +602,15 @@ class cfnet(nn.Module):
             cost0_4 = self.classif0(cost0_4)
             cost1_4 = self.classif1(out1_4)
 
-            cost0_4 = F.upsample(cost0_4, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost0_4 = F.upsample(cost0_4, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost0_4 = torch.squeeze(cost0_4, 1)
             pred0_4 = F.softmax(cost0_4, dim=1)
-            pred0_4 = disparity_regression(pred0_4, self.maxdisp)
+            pred0_4 = disparity_regression(pred0_4, self.max_disp)
 
-            cost1_4 = F.upsample(cost1_4, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost1_4 = F.upsample(cost1_4, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost1_4 = torch.squeeze(cost1_4, 1)
             pred1_4 = F.softmax(cost1_4, dim=1)
-            pred1_4 = disparity_regression(pred1_4, self.maxdisp)
+            pred1_4 = disparity_regression(pred1_4, self.max_disp)
 
             pred2_s4 = F.upsample(pred2_s4 * 8, [left.size()[2], left.size()[3]], mode='bilinear', align_corners=True)
             pred2_s4 = torch.squeeze(pred2_s4, 1)
@@ -665,5 +665,5 @@ class cfnet(nn.Module):
             # return [pred1_s2], [pred1_s3_up], [pred2_s4]
 
 
-def CFNet(d=192):
-    return cfnet(d, use_concat_volume=True)
+def CFNet(max_disp=192):
+    return cfnet(max_disp, use_concat_volume=True)

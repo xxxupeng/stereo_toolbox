@@ -23,7 +23,7 @@ except:
 
 
 class DEFOMStereo(nn.Module):
-    def __init__(self, args=None):
+    def __init__(self, args={}):
         super().__init__()
 
         self.args = argparse.Namespace(
@@ -45,9 +45,8 @@ class DEFOMStereo(nn.Module):
             n_gru_layers=3,
         )
 
-        if args is not None:
-            for key, value in vars(args).items():
-                setattr(self.args, key, value)
+        for key, value in args.items() if isinstance(args, dict) else vars(args).items():
+            setattr(self.args, key, value)
 
         self.register_buffer('mean', torch.tensor([[0.485, 0.456, 0.406]])[..., None, None] * 255)
         self.register_buffer('std', torch.tensor([[0.229, 0.224, 0.225]])[..., None, None] * 255)

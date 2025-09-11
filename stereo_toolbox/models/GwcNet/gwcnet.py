@@ -106,9 +106,9 @@ class hourglass(nn.Module):
 
 
 class GwcNet(nn.Module):
-    def __init__(self, maxdisp, use_concat_volume=False):
+    def __init__(self, max_disp, use_concat_volume=False):
         super(GwcNet, self).__init__()
-        self.maxdisp = maxdisp
+        self.max_disp = max_disp
         self.use_concat_volume = use_concat_volume
 
         self.num_groups = 40
@@ -172,11 +172,11 @@ class GwcNet(nn.Module):
         features_left = self.feature_extraction(left)
         features_right = self.feature_extraction(right)
 
-        gwc_volume = build_gwc_volume(features_left["gwc_feature"], features_right["gwc_feature"], self.maxdisp // 4,
+        gwc_volume = build_gwc_volume(features_left["gwc_feature"], features_right["gwc_feature"], self.max_disp // 4,
                                       self.num_groups)
         if self.use_concat_volume:
             concat_volume = build_concat_volume(features_left["concat_feature"], features_right["concat_feature"],
-                                                self.maxdisp // 4)
+                                                self.max_disp // 4)
             volume = torch.cat((gwc_volume, concat_volume), 1)
         else:
             volume = gwc_volume
@@ -194,39 +194,39 @@ class GwcNet(nn.Module):
             cost2 = self.classif2(out2)
             cost3 = self.classif3(out3)
 
-            cost0 = F.upsample(cost0, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear')
+            cost0 = F.upsample(cost0, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear')
             cost0 = torch.squeeze(cost0, 1)
             pred0 = F.softmax(cost0, dim=1)
-            pred0 = disparity_regression(pred0, self.maxdisp)
+            pred0 = disparity_regression(pred0, self.max_disp)
 
-            cost1 = F.upsample(cost1, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear')
+            cost1 = F.upsample(cost1, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear')
             cost1 = torch.squeeze(cost1, 1)
             pred1 = F.softmax(cost1, dim=1)
-            pred1 = disparity_regression(pred1, self.maxdisp)
+            pred1 = disparity_regression(pred1, self.max_disp)
 
-            cost2 = F.upsample(cost2, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear')
+            cost2 = F.upsample(cost2, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear')
             cost2 = torch.squeeze(cost2, 1)
             pred2 = F.softmax(cost2, dim=1)
-            pred2 = disparity_regression(pred2, self.maxdisp)
+            pred2 = disparity_regression(pred2, self.max_disp)
 
-            cost3 = F.upsample(cost3, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear')
+            cost3 = F.upsample(cost3, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear')
             cost3 = torch.squeeze(cost3, 1)
             pred3 = F.softmax(cost3, dim=1)
-            pred3 = disparity_regression(pred3, self.maxdisp)
+            pred3 = disparity_regression(pred3, self.max_disp)
             return [pred0, pred1, pred2, pred3]
 
         else:
             cost3 = self.classif3(out3)
-            cost3 = F.upsample(cost3, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear')
+            cost3 = F.upsample(cost3, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear')
             cost3 = torch.squeeze(cost3, 1)
             pred3 = F.softmax(cost3, dim=1)
-            pred3 = disparity_regression(pred3, self.maxdisp)
+            pred3 = disparity_regression(pred3, self.max_disp)
             return pred3
 
 
-def GwcNet_G(d=192):
-    return GwcNet(d, use_concat_volume=False)
+def GwcNet_G(max_disp=192):
+    return GwcNet(max_disp, use_concat_volume=False)
 
 
-def GwcNet_GC(d=192):
-    return GwcNet(d, use_concat_volume=True)
+def GwcNet_GC(max_disp=192):
+    return GwcNet(max_disp, use_concat_volume=True)

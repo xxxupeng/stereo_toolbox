@@ -24,7 +24,7 @@ class STTR(nn.Module):
         - regression_head: regresses disparity and occlusion, including optimal transport
     """
 
-    def __init__(self, args=None):
+    def __init__(self, args={}):
         super().__init__()
 
         self.args = argparse.Namespace(
@@ -40,9 +40,8 @@ class STTR(nn.Module):
             downsample=3,
         )
 
-        if args is not None:
-            for key, value in vars(args).items():
-                setattr(self.args, key, value)
+        for key, value in args.items() if isinstance(args, dict) else vars(args).items():
+            setattr(self.args, key, value)
 
         layer_channel = [64, 128, 128]
 

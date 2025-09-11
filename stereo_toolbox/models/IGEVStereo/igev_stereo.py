@@ -90,7 +90,7 @@ class hourglass(nn.Module):
         return conv
 
 class IGEVStereo(nn.Module):
-    def __init__(self, args=None, imagenet_norm=False):
+    def __init__(self, args={}, imagenet_norm=False):
         super().__init__()
 
         self.args = argparse.Namespace(
@@ -105,9 +105,9 @@ class IGEVStereo(nn.Module):
             corr_levels=2,
             corr_radius=4,
             )
-        if args is not None:
-            for key in args:
-                setattr(self.args, key, args[key])
+        
+        for key, value in args.items() if isinstance(args, dict) else vars(args).items():
+            setattr(self.args, key, value)
 
         self.imagenet_norm = imagenet_norm
         

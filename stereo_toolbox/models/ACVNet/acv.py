@@ -93,9 +93,9 @@ class hourglass(nn.Module):
         return conv6
 
 class ACVNet(nn.Module):
-    def __init__(self, maxdisp=192, attn_weights_only=False, freeze_attn_weights=False):
+    def __init__(self, max_disp=192, attn_weights_only=False, freeze_attn_weights=False):
         super().__init__()
-        self.maxdisp = maxdisp
+        self.max_disp= max_disp
         self.attn_weights_only = attn_weights_only
         self.freeze_attn_weights = freeze_attn_weights
         self.num_groups = 40
@@ -165,7 +165,7 @@ class ACVNet(nn.Module):
             with torch.no_grad():
                 features_left = self.feature_extraction(left)
                 features_right = self.feature_extraction(right)
-                gwc_volume = build_gwc_volume(features_left["gwc_feature"], features_right["gwc_feature"], self.maxdisp // 4, self.num_groups)
+                gwc_volume = build_gwc_volume(features_left["gwc_feature"], features_right["gwc_feature"], self.max_disp// 4, self.num_groups)
                 gwc_volume = self.patch(gwc_volume)
                 patch_l1 = self.patch_l1(gwc_volume[:, :8])
                 patch_l2 = self.patch_l2(gwc_volume[:, 8:24])
@@ -179,7 +179,7 @@ class ACVNet(nn.Module):
 
             features_left = self.feature_extraction(left)
             features_right = self.feature_extraction(right)
-            gwc_volume = build_gwc_volume(features_left["gwc_feature"], features_right["gwc_feature"], self.maxdisp // 4, self.num_groups)
+            gwc_volume = build_gwc_volume(features_left["gwc_feature"], features_right["gwc_feature"], self.max_disp// 4, self.num_groups)
             gwc_volume = self.patch(gwc_volume)
             patch_l1 = self.patch_l1(gwc_volume[:, :8])
             patch_l2 = self.patch_l2(gwc_volume[:, 8:24])
@@ -192,7 +192,7 @@ class ACVNet(nn.Module):
         if not self.attn_weights_only:
             concat_feature_left = self.concatconv(features_left["gwc_feature"])
             concat_feature_right = self.concatconv(features_right["gwc_feature"])  
-            concat_volume = build_concat_volume(concat_feature_left, concat_feature_right, self.maxdisp // 4)
+            concat_volume = build_concat_volume(concat_feature_left, concat_feature_right, self.max_disp// 4)
             ac_volume = F.softmax(att_weights, dim=2) * concat_volume   ### ac_volume = att_weights * concat_volume 
             cost0 = self.dres0(ac_volume)
             cost0 = self.dres1(cost0) + cost0

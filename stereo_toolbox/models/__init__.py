@@ -1,4 +1,6 @@
 import torch
+import inspect
+import warnings
 
 from .PSMNet.stackhourglass import PSMNet
 from .GwcNet.gwcnet import GwcNet_G, GwcNet_GC
@@ -16,6 +18,31 @@ from .SelectiveStereo.SelectiveRAFT.raft import RAFT as SelectiveRAFT
 from .FoundationStereo.foundation_stereo import FoundationStereo
 from .StereoAnywhere import StereoAnywhere
 
+
+__models__ = {
+    'psmnet': PSMNet,
+    'gwcnetg': GwcNet_G,
+    'gwcnetgc': GwcNet_GC,
+    'cfnet': CFNet,
+    'pcwnetg': PCWNet_G,
+    'pcwnetgc': PCWNet_GC,
+    'raftstereo': RAFTStereo,
+    'igevstereo': IGEVStereo,
+    'monster': Monster,
+    'defomstereo': DEFOMStereo,
+    'sttr': STTR,
+    'acvnet': ACVNet,
+    'selectiveigev': SelectiveIGEV,
+    'selectiveraft': SelectiveRAFT,
+    'foundationstereo': FoundationStereo,
+    'stereoanywhere': StereoAnywhere,
+}
+
+
+def fetch_stereo(model, args={}):
+    model = model.lower().replace('-', '').replace('_', '')    
+    return __models__[model](**args)
+    
 
 def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
     if state_dict_key is not None:
@@ -52,3 +79,39 @@ def load_checkpoint_flexible(model, checkpoint_path, state_dict_key=None):
         print("Unexpected keys: ", ','.join(unexpected))
 
     return model
+
+
+if __name__ == '__main__':
+    model = fetch_stereo('PSMNet', {'max_disp': 512})
+    print('psmnet max disp:', model.max_disp)
+
+    model = fetch_stereo('GwcNet-GC', {'max_disp': 512})
+    print('gwcnet max disp:', model.max_disp)
+
+    model = fetch_stereo('CFNet', {'max_disp': 512})
+    print('cfnet max disp:', model.max_disp)
+
+    model = fetch_stereo('PCWNet-GC', {'max_disp': 512})
+    print('pcwnet max disp:', model.max_disp)
+
+    model = fetch_stereo('monster', {'args':{'max_disp': 512}})
+    print('igevstereo max disp:', model.args.max_disp)
+
+    model = fetch_stereo('igevstereo', {'args':{'max_disp': 512}})
+    print('igevstereo max disp:', model.args.max_disp)
+
+    model = fetch_stereo('acvnet', {'max_disp': 512})
+    print('acvnet max disp:', model.max_disp)
+
+    model = fetch_stereo('selectiveigev', {'args':{'max_disp': 512}})
+    print('selectiveigev max disp:', model.args.max_disp)
+
+    model = fetch_stereo('selectiveraft', {'args':{'max_disp': 512}})
+    print('selectiveraft max disp:', model.args.max_disp)
+
+    model = fetch_stereo('foundationstereo', {'args':{'max_disp': 512}})
+    print('foundationstereo max disp:', model.args.max_disp)
+
+    # defomstereo, sttr, raft, stereoanywhere not need the max_disp argument
+
+    print('success')

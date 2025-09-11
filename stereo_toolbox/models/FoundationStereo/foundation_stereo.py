@@ -126,7 +126,7 @@ class hourglass(nn.Module):
 
 
 class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
-    def __init__(self, args=None):
+    def __init__(self, args={}):
         super().__init__()
         self.args = argparse.Namespace(
             corr_implementation='reg',
@@ -144,9 +144,8 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
             vit_size='vitl',
         )
 
-        if args is not None:
-            for key, value in vars(args).items():
-                setattr(self.args, key, value)
+        for key, value in args.items() if isinstance(args, dict) else vars(args).items():
+            setattr(self.args, key, value)
 
         self.args = OmegaConf.create(vars(self.args))
 

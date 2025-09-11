@@ -17,8 +17,9 @@ from .utils.utils import *
 from .hourglass import Hourglass, HourglassIdentity
 from .depth_anything_v2 import *
 
+
 class StereoAnywhere(nn.Module):
-    def __init__(self, args=SimpleNamespace()):
+    def __init__(self, args={}):
         super().__init__()
 
         if isinstance(args, dict):

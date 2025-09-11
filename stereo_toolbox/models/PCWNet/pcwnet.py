@@ -309,9 +309,9 @@ class refinenet_version3(nn.Module):
         return disp
 
 class PCWNet(nn.Module):
-    def __init__(self, maxdisp, use_concat_volume=False):
+    def __init__(self, max_disp, use_concat_volume=False):
         super(PCWNet, self).__init__()
-        self.maxdisp = maxdisp
+        self.max_disp= max_disp
         self.use_concat_volume = use_concat_volume
 
         self.num_groups = 40
@@ -385,26 +385,26 @@ class PCWNet(nn.Module):
         features_left = self.feature_extraction(left)
         features_right = self.feature_extraction(right)
 
-        gwc_volume1 = build_gwc_volume(features_left["gw1"], features_right["gw1"], self.maxdisp // 4,
+        gwc_volume1 = build_gwc_volume(features_left["gw1"], features_right["gw1"], self.max_disp// 4,
                                       self.num_groups)
 
-        gwc_volume2 = build_gwc_volume(features_left["gw2"], features_right["gw2"], self.maxdisp // 8,
+        gwc_volume2 = build_gwc_volume(features_left["gw2"], features_right["gw2"], self.max_disp// 8,
                                        self.num_groups)
 
-        gwc_volume3 = build_gwc_volume(features_left["gw3"], features_right["gw3"], self.maxdisp // 16,
+        gwc_volume3 = build_gwc_volume(features_left["gw3"], features_right["gw3"], self.max_disp// 16,
                                        self.num_groups)
 
-        gwc_volume4 = build_gwc_volume(features_left["gw4"], features_right["gw4"], self.maxdisp // 32,
+        gwc_volume4 = build_gwc_volume(features_left["gw4"], features_right["gw4"], self.max_disp// 32,
                                        self.num_groups)
         if self.use_concat_volume:
             concat_volume1 = build_concat_volume(features_left["concat_feature1"], features_right["concat_feature1"],
-                                                self.maxdisp // 4)
+                                                self.max_disp// 4)
             concat_volume2 = build_concat_volume(features_left["concat_feature2"], features_right["concat_feature2"],
-                                                 self.maxdisp // 8)
+                                                 self.max_disp// 8)
             concat_volume3 = build_concat_volume(features_left["concat_feature3"], features_right["concat_feature3"],
-                                                 self.maxdisp // 16)
+                                                 self.max_disp// 16)
             concat_volume4 = build_concat_volume(features_left["concat_feature4"], features_right["concat_feature4"],
-                                                 self.maxdisp // 32)
+                                                 self.max_disp// 32)
             volume1 = torch.cat((gwc_volume1, concat_volume1), 1)
             volume2 = torch.cat((gwc_volume2, concat_volume2), 1)
             volume3 = torch.cat((gwc_volume3, concat_volume3), 1)
@@ -510,9 +510,9 @@ class PCWNet(nn.Module):
             # return [disp_finetune], [pred3]
 
 
-def PCWNet_G(d=192):
-    return PCWNet(d, use_concat_volume=False)
+def PCWNet_G(max_disp=192):
+    return PCWNet(max_disp, use_concat_volume=False)
 
 
-def PCWNet_GC(d=192):
-    return PCWNet(d, use_concat_volume=True)
+def PCWNet_GC(max_disp=192):
+    return PCWNet(max_disp, use_concat_volume=True)

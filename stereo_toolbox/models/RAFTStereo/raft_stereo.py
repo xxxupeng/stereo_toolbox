@@ -23,7 +23,7 @@ except:
             pass
 
 class RAFTStereo(nn.Module):
-    def __init__(self, args=None, imagenet_norm=False):
+    def __init__(self, args={}, imagenet_norm=False):
         super().__init__()
 
         self.args = argparse.Namespace(
@@ -41,9 +41,8 @@ class RAFTStereo(nn.Module):
             mixed_precision=False,
         )
 
-        if args is not None:
-            for key, value in vars(args).items():
-                setattr(self.args, key, value)
+        for key, value in args.items() if isinstance(args, dict) else vars(args).items():
+            setattr(self.args, key, value)
 
         self.imagenet_norm = imagenet_norm
 
