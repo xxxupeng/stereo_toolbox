@@ -8,9 +8,9 @@ import math
 from .submodule import *
 
 class PSMNet(nn.Module):
-    def __init__(self, maxdisp):
+    def __init__(self, max_disp):
         super(PSMNet, self).__init__()
-        self.maxdisp = maxdisp
+        self.max_disp = max_disp
         self.feature_extraction = feature_extraction()
 
 ########
@@ -63,9 +63,9 @@ class PSMNet(nn.Module):
         targetimg_fea  = self.feature_extraction(right)
  
         #matching
-        cost = Variable(torch.FloatTensor(refimg_fea.size()[0], refimg_fea.size()[1]*2, self.maxdisp/4,  refimg_fea.size()[2],  refimg_fea.size()[3]).zero_(), volatile= not self.training).to(left.device)
+        cost = Variable(torch.FloatTensor(refimg_fea.size()[0], refimg_fea.size()[1]*2, self.max_disp/4,  refimg_fea.size()[2],  refimg_fea.size()[3]).zero_(), volatile= not self.training).to(left.device)
 
-        for i in range(self.maxdisp/4):
+        for i in range(self.max_disp/4):
             if i > 0 :
              cost[:, :refimg_fea.size()[1], i, :,i:]   = refimg_fea[:,:,:,i:]
              cost[:, refimg_fea.size()[1]:, i, :,i:] = targetimg_fea[:,:,:,:-i]
@@ -81,9 +81,9 @@ class PSMNet(nn.Module):
         cost0 = self.dres4(cost0) + cost0
 
         cost = self.classify(cost0)
-        cost = F.upsample(cost, [self.maxdisp,left.size()[2],left.size()[3]], mode='trilinear')
+        cost = F.upsample(cost, [self.max_disp,left.size()[2],left.size()[3]], mode='trilinear')
         cost = torch.squeeze(cost,1)
         pred = F.softmax(cost)
-        pred = disparityregression(self.maxdisp)(pred)
+        pred = disparityregression(self.max_disp)(pred)
 
         return pred

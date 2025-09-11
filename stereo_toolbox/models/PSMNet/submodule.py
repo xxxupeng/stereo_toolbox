@@ -46,10 +46,10 @@ class BasicBlock(nn.Module):
 class disparityregression(nn.Module):
     def __init__(self, maxdisp=192):
         super(disparityregression, self).__init__()
-        self.maxdisp = maxdisp
+        self.max_disp = maxdisp
 
     def forward(self, x):
-        disp = torch.arange(self.maxdisp,dtype=x.dtype,device=x.device).reshape(1,self.maxdisp,1,1)
+        disp = torch.arange(self.max_disp,dtype=x.dtype,device=x.device).reshape(1,self.max_disp,1,1)
         out = torch.sum(x*disp,1, keepdim=True)
         return out
 

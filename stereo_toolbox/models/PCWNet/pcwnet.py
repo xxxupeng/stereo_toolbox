@@ -310,7 +310,7 @@ class refinenet_version3(nn.Module):
 
 class PCWNet(nn.Module):
     def __init__(self, max_disp, use_concat_volume=False):
-        super(PCWNet, self).__init__()
+        super().__init__()
         self.max_disp= max_disp
         self.use_concat_volume = use_concat_volume
 
@@ -432,30 +432,30 @@ class PCWNet(nn.Module):
             # refinement = self.dia6(self.dia5(self.dia4(self.dia3(self.dia2(self.dia1(out3))))))
             # cost3 = cost3 + refinement
             combine = self.classif4(combine)
-            cost0 = F.upsample(cost0, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost0 = F.upsample(cost0, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost0 = torch.squeeze(cost0, 1)
             pred0 = F.softmax(cost0, dim=1)
-            pred0 = disparity_regression(pred0, self.maxdisp)
+            pred0 = disparity_regression(pred0, self.max_disp)
 
-            cost1 = F.upsample(cost1, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost1 = F.upsample(cost1, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost1 = torch.squeeze(cost1, 1)
             pred1 = F.softmax(cost1, dim=1)
-            pred1 = disparity_regression(pred1, self.maxdisp)
+            pred1 = disparity_regression(pred1, self.max_disp)
 
-            cost2 = F.upsample(cost2, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost2 = F.upsample(cost2, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost2 = torch.squeeze(cost2, 1)
             pred2 = F.softmax(cost2, dim=1)
-            pred2 = disparity_regression(pred2, self.maxdisp)
+            pred2 = disparity_regression(pred2, self.max_disp)
 
-            cost3 = F.upsample(cost3, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost3 = F.upsample(cost3, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost3 = torch.squeeze(cost3, 1)
             pred3 = F.softmax(cost3, dim=1)
-            pred3 = disparity_regression(pred3, self.maxdisp)
+            pred3 = disparity_regression(pred3, self.max_disp)
 
-            combine = F.upsample(combine, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            combine = F.upsample(combine, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             combine = torch.squeeze(combine, 1)
             combine = F.softmax(combine, dim=1)
-            combine = disparity_regression(combine, self.maxdisp)
+            combine = disparity_regression(combine, self.max_disp)
 
             pred3 = torch.unsqueeze(pred3, 1)
             refinenet_feature_left = features_left["finetune_feature"]
@@ -483,10 +483,10 @@ class PCWNet(nn.Module):
             cost3 = self.classif3(out3)
             # refinement = self.dia6(self.dia5(self.dia4(self.dia3(self.dia2(self.dia1(out3))))))
             # cost3 = cost3 + refinement
-            cost3 = F.upsample(cost3, [self.maxdisp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
+            cost3 = F.upsample(cost3, [self.max_disp, left.size()[2], left.size()[3]], mode='trilinear', align_corners=True)
             cost3 = torch.squeeze(cost3, 1)
             pred3 = F.softmax(cost3, dim=1)
-            pred3 = disparity_regression(pred3, self.maxdisp)
+            pred3 = disparity_regression(pred3, self.max_disp)
 
             pred3 = torch.unsqueeze(pred3, 1)
             refinenet_feature_left = features_left["finetune_feature"]

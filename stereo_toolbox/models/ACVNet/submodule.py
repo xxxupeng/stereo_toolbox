@@ -261,7 +261,7 @@ def patch_aggregation(gwc_volume, patch_weight):
 
 class Build_gwc_volume_unfold(nn.Module):
     def __init__(self, maxdisp):
-        self.maxdisp = maxdisp
+        self.max_disp = maxdisp
         super(Build_gwc_volume_unfold, self).__init__()
         self.unfold = nn.Unfold((1, maxdisp), 1, 0, 1)
         self.left_pad = nn.ZeroPad2d((maxdisp-1, 0, 0, 0))
@@ -270,7 +270,7 @@ class Build_gwc_volume_unfold(nn.Module):
     def forward(self, refimg_fea, targetimg_fea, num_groups):
         B, C, H, W = refimg_fea.shape
         unfolded_targetimg_fea = self.unfold(self.left_pad(targetimg_fea)).reshape(
-            B, num_groups, C//num_groups, self.maxdisp, H, W)
+            B, num_groups, C//num_groups, self.max_disp, H, W)
         refimg_fea = refimg_fea.view(B, num_groups, C//num_groups, 1, H, W)
         volume = (refimg_fea*unfolded_targetimg_fea).sum(2)
         volume = torch.flip(volume, [2])
