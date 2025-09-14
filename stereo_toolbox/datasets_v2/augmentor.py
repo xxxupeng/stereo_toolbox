@@ -271,8 +271,8 @@ class StereoAugmentor:
         )
 
         aug_data = {
-            'ref': np.ascontiguousarray(ref) / 255.,
-            'tgt': np.ascontiguousarray(tgt) / 255.,
+            'ref': np.ascontiguousarray(ref),
+            'tgt': np.ascontiguousarray(tgt),
         }
 
         if gt_disp is not None:
@@ -280,9 +280,9 @@ class StereoAugmentor:
         if noc_mask is not None:
             aug_data['noc_mask'] = np.ascontiguousarray(noc_mask)
         if raw_ref is not None:
-            aug_data['raw_ref'] = np.ascontiguousarray(raw_ref) / 255.
+            aug_data['raw_ref'] = np.ascontiguousarray(raw_ref)
         if raw_tgt is not None:
-            aug_data['raw_tgt'] = np.ascontiguousarray(raw_tgt) / 255.
+            aug_data['raw_tgt'] = np.ascontiguousarray(raw_tgt)
         if top_pad is not None:
             aug_data['top_pad'] = np.ascontiguousarray(top_pad)
         if right_pad is not None:

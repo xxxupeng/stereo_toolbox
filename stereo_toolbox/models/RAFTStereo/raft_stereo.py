@@ -23,7 +23,7 @@ except:
             pass
 
 class RAFTStereo(nn.Module):
-    def __init__(self, args={}, imagenet_norm=False):
+    def __init__(self, args={}):
         super().__init__()
 
         self.args = argparse.Namespace(
@@ -43,8 +43,6 @@ class RAFTStereo(nn.Module):
 
         for key, value in args.items() if isinstance(args, dict) else vars(args).items():
             setattr(self.args, key, value)
-
-        self.imagenet_norm = imagenet_norm
 
         context_dims = self.args.hidden_dims
 
@@ -108,14 +106,8 @@ class RAFTStereo(nn.Module):
             self.args.mixed_precision = False
             test_mode = True
             
-
-        # image1 = (2 * (image1 / 255.0) - 1.0).contiguous()
-        # image2 = (2 * (image2 / 255.0) - 1.0).contiguous()
-        if not self.imagenet_norm:
-            mean = torch.tensor([0.485, 0.456, 0.406], device=image1.device).view(1, 3, 1, 1)
-            std = torch.tensor([0.229, 0.224, 0.225], device=image1.device).view(1, 3, 1, 1)
-            image1 = 2 * (image1 * std + mean) - 1.0
-            image2 = 2 * (image2 * std + mean) - 1.0
+        image1 = (2 * (image1 / 255.0) - 1.0).contiguous()
+        image2 = (2 * (image2 / 255.0) - 1.0).contiguous()
 
         # run the context network
         with autocast(enabled=self.args.mixed_precision):

@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import argparse
+import torchvision
 
 from .update import BasicMultiUpdateBlock, ScaleBasicMultiUpdateBlock
 from .extractor import BasicEncoder, MultiBasicEncoder, ResidualBlock, DefomEncoder
@@ -20,6 +21,14 @@ except:
             pass
         def __exit__(self, *args):
             pass
+
+
+def normalize_image(img):
+    '''
+    @img: (B,C,H,W) in range 0-255, RGB order
+    '''
+    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+    return tf(img/255.0).contiguous()
 
 
 class DEFOMStereo(nn.Module):
@@ -48,8 +57,8 @@ class DEFOMStereo(nn.Module):
         for key, value in args.items() if isinstance(args, dict) else vars(args).items():
             setattr(self.args, key, value)
 
-        self.register_buffer('mean', torch.tensor([[0.485, 0.456, 0.406]])[..., None, None] * 255)
-        self.register_buffer('std', torch.tensor([[0.229, 0.224, 0.225]])[..., None, None] * 255)
+        # self.register_buffer('mean', torch.tensor([[0.485, 0.456, 0.406]])[..., None, None] * 255)
+        # self.register_buffer('std', torch.tensor([[0.229, 0.224, 0.225]])[..., None, None] * 255)
 
         self.defomencoder = DefomEncoder(self.args.dinov2_encoder, idepth_scale=self.args.idepth_scale)
 
@@ -112,6 +121,8 @@ class DEFOMStereo(nn.Module):
             self.args.mixed_precision = False
             test_mode = True
 
+        image1 = normalize_image(image1)
+        image2 = normalize_image(image2)
         # image1 = ((image1 - self.mean)/self.std).contiguous()
         # image2 = ((image2 - self.mean)/self.std).contiguous()
 

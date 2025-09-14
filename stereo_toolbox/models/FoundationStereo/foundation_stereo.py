@@ -230,8 +230,10 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
 
         B = len(image1)
         low_memory = low_memory or (self.args.get('low_memory', False))
-        # image1 = normalize_image(image1)
-        # image2 = normalize_image(image2)
+        
+        image1 = normalize_image(image1)
+        image2 = normalize_image(image2)
+
         with autocast(enabled=self.args.mixed_precision):
             out, vit_feat = self.feature(torch.cat([image1, image2], dim=0))
             vit_feat = vit_feat[:B]

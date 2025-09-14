@@ -5,7 +5,18 @@ import torch.utils.data
 from torch.autograd import Variable
 import torch.nn.functional as F
 import math
+import torchvision
+
 from .submodule import *
+
+
+def normalize_image(img):
+    '''
+    @img: (B,C,H,W) in range 0-255, RGB order
+    '''
+    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+    return tf(img/255.0).contiguous()
+
 
 class hourglass(nn.Module):
     def __init__(self, inplanes):
@@ -101,6 +112,8 @@ class PSMNet(nn.Module):
 
 
     def forward(self, left, right):
+        left = normalize_image(left)
+        right = normalize_image(right)
 
         refimg_fea     = self.feature_extraction(left)
         targetimg_fea  = self.feature_extraction(right)

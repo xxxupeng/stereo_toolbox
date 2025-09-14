@@ -22,7 +22,7 @@ except:
             pass
 
 class RAFT(nn.Module):
-    def __init__(self, args={}, imagenet_norm=False):
+    def __init__(self, args={}):
         super().__init__()
         self.args = argparse.Namespace(
             hidden_dim=128,
@@ -40,8 +40,6 @@ class RAFT(nn.Module):
 
         for key, value in args.items() if isinstance(args, dict) else vars(args).items():
             setattr(self.args, key, value)
-
-        self.imagenet_norm = imagenet_norm
         
         self.hidden_dim = hdim = self.args.hidden_dim
         self.context_dim = cdim = self.args.hidden_dim
@@ -98,14 +96,8 @@ class RAFT(nn.Module):
             self.args.mixed_precision = False
             test_mode = True
             
-
-        # image1 = (2 * (image1 / 255.0) - 1.0).contiguous()
-        # image2 = (2 * (image2 / 255.0) - 1.0).contiguous()
-        if not self.imagenet_norm:
-            mean = torch.tensor([0.485, 0.456, 0.406], device=image1.device).view(1, 3, 1, 1)
-            std = torch.tensor([0.229, 0.224, 0.225], device=image1.device).view(1, 3, 1, 1)
-            image1 = 2 * (image1 * std + mean) - 1.0
-            image2 = 2 * (image2 * std + mean) - 1.0
+        image1 = (2 * (image1 / 255.0) - 1.0).contiguous()
+        image2 = (2 * (image2 / 255.0) - 1.0).contiguous()
 
         hdim = self.hidden_dim
         cdim = self.context_dim

@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import argparse
 from pathlib import Path
+import torchvision
 
 
 try:
@@ -26,6 +27,13 @@ from .warp import disp_warp
 # sys.path.append('./Depth-Anything-V2-list3')
 from ..depth_anything_v2.dpt import DepthAnythingV2, DepthAnythingV2_decoder
 
+
+def normalize_image(img):
+    '''
+    @img: (B,C,H,W) in range 0-255, RGB order
+    '''
+    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+    return tf(img/255.0).contiguous()
 
     
 def compute_scale_shift(monocular_depth, gt_depth, mask=None):
@@ -223,7 +231,7 @@ class Feat_transfer(nn.Module):
 
 
 class Monster(nn.Module):
-    def __init__(self, args={}, imagenet_norm=False):
+    def __init__(self, args={}):
         super().__init__()
 
         self.args = argparse.Namespace(
@@ -243,9 +251,7 @@ class Monster(nn.Module):
 
         for key, value in args.items() if isinstance(args, dict) else vars(args).items():
             setattr(self.args, key, value)
-        
-        self.imagenet_norm = imagenet_norm
-        
+                
         context_dims = self.args.hidden_dims
 
         self.intermediate_layer_idx = {
@@ -390,13 +396,8 @@ class Monster(nn.Module):
             
         ## image1 = (2 * (image1 / 255.0) - 1.0).contiguous()
         ## image2 = (2 * (image2 / 255.0) - 1.0).contiguous()
-
-        if not self.imagenet_norm:
-            mean = torch.tensor([0.485, 0.456, 0.406], device=image1.device).view(1, 3, 1, 1)
-            std = torch.tensor([0.229, 0.224, 0.225], device=image1.device).view(1, 3, 1, 1)
-            image1 = 2 * (image1 * std + mean) - 1.0
-            image2 = 2 * (image2 * std + mean) - 1.0
-
+        image1 = normalize_image(image1)
+        image2 = normalize_image(image2)
 
         with torch.autocast(device_type='cuda', dtype=torch.float32): 
             depth_mono, features_mono_left,  features_mono_right = self.infer_mono(image1, image2)

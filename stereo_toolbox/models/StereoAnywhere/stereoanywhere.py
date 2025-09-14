@@ -3,12 +3,11 @@ from types import SimpleNamespace
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-
 from pathlib import Path
+import torchvision
 
 from .extractor import BasicEncoder, MultiBasicEncoder
 from .update import BasicMultiUpdateBlock
@@ -16,6 +15,14 @@ from .corr import CorrBlock1D, CorrBlockFast1D
 from .utils.utils import *
 from .hourglass import Hourglass, HourglassIdentity
 from .depth_anything_v2 import *
+
+
+def normalize_image(img):
+    '''
+    @img: (B,C,H,W) in range 0-255, RGB order
+    '''
+    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+    return tf(img/255.0).contiguous()
 
 
 class StereoAnywhere(nn.Module):
@@ -116,7 +123,10 @@ class StereoAnywhere(nn.Module):
         if self.training:
             test_mode = False
         else:
-            test_mode = True        
+            test_mode = True
+
+        image2 = normalize_image(image2)
+        image3 = normalize_image(image3)
 
         B, C, H, W = image2.shape
 

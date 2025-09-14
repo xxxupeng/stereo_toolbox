@@ -7,9 +7,17 @@ import torch.nn.functional as F
 import math
 import gc
 import time
+import torchvision
 
 from .submodule import *
 
+
+def normalize_image(img):
+    '''
+    @img: (B,C,H,W) in range 0-255, RGB order
+    '''
+    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+    return tf(img/255.0).contiguous()
 
 
 class feature_extraction(nn.Module):
@@ -160,6 +168,8 @@ class ACVNet(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self, left, right):
+        left = normalize_image(left)
+        right = normalize_image(right)
 
         if self.freeze_attn_weights:
             with torch.no_grad():

@@ -28,12 +28,12 @@ class Stereo_Dataset(Dataset):
     __getitem__(index):
         Retrieves and processes a data sample at the specified index, applying augmentations if in training mode.
         Returns a dictionary containing the requested data types:
-            - ref (torch.Tensor): Reference image in C*H*W format, values in [0, 1].
-            - tgt (torch.Tensor): Target image in C*H*W format, values in [0, 1].
+            - ref (torch.Tensor): Reference image in C*H*W format, values in [0, 255].
+            - tgt (torch.Tensor): Target image in C*H*W format, values in [0, 255].
             - gt_disp (torch.Tensor): Ground truth disparity map in H*W format, with 0 indicating invalid pixels.
-            - noc_mask (torch.Tensor): Non-occluded mask in H*W format, with 0 for occluded and 1 for non-occluded pixels.
-            - raw_ref (torch.Tensor): Unaugmented reference image in C*H*W format, values in [0, 1].
-            - raw_tgt (torch.Tensor): Unaugmented target image in C*H*W format, values in [0, 1].
+            - noc_mask (torch.Tensor): Non-occluded mask in H*W format, with Flase for occluded and True for non-occluded pixels.
+            - raw_ref (torch.Tensor): Unaugmented reference image in C*H*W format, values in [0, 255].
+            - raw_tgt (torch.Tensor): Unaugmented target image in C*H*W format, values in [0, 255].
             - ref_filename (str): Filename of the reference image.
             - top_pad (int): Number of pixels padded at the top during testing.
             - right_pad (int): Number of pixels padded on the right during testing.
@@ -116,8 +116,11 @@ class Stereo_Dataset(Dataset):
         aug_data = self.augmentor(**data)
         for k in aug_data:
             if aug_data[k] is not None:
-                if len(aug_data[k].shape) == 3:
-                    aug_data[k] = torch.from_numpy(aug_data[k]).permute(2, 0, 1).float()
+                if k in ['ref', 'tgt', 'raw_ref', 'raw_tgt']:
+                    # change to C*H*W
+                    aug_data[k] = torch.from_numpy(aug_data[k]).permute(2, 0, 1)    # uint8, 0-255
+                elif k == 'noc_mask':
+                    aug_data[k] = torch.from_numpy(aug_data[k]).bool()
                 else:
                     aug_data[k] = torch.from_numpy(aug_data[k]).float()
             else:

@@ -5,6 +5,7 @@
 import torch
 import torch.nn as nn
 import argparse
+import torchvision
 
 from .feat_extractor_backbone import build_backbone
 from .feat_extractor_tokenizer import build_tokenizer
@@ -12,6 +13,14 @@ from .pos_encoder import build_position_encoding
 from .regression_head import build_regression_head
 from .transformer import build_transformer
 from .utilities.misc import batched_index_select, NestedTensor
+
+
+def normalize_image(img):
+    '''
+    @img: (B,C,H,W) in range 0-255, RGB order
+    '''
+    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+    return tf(img/255.0).contiguous()
 
 
 class STTR(nn.Module):
@@ -96,6 +105,9 @@ class STTR(nn.Module):
             - "occ_pred" [N,H,W]: predicted occlusion mask
             - "disp_pred_low_res" [N,H//s,W//s]: predicted low res (raw) disparity
         """
+
+        left = normalize_image(left)
+        right = normalize_image(right)
 
         bs, _, h, w = left.shape
         if self.args.downsample <= 0:
