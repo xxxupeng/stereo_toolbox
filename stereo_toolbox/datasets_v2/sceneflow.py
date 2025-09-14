@@ -7,9 +7,14 @@ from .stereodataset import Stereo_Dataset
 from .utils import pfm_imread
 
 class SceneFlow_Dataset(Stereo_Dataset):
-    def load_image_list(self, data_path='/data/xp/Scene_Flow/'):
+    def load_image_list(self, data_path='/data1/xp/Scene_Flow/'):
         if self.data_path is not None:
             data_path = self.data_path
+
+        # 判断 data_path 是否存在，如果不存在则改为'/data/xp/Scene_Flow/'
+        if not osp.exists(data_path):
+            data_path = '/data/xp/Scene_Flow/'
+            print(f"Warning: {data_path} does not exist. Using '/data/xp/Scene_Flow/' instead.")
 
         if self.split == 'train':
             # FlyingThings3D

@@ -7,9 +7,14 @@ from .stereodataset import Stereo_Dataset
 
 
 class KITTI2015_Dataset(Stereo_Dataset):
-    def load_image_list(self, data_path='/data/xp/KITTI_2015/'):
+    def load_image_list(self, data_path='/data1/xp/KITTI_2015/'):
         if self.data_path is not None:
             data_path = self.data_path
+
+        # 判断 data_path 是否存在，如果不存在则改为'/data/xp/KITTI_2015/'
+        if not osp.exists(data_path):
+            data_path = '/data/xp/KITTI_2015/'
+            print(f"Warning: {data_path} does not exist. Using '/data/xp/KITTI_2015/' instead.")
 
         if self.split == 'train':
             self.ref_list = sorted(glob(osp.join(data_path, 'training/image_2/*_10.png')))
@@ -37,15 +42,20 @@ class KITTI2015_Dataset(Stereo_Dataset):
             return None
         
         disp = Image.open(filename.replace('disp_occ_0', 'disp_noc_0'))
-        noc_mask = np.array(disp, dtype=np.float32) > 0
+        noc_mask = np.array(disp) > 0
         return noc_mask.astype(np.uint8)
     
 
 
 class KITTI2012_Dataset(Stereo_Dataset):
-    def load_image_list(self, data_path='/data/xp/KITTI_2012/'):
+    def load_image_list(self, data_path='/data1/xp/KITTI_2012/'):
         if self.data_path is not None:
             data_path = self.data_path
+
+        # 判断 data_path 是否存在，如果不存在则改为'/data/xp/KITTI_2012/'
+        if not osp.exists(data_path):
+            data_path = '/data/xp/KITTI_2012/'
+            print(f"Warning: {data_path} does not exist. Using '/data/xp/KITTI_2012/' instead.")
 
         if self.split == 'train':
             self.ref_list = sorted(glob(osp.join(data_path, 'training/colored_0/*_10.png')))
@@ -73,5 +83,5 @@ class KITTI2012_Dataset(Stereo_Dataset):
             return None
         
         disp = Image.open(filename.replace('disp_occ', 'disp_noc'))
-        noc_mask = np.array(disp, dtype=np.float32) > 0
+        noc_mask = np.array(disp) > 0
         return noc_mask.astype(np.uint8)
