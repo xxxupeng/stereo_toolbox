@@ -245,6 +245,7 @@ class Monster(nn.Module):
             train_iters=22,
             valid_iters=32,
             mixed_precision=False,
+            precision_dtype=None,
             encoder='vitl',
             max_disp=192,
         )
@@ -369,13 +370,13 @@ class Monster(nn.Module):
 
     def upsample_disp(self, disp, mask_feat_4, stem_2x):
 
-        # with autocast(enabled=self.args.mixed_precision):
-        xspx = self.spx_2_gru(mask_feat_4, stem_2x)
-        spx_pred = self.spx_gru(xspx)
-        spx_pred = F.softmax(spx_pred, 1)
-        up_disp = context_upsample(disp*4., spx_pred).unsqueeze(1)
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
+            xspx = self.spx_2_gru(mask_feat_4, stem_2x)
+            spx_pred = self.spx_gru(xspx)
+            spx_pred = F.softmax(spx_pred, 1)
+            up_disp = context_upsample(disp*4., spx_pred).unsqueeze(1)
 
-        return up_disp
+            return up_disp
 
 
     def forward(self, image1, image2, iters=None, flow_init=None, test_mode=False):
@@ -399,7 +400,7 @@ class Monster(nn.Module):
         image1 = normalize_image(image1)
         image2 = normalize_image(image2)
 
-        with torch.autocast(device_type='cuda', dtype=torch.float32): 
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             depth_mono, features_mono_left,  features_mono_right = self.infer_mono(image1, image2)
 
         scale_factor = 0.25
@@ -462,7 +463,7 @@ class Monster(nn.Module):
                 if itr == int(iters-7):
                     bs, _, _, _ = disp.shape
                     for i in range(bs):
-                        with torch.autocast(device_type='cuda', dtype=torch.float32): 
+                        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
                             scale, shift = compute_scale_shift(disp_mono_4x[i].clone().squeeze(1).to(torch.float32), disp[i].clone().squeeze(1).to(torch.float32))
                         disp_mono_4x[i] = scale * disp_mono_4x[i] + shift
                 

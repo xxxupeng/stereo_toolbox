@@ -136,6 +136,7 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
             low_memory=0,
             max_disp=416,
             mixed_precision=True,
+            precision_dtype=None,
             n_downsample=2,
             n_gru_layers=3,
             slow_fast_gru=False,
@@ -202,7 +203,7 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
 
     def upsample_disp(self, disp, mask_feat_4, stem_2x):
 
-        with autocast(enabled=self.args.mixed_precision):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             xspx = self.spx_2_gru(mask_feat_4, stem_2x)   # 1/2 resolution
             spx_pred = self.spx_gru(xspx)
             spx_pred = F.softmax(spx_pred, 1)
@@ -234,7 +235,7 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
         image1 = normalize_image(image1)
         image2 = normalize_image(image2)
 
-        with autocast(enabled=self.args.mixed_precision):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             out, vit_feat = self.feature(torch.cat([image1, image2], dim=0))
             vit_feat = vit_feat[:B]
             features_left = [o[:B] for o in out]
@@ -273,7 +274,7 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
         for itr in range(iters):
             disp = disp.detach()
             geo_feat = geo_fn(disp, coords, low_memory=low_memory)
-            with autocast(enabled=self.args.mixed_precision):
+            with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
               net_list, mask_feat_4, delta_disp = self.update_block(net_list, inp_list, geo_feat, disp, att)
 
             disp = disp + delta_disp.float()

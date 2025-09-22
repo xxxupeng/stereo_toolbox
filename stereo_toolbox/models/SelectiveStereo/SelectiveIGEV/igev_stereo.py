@@ -99,7 +99,7 @@ class IGEVStereo(nn.Module):
             max_disp=192,
             valid_iters=32,
             train_iters=22,
-            precision_dtype='float16',
+            precision_dtype=None,
             mixed_precision=False,
             corr_levels=2,
             corr_radius=4,
@@ -154,7 +154,7 @@ class IGEVStereo(nn.Module):
 
     def upsample_disp(self, disp, mask_feat_4, stem_2x):
 
-        with autocast(enabled=self.args.mixed_precision, dtype=getattr(torch, self.args.precision_dtype, torch.float16)):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             xspx = self.spx_2_gru(mask_feat_4, stem_2x)
             spx_pred = self.spx_gru(xspx)
             spx_pred = F.softmax(spx_pred, 1)
@@ -182,7 +182,7 @@ class IGEVStereo(nn.Module):
         image1 = (2 * (image1 / 255.0) - 1.0).contiguous()
         image2 = (2 * (image2 / 255.0) - 1.0).contiguous()
 
-        with autocast(enabled=self.args.mixed_precision, dtype=getattr(torch, self.args.precision_dtype, torch.float16)):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             features_left = self.feature(image1)
             features_right = self.feature(image2)
             stem_2x = self.stem_2(image1)
@@ -228,7 +228,7 @@ class IGEVStereo(nn.Module):
         for itr in range(iters):
             disp = disp.detach()
             geo_feat = geo_fn(disp, coords)
-            with autocast(enabled=self.args.mixed_precision, dtype=getattr(torch, self.args.precision_dtype, torch.float16)):
+            with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
                 net_list, mask_feat_4, delta_disp = self.update_block(net_list, inp_list, geo_feat, disp, att)
             disp = disp + delta_disp
             if test_mode and itr < iters-1:

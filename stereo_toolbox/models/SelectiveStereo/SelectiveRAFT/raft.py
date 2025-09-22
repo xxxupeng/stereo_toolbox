@@ -35,7 +35,7 @@ class RAFT(nn.Module):
             train_iters=22,
             valid_iters=32,
             mixed_precision=False,
-            precision_dtype='float16'
+            precision_dtype=None,
         )
 
         for key, value in args.items() if isinstance(args, dict) else vars(args).items():
@@ -103,7 +103,7 @@ class RAFT(nn.Module):
         cdim = self.context_dim
 
         # run the feature network
-        with autocast(enabled=self.args.mixed_precision, dtype=getattr(torch, self.args.precision_dtype, torch.float16)):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             fmap1 = self.fnet(image1)
             fmap2 = self.fnet(image2)
         fmap1 = fmap1.float()
@@ -123,7 +123,7 @@ class RAFT(nn.Module):
         corr_fn = corr_block(fmap1, fmap2, radius=self.args.corr_radius, num_levels=self.args.corr_levels)
 
         # run the context network
-        with autocast(enabled=self.args.mixed_precision, dtype=getattr(torch, self.args.precision_dtype, torch.float16)):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             cnet = self.cnet(image1)
             net = [torch.tanh(x[0]) for x in cnet]
             inp = [torch.relu(x[1]) for x in cnet]
@@ -141,7 +141,7 @@ class RAFT(nn.Module):
             corr = corr_fn(coords1) # index correlation volume
 
             disp = coords1 - coords0
-            with autocast(enabled=self.args.mixed_precision, dtype=getattr(torch, self.args.precision_dtype, torch.float16)):
+            with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
                 net, up_mask, delta_disp = self.update_block(net, inp, corr, disp, att)
 
             # F(t+1) = F(t) + \Delta(t)

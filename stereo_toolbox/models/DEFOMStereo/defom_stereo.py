@@ -37,6 +37,7 @@ class DEFOMStereo(nn.Module):
 
         self.args = argparse.Namespace(
             mixed_precision=False,
+            precision_dtype=None,
             valid_iters=32,
             train_iters=18,
             scale_iters=8,
@@ -130,7 +131,7 @@ class DEFOMStereo(nn.Module):
         danv2_io_sizes = get_danv2_io_size(h, w, self.args.n_downsample)
 
         # run the context network
-        with autocast(enabled=self.args.mixed_precision):
+        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
             d_features, dfeat1, dfeat2, disp = self.defomencoder([image1, image2], danv2_io_sizes)
 
             cnet_list = self.cnet(image1, d_features)
@@ -153,7 +154,7 @@ class DEFOMStereo(nn.Module):
 
             if itr < scale_iters:
                 corr = corr_fn(disp, scaling=True)  # index correlation volume
-                with autocast(enabled=self.args.mixed_precision):
+                with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
                     net_list, up_mask, scale_disp = self.scale_update_block(net_list, inp_list, corr, disp,
                                                                             iter32=self.args.n_gru_layers == 3,
                                                                             iter16=self.args.n_gru_layers >= 2)
@@ -162,7 +163,7 @@ class DEFOMStereo(nn.Module):
                 disp = scale_disp * disp
             else:
                 corr = corr_fn(disp, scaling=False)  # index correlation volume
-                with autocast(enabled=self.args.mixed_precision):
+                with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
                     net_list, up_mask, delta_disp = self.update_block(net_list, inp_list, corr, disp,
                                                                       iter32=self.args.n_gru_layers == 3,
                                                                       iter16=self.args.n_gru_layers >= 2)
