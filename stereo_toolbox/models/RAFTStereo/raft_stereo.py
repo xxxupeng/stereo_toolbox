@@ -139,7 +139,7 @@ class RAFTStereo(nn.Module):
         coords0, coords1 = self.initialize_flow(net_list[0])
 
         if flow_init is not None:
-            coords1 = coords1 + flow_init
+            coords1 = (coords1 + flow_init).clamp(min=0)
 
         flow_predictions = []
         for itr in range(iters):
