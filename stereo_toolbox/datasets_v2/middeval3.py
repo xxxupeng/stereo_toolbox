@@ -50,6 +50,7 @@ class MiddEval3_Dataset(Stereo_Dataset):
         
         disp, _ = pfm_imread(filename)
         disp = np.ascontiguousarray(disp, dtype=np.float32)
+        disp[disp == float('inf')] = 0
         return disp
     
 
