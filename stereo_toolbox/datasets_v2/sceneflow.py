@@ -13,9 +13,9 @@ class SceneFlow_Dataset(Stereo_Dataset):
 
         # 判断 data_path 是否存在，如果不存在则改为'/data/xp/Scene_Flow/'
         if not osp.exists(data_path):
-            data_path = '/data/xp/Scene_Flow/'
             print(f"Warning: {data_path} does not exist. Using '/data/xp/Scene_Flow/' instead.")
-
+            data_path = '/data/xp/Scene_Flow/'
+            
         if self.split == 'train':
             # FlyingThings3D
             self.ref_list = sorted(glob(osp.join(data_path, 'frames_finalpass/TRAIN/*/*/left/*.png')))

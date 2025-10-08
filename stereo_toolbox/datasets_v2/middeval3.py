@@ -28,9 +28,8 @@ class MiddEval3_Dataset(Stereo_Dataset):
 
         # 判断 data_path 是否存在，如果不存在则改为'/data/xp/MiddEval3/'
         if not osp.exists(data_path):
-            data_path = '/data/xp/MiddEval3/'
             print(f"Warning: {data_path} does not exist. Using '/data/xp/MiddEval3/' instead.")
-
+            data_path = '/data/xp/MiddEval3/'
     
         if self.split == 'train':
             self.ref_list = sorted(glob(osp.join(data_path, f'training{self.resolution}/*/im0.png')))

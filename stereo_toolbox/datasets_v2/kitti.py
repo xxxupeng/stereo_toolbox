@@ -13,8 +13,8 @@ class KITTI2015_Dataset(Stereo_Dataset):
 
         # 判断 data_path 是否存在，如果不存在则改为'/data/xp/KITTI_2015/'
         if not osp.exists(data_path):
-            data_path = '/data/xp/KITTI_2015/'
             print(f"Warning: {data_path} does not exist. Using '/data/xp/KITTI_2015/' instead.")
+            data_path = '/data/xp/KITTI_2015/'
 
         if self.split == 'train':
             self.ref_list = sorted(glob(osp.join(data_path, 'training/image_2/*_10.png')))
@@ -54,9 +54,9 @@ class KITTI2012_Dataset(Stereo_Dataset):
 
         # 判断 data_path 是否存在，如果不存在则改为'/data/xp/KITTI_2012/'
         if not osp.exists(data_path):
-            data_path = '/data/xp/KITTI_2012/'
             print(f"Warning: {data_path} does not exist. Using '/data/xp/KITTI_2012/' instead.")
-
+            data_path = '/data/xp/KITTI_2012/'
+            
         if self.split == 'train':
             self.ref_list = sorted(glob(osp.join(data_path, 'training/colored_0/*_10.png')))
             self.tgt_list = [x.replace('colored_0', 'colored_1') for x in self.ref_list]
