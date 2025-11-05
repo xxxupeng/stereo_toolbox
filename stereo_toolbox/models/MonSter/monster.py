@@ -67,7 +67,8 @@ def compute_scale_shift(monocular_depth, gt_depth, mask=None):
     # 使用最小二乘法计算 [scale, shift]
     A = torch.matmul(X.t(), X) + 1e-6 * torch.eye(2, device=X.device)
     b = torch.matmul(X.t(), y)
-    params = torch.linalg.solve(A, b)
+    with autocast(enabled=False):
+        params = torch.linalg.solve(A.float(), b.float())
     
     scale, shift = params[0].item(), params[1].item()
     
@@ -370,13 +371,12 @@ class Monster(nn.Module):
 
     def upsample_disp(self, disp, mask_feat_4, stem_2x):
 
-        with autocast(enabled=self.args.mixed_precision, dtype=self.args.precision_dtype):
-            xspx = self.spx_2_gru(mask_feat_4, stem_2x)
-            spx_pred = self.spx_gru(xspx)
-            spx_pred = F.softmax(spx_pred, 1)
-            up_disp = context_upsample(disp*4., spx_pred).unsqueeze(1)
+        xspx = self.spx_2_gru(mask_feat_4, stem_2x)
+        spx_pred = self.spx_gru(xspx)
+        spx_pred = F.softmax(spx_pred, 1)
+        up_disp = context_upsample(disp*4., spx_pred).unsqueeze(1)
 
-            return up_disp
+        return up_disp
 
 
     def forward(self, image1, image2, iters=None, flow_init=None, test_mode=False):
