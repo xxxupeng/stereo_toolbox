@@ -136,9 +136,9 @@ class StereoAugmentor:
         pad_right = new_w - w
 
         if len(img.shape) == 3:
-            padded_img = np.pad(img, ((0, pad_top), (0, pad_right), (0, 0)), mode='constant', constant_values=0)
+            padded_img = np.pad(img, ((pad_top, 0), (0, pad_right), (0, 0)), mode='constant', constant_values=0)
         elif len(img.shape) == 2:
-            padded_img = np.pad(img, ((0, pad_top), (0, pad_right)), mode='constant', constant_values=0)
+            padded_img = np.pad(img, ((pad_top, 0), (0, pad_right)), mode='constant', constant_values=0)
         else:
             raise ValueError(f"Unsupported image shape for padding. Current shape: {img.shape}")
         
