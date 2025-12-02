@@ -36,12 +36,12 @@ class MBS20K_Dataset(Stereo_Dataset):
 
         if self.split == 'train':
             self.ref_list = sorted(
-                [x for x in glob(osp.join(data_path, f"Town*/{self.weather if self.weather != 'All' else '*'}/*/rgb_0.png")) if 'Town10' not in x]
+                [x for x in glob(osp.join(data_path, f"Town*/{self.weather if self.weather.lower() != 'all' else '*'}/*/rgb_0.png")) if 'Town10' not in x]
             )
             self.tgt_list = [x.replace('rgb_0', f'rgb_{self.baseline_scale}') for x in self.ref_list]
             self.gt_disp_list = [x.replace('rgb_0', 'depth_0') for x in self.ref_list]
         elif self.split == 'test':
-            self.ref_list = sorted(glob(osp.join(data_path, f"Town10*/{self.weather if self.weather != 'all' else '*'}/*/rgb_0.png")))
+            self.ref_list = sorted(glob(osp.join(data_path, f"Town10*/{self.weather if self.weather.lower() != 'all' else '*'}/*/rgb_0.png")))
             self.tgt_list = [x.replace('rgb_0', f'rgb_{self.baseline_scale}') for x in self.ref_list]
             self.gt_disp_list = [x.replace('rgb_0', 'depth_0') for x in self.ref_list]
         else:
