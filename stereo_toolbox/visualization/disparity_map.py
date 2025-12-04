@@ -10,7 +10,7 @@ import cmapy
 import cv2
 
 
-def colored_disparity_map_Spectral_r(disp, maxval=0, save_file=None, mask_zero=True):
+def colored_disparity_map_Spectral_r(disp, maxval=None, minval=None, save_file=None, mask_zero=True):
     """
     BGR format
     """
@@ -21,10 +21,12 @@ def colored_disparity_map_Spectral_r(disp, maxval=0, save_file=None, mask_zero=T
     elif not isinstance(disp, np.ndarray):
         raise TypeError("disp must be a torch.Tensor or numpy.ndarray")
     
-    if maxval == 0:
+    if maxval is None:
         maxval = np.max(np.where(np.isinf(disp), -np.inf, disp))
+    if minval is None:
+        minval = 0
 
-    disp = (np.clip(disp.squeeze(), 0, maxval) / maxval * 255.0).astype(np.uint8)
+    disp = ((np.clip(disp.squeeze(), minval, maxval) - minval) / (maxval - minval) * 255.0).astype(np.uint8)
     assert disp.ndim == 2, "disp must be a 2D array"
 
     colored_disp = cv2.applyColorMap(disp, cmapy.cmap('Spectral_r'))
