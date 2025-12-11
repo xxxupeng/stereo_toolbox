@@ -17,7 +17,7 @@ from .SelectiveStereo.SelectiveIGEV.igev_stereo import IGEVStereo as SelectiveIG
 from .SelectiveStereo.SelectiveRAFT.raft import RAFT as SelectiveRAFT
 from .FoundationStereo.foundation_stereo import FoundationStereo
 from .StereoAnywhere import StereoAnywhere
-
+from .GMStereo.unimatch import UniMatch as GMStereo
 
 __models__ = {
     'psmnet': PSMNet,
@@ -36,6 +36,7 @@ __models__ = {
     'selectiveraft': SelectiveRAFT,
     'foundationstereo': FoundationStereo,
     'stereoanywhere': StereoAnywhere,
+    'gmstereo': GMStereo,
 }
 
 
