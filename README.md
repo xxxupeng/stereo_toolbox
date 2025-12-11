@@ -85,6 +85,7 @@ Returns a dictionary containing the requested data types:
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022, rename class `PWCNet` as `PCWNet`, two models `PCWNet_G` and `PCWNet_GC`, `mish` avtivation function only, return `disp_finetune` only when evaluation. |
 | ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
 | ✅ | [GMStereo(UniMatch)](https://github.com/autonomousvision/unimatch) | Transformer | T-PAMI 2023, return `results_dict['flow_preds'][-1]` only when evaluation. |
+| ✅ | [CroCoStereo(CroCov2)](https://github.com/naver/croco) | Transformer | ICCV 2023, set `overlap=0.7` |
 | ✅ | [SelectiveStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024, two models `SelectiveRAFT` and `SelectiveIGEV`, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024. |
 | ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024. |
@@ -161,6 +162,7 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  1.0391 | 8.1380 | 4.6462 | 3.5443 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 0.6790 | 5.7491 | 3.7320 | 2.9069 |
 | GMStereo | [GMStereo-scale2-regrefine3-resumeflowthings-sceneflow](https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth) | 0.6355 | 6.1353 | 3.4315 | 2.5237 |
+| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 1.6664 | 13.7177 | 9.1151 | 7.3592 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) | 0.6956 | 5.7341 | 3.7000 | 2.8816 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) | 0.6048 | 5.3667 | 3.4717 | 2.6904 |
 | MonSter<sup>&Dagger;</sup> | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.5201 | 4.5608 | 2.9705 | 2.3052 |
@@ -188,6 +190,7 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 1.1868 | 14.2606 | 5.5951 | 5.7924 | 1.0131 | 33.6624 | 4.9248 | 5.5936 | 1.5491 | 24.2787 | 7.2518 | 9.9079 | 0.7400 | 9.7601 | 4.0635 | 4.3856 |
 | GMStereo | [GMStereo-scale2-regrefine3-resumeflowthings-sceneflow](https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth) | 1.1957 | 19.4742 | 5.3210 | 5.6365 | 1.1021 | 36.7635 | 4.7391 | 5.4961 | 2.1188 | 41.0546 | 12.7984 | 16.6042 | 0.4013 | 14.3825 | 5.5249 | 5.8759 |
+| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 3.0037 | 37.6884 | 15.8052 | 16.1353 | 2.0608 | 41.7991 | 11.6353 | 12.2870 | 1.3362 | 22.6613 | 7.2370 | 9.5321 | 0.1725 |3.6289 | 1.9675 | 2.0427 |
 | [NerfStereo-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) | 1.1330 | 14.6178 | 5.2269 | 5.4257 | 0.8592 | 26.9731 | 3.5119 | 4.0440 | 1.6247 | 31.0983 | 6.7877 | 10.3770 | 0.2992 | 8.3545 | 2.7778 | 3.0729 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) | 1.2629 | 17.7190 | 6.0989 | 6.3532 | 1.0889 | 28.0310 | 4.9432 | 5.4576 | 1.6684 | 26.7379 | 7.5835 | 10.5572 | 0.3958 | 8.8286 | 3.8131 | 4.2670 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) | 1.2124 | 13.8184 | 5.7032 | 5.8859 | 1.0068 | 31.8457 | 5.0626 | 5.6780 | 1.3974 | 22.5942 | 6.7270 | 9.1742 | 0.4373 | 9.8115 | 4.0689 | 4.4284 |
@@ -218,13 +221,14 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | 0.0888 | 3067.07 | 0.2769 | 8629.70 | 0.6419 | 18680.02 | 35.94	 |35.94 |
 | IGEVStereo | 0.2363 | 686.43 | 0.3501 | 1504.02 | 0.6741 | 2988.35 | 12.60 |	12.60 |
 | GMStereo | 0.0571 | 937.78 | 0.2011 | 2792.14 | 0.6261 | 8412.21 | 7.35 | 7.35 |
+| CroCoStereo | 0.1710 | 2292.61 | 1.1333 | 2319.24 | 3.1700 | 2370.83 | 437.42 | 437.42 |
 | SelectiveRAFT | 0.1776 | 731.03 | 0.4253 | 1559.72 | 0.9899 | 3171.54 | 11.65 |	11.65 |
 | SelectiveIGEV | 0.1853 | 600.90 | 0.3843 | 1406.60 | 0.8850 | 2895.57 | 13.14	 |13.14 |
 | MonSter | 0.3375 | 2399.86 | 0.7188 | 3841.63 | 1.8735 | 6537.50 | 388.69	 |53.38 |
-| DEFOMStereo-S | 0.1957 | 1062.00 | 0.3423 | 2424.38 | 0.8829 | 4886.10 | 43.29	 |18.51 |
-| DEFOMStereo-L | 0.2483 | 2451.85 | 0.5966 | 4005.69 | 1.7410 | 6816.45 | 382.62	 |47.30 |
-| FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 | 62.34	 |37.55 |
-| FoundationStereo-L | 0.3327 | 2811.62 | 0.8369  | 5569.83 | 1.7758 | 10555.90 | 374.52 |	39.20 |
+| DEFOMStereo-S | 0.1957 | 1062.00 | 0.3423 | 2424.38 | 0.8829 | 4886.10 | 43.29 | 18.51 |
+| DEFOMStereo-L | 0.2483 | 2451.85 | 0.5966 | 4005.69 | 1.7410 | 6816.45 | 382.62 | 47.30 |
+| FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 | 62.34 |37.55 |
+| FoundationStereo-L | 0.3327 | 2811.62 | 0.8369  | 5569.83 | 1.7758 | 10555.90 | 374.52 | 39.20 |
 | StereoAnywhere | 0.4172 | 2785.66 | 0.8389 | 7810.07 | 2.6662 | 22433.76 | 346.75	 | 11.43 |
 
 
@@ -241,6 +245,7 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  0.9841 | 3.5835 | 1.0074 | 3.6724 | 1.9833 | 10.5247 | 1.1282 | 5.1968 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) |  1.0485 | 4.5893 | 1.1052 | 5.1544 | 2.2975 | 15.4724 | 1.0657 | 4.4922 |
 | GMStereo | [GMStereo-scale2-regrefine3-resumeflowthings-sceneflow](https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth) | 1.3744 | 6.8031 | 1.3299 | 7.0328 | 2.9797 | 16.7326 | 1.5465 | 9.7642 |
+| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 1.3744 | 6.8031 | 1.3299 | 7.0328 | 2.9797 | 16.7326 | 1.5465 | 9.7642 |
 | [NerfStereo-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) |  0.9003 | 2.8822 | 0.9145 | 2.9105 | 1.7485 | 10.2047 | 1.0682 | 3.9268 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) |  1.1099 | 4.8376 | 1.0555 | 4.4836 | 1.8238 | 13.9435 | 0.9648 | 3.4256 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) |  1.1242 | 5.0513 | 1.1139 | 5.2406 | 2.0507 | 13.5095 | 1.0679 | 4.1028 |

@@ -18,6 +18,7 @@ from .SelectiveStereo.SelectiveRAFT.raft import RAFT as SelectiveRAFT
 from .FoundationStereo.foundation_stereo import FoundationStereo
 from .StereoAnywhere import StereoAnywhere
 from .GMStereo.unimatch import UniMatch as GMStereo
+from .CroCoStereo.croco_downstream import CroCoDownstreamBinocular as CroCoStereo
 
 __models__ = {
     'psmnet': PSMNet,
@@ -37,6 +38,7 @@ __models__ = {
     'foundationstereo': FoundationStereo,
     'stereoanywhere': StereoAnywhere,
     'gmstereo': GMStereo,
+    'crocostereo': CroCoStereo,
 }
 
 
