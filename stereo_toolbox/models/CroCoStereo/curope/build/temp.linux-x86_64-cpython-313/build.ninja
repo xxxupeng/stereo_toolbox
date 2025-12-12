@@ -1,0 +1,38 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /usr/local/cuda-12.8/bin/nvcc
+
+cflags = -pthread -B /home/xp/anaconda3/compiler_compat -fno-strict-overflow -Wsign-compare -DNDEBUG -O2 -Wall -fPIC -O2 -isystem /home/xp/anaconda3/include -fPIC -O2 -isystem /home/xp/anaconda3/include -fPIC -I/home/xp/anaconda3/lib/python3.13/site-packages/torch/include -I/home/xp/anaconda3/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -I/usr/local/cuda-12.8/include -I/home/xp/anaconda3/include/python3.13 -c
+post_cflags = -O3 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=curope -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17
+cuda_cflags = -I/home/xp/anaconda3/lib/python3.13/site-packages/torch/include -I/home/xp/anaconda3/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -I/usr/local/cuda-12.8/include -I/home/xp/anaconda3/include/python3.13 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 --ptxas-options=-v --use_fast_math -gencode arch=compute_50,code=sm_50 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1016"' -DTORCH_EXTENSION_NAME=curope -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17
+cuda_dlink_post_cflags = 
+sycl_dlink_post_cflags = 
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc --generate-dependencies-with-compile --dependency-output $out.d $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+
+
+
+
+build /home/xp/stereo_toolbox/stereo_toolbox/models/CroCoStereo/curope/build/temp.linux-x86_64-cpython-313/curope.o: compile /home/xp/stereo_toolbox/stereo_toolbox/models/CroCoStereo/curope/curope.cpp
+build /home/xp/stereo_toolbox/stereo_toolbox/models/CroCoStereo/curope/build/temp.linux-x86_64-cpython-313/kernels.o: cuda_compile /home/xp/stereo_toolbox/stereo_toolbox/models/CroCoStereo/curope/kernels.cu
+
+
+
+
+
+
+
+
