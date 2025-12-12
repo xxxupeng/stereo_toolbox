@@ -19,6 +19,7 @@ from .FoundationStereo.foundation_stereo import FoundationStereo
 from .StereoAnywhere import StereoAnywhere
 from .GMStereo.unimatch import UniMatch as GMStereo
 from .CroCoStereo.croco_downstream import CroCoDownstreamBinocular as CroCoStereo
+from .IGEVStereoPlusPlus.igev_stereo import IGEVStereo as IGEVStereoPlusPlus
 
 __models__ = {
     'psmnet': PSMNet,
@@ -39,6 +40,7 @@ __models__ = {
     'stereoanywhere': StereoAnywhere,
     'gmstereo': GMStereo,
     'crocostereo': CroCoStereo,
+    'igevplusplus': IGEVStereoPlusPlus,
 }
 
 
