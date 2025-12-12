@@ -5,3 +5,4 @@ from .middeval3 import MiddEval3_Dataset
 from .mbs20k import MBS20K_Dataset
 from .scared import SCARED_Dataset
 from .eth3d import ETH3D_Dataset
+from .drivingstereo import DrivingStereo_Dataset
