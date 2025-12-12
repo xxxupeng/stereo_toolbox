@@ -7,10 +7,10 @@ import torch.optim as optim
 from tqdm import tqdm
 torch.backends.cudnn.benchmark = True
 
-from stereo_toolbox.datasets import KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset
+from stereo_toolbox.datasets_v2 import KITTI2015_Dataset, KITTI2012_Dataset, MiddEval3_Dataset, ETH3D_Dataset
 
 
-def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], splits = ['train_all', 'train_all', 'trainH_all', 'train_all'], maxdisp=192, write_ckpt=None, write_key='generalization'):
+def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], maxdisp=192, write_ckpt=None, write_key='generalization'):
     """
     Generalization evaluation on training sets of public datasets.
     Outliers threshold: kitti 2015 >3px; kitti 2012 >3px; middlebury eval3 >2px; eth3d >1px.
@@ -23,13 +23,15 @@ def generalization_eval(model, device='cuda:0', threshlods = [3, 3, 2, 1], split
 
     metrics = np.zeros((4, 4))
 
-    for idx, (dataset, threshlod, split) in enumerate(zip([KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset], threshlods, splits)):
-        testdataloader = DataLoader(dataset(split=split, training=False),
+    for idx, (dataset, threshlod) in enumerate(zip([KITTI2015_Dataset, KITTI2012_Dataset, MiddEval3_Dataset, ETH3D_Dataset], threshlods)):
+        testdataloader = DataLoader(dataset(split='train',
+                                            training=False,
+                                            requests=['ref', 'tgt', 'gt_disp', 'noc_mask'],),
                                     batch_size=1, num_workers=16, shuffle=False, drop_last=False)
         
         image_num = np.zeros(4)
         for data in testdataloader:
-            left, right, gt_disp, noc_mask = data['left'].to(device), data['right'].to(device), data['gt_disp'].to(device).squeeze(), data['noc_mask'].to(device).squeeze()
+            left, right, gt_disp, noc_mask = data['ref'].to(device), data['tgt'].to(device), data['gt_disp'].to(device).squeeze(), data['noc_mask'].to(device).squeeze()
 
             all_mask = (gt_disp > 0) * (gt_disp < maxdisp-1)
             noc_mask = noc_mask.bool() * all_mask

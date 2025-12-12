@@ -7,14 +7,17 @@ import torch.optim as optim
 from tqdm import tqdm
 torch.backends.cudnn.benchmark = True
 
-from stereo_toolbox.datasets import SceneFlow_Dataset
+from stereo_toolbox.datasets_v2 import SceneFlow_Dataset
 
 
-def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress=True, maxdisp=192, write_ckpt=None, write_key='sceneflow'):
+def sceneflow_test(model, device='cuda:0', show_progress=True, maxdisp=192, write_ckpt=None, write_key='sceneflow'):
     """
+    test on finalpass of SceneFlow dataset
     return epe / px, 1px 2px 3px ourliers / %
     """
-    testdataloader = DataLoader(SceneFlow_Dataset(split=split, training=False),
+    testdataloader = DataLoader(SceneFlow_Dataset(training=False,
+                                                  split='test',
+                                                  requests=['ref', 'tgt', 'gt_disp'],),
                                 batch_size=1, num_workers=16, shuffle=False, drop_last=False)
     if show_progress:
         testdataloader = tqdm(testdataloader, desc='SceneFlow Evaluation', ncols=100)
@@ -24,7 +27,7 @@ def sceneflow_test(model, split='test_finalpass', device='cuda:0', show_progress
     metrics = np.zeros(4)
 
     for idx, data in enumerate(testdataloader):
-        left, right, gt_disp = data['left'].to(device), data['right'].to(device), data['gt_disp'].to(device).squeeze()
+        left, right, gt_disp = data['ref'].to(device), data['tgt'].to(device), data['gt_disp'].to(device).squeeze()
 
         mask = (gt_disp > 0) * (gt_disp < maxdisp-1)
         valid_num = mask.sum().item()
