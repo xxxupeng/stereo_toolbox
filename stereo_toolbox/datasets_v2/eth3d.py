@@ -8,16 +8,6 @@ from .utils import pfm_imread
 
 
 class ETH3D_Dataset(Stereo_Dataset):
-    def __init__(self, 
-            data_path=None,
-            training=True,
-            split='train',
-            requests=['ref', 'tgt', 'gt_disp'],
-            aug_params = {},
-        ):
-
-        super().__init__(data_path, training, split, requests, aug_params)
-
 
     def load_image_list(self, data_path='/data1/xp/ETH3D/'):
         if self.data_path is not None:
