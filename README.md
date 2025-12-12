@@ -32,8 +32,7 @@ pip install stereo_toolbox
 | ✅ | [FallingThings_Dataset](https://research.nvidia.com/publication/2018-06_falling-things-synthetic-dataset-3d-object-detection-and-pose-estimation) | 61K+ | 0 | 0 | ❌ | Synthetic dataset with object models and backgrounds of complex composition and high graphical quality. |
 | ✅ | [VirtualKITTI2](https://europe.naverlabs.com/proxy-virtual-worlds-vkitti-2/) | 21K+ | 0 | 0 | ❌ | A more photo-realistic and better-featured version of the original virtual KITTI dataset. |
 | ✅ | [LayeredFlow](https://layeredflow.cs.princeton.edu) | ❌ | 400 | 600 | ❌ |  Indoor and outdoor dataset with non-Lambertian objects. |
-| ❌ | [TartanAir_Dataset]() | | |
-| ❌ | [SCARED]() | 
+
 
 
 **Dataloader Return:**
@@ -54,6 +53,9 @@ pip install stereo_toolbox
 | ✅ | [KITTI2012_Dataset](https://www.cvlibs.net/datasets/kitti/eval_stereo_flow.php?benchmark=stereo) | 192 | - | 195 | ✅ | Driving scene dataset. |
 | ✅ | [MiddleburyEval3_Dataset](https://vision.middlebury.edu/stereo/submit3) | 15 | - | 15 | ✅ | Indoor and outdoor scene dataset. |
 | ✅ | [SCARED]() | 35 | - | | ❌ | Endoscopic (Porcine cadavers) datasets with structured light data. |
+| ✅ | [MiddleburyEval3_Dataset](https://vision.middlebury.edu/stereo/submit3) | 15 | - | 15 | ✅ | Indoor and outdoor scene dataset. |
+| ✅ | [ETH3D_Dataset](https://www.eth3d.net/datasets) | 27 | - | 20 | ✅ | Indoor scene dataset with grayscale images. |
+| ✅ | [DrivingStereo_Dataset](https://drivingstereo-dataset.github.io/)| 174K+ | 7.7K+ | - | ❌ | Driving scene dataset with diverse weathers (sunny, cloudy, foggy, rainy). |
 
 **Dataloader Return:**
 Returns a dictionary containing the requested data types:
@@ -79,20 +81,21 @@ Returns a dictionary containing the requested data types:
 | ❌ | [DSMNet](https://github.com/feihuzhang/DSMNet) | 3D Conv. | ECCV 2020, need to compile. |
 | ✅ | [CFNet](https://github.com/gallenszl/CFNet) | 3D Conv. | CVPR 2021, `mish` avtivation function only, return `pred1_s2` only when evaluation. |
 | ✅ | [STTR](https://github.com/mli0603/stereo-transformer) | Transformer | ICCV 2021, return `output['disp_pred']` only when evaluation. |
-| ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021, add default `self.args` in `__init__()`, reset left as positive direction (i.e. invert all outputs), add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false). |
+| ✅ | [RaftStereo](https://github.com/princeton-vl/RAFT-Stereo) | Iterative | 3DV 2021, add default `self.args` in `__init__()`, reset left as positive direction (i.e. invert all outputs). |
 | ✅ | [ACVNet](https://github.com/gangweix/acvnet) | 3D Conv. | CVPR 2022. |
 | ❌ | [CREStereo](https://github.com/megvii-research/CREStereo) | Iterative | CVPR 2022, implemented by [MegEngine](https://github.com/MegEngine/MegEngine). |
 | ✅ | [PCWNet](https://github.com/gallenszl/PCWNet) | 3D Conv. | ECCV 2022, rename class `PWCNet` as `PCWNet`, two models `PCWNet_G` and `PCWNet_GC`, `mish` avtivation function only, return `disp_finetune` only when evaluation. |
-| ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | Iterative | CVPR 2023, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
+| ✅ | [IGEVStereo](https://github.com/gangweix/IGEV) | 3D Conv. + Iterative | CVPR 2023, timm==0.5.4. |
 | ✅ | [GMStereo(UniMatch)](https://github.com/autonomousvision/unimatch) | Transformer | T-PAMI 2023, return `results_dict['flow_preds'][-1]` only when evaluation. |
 | ✅ | [CroCoStereo(CroCov2)](https://github.com/naver/croco) | Transformer | ICCV 2023, set `overlap=0.7` |
-| ✅ | [SelectiveStereo](https://github.com/Windsrain/Selective-Stereo) | Iterative | CVPR 2024, two models `SelectiveRAFT` and `SelectiveIGEV`, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
+| ✅ | [SelectiveStereo](https://github.com/Windsrain/Selective-Stereo) | 3D Conv. + Iterative | CVPR 2024, two models `SelectiveRAFT` and `SelectiveIGEV`, add default `self.args` in `__init__()`, timm==0.5.4. |
 | ❌ | [MoChaStereo](https://github.com/ZYangChen/MoCha-Stereo) | Iterative | CVPR 2024. |
 | ❌ | [NMRF](https://github.com/aeolusguan/NMRF) | MRF | CVPR 2024. |
-| ✅ | [MonSter](https://github.com/Junda24/MonSter) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, add `imagenet_norm` parameter (true for normalization of imagenet's mean and std, false to rescale to [-1,1], default false), timm==0.5.4. |
-| ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, note that the used depthanythingv2 has additional interpolation step, timm<=0.6.5|
-| ✅ | [FoundationStereo](https://github.com/NVlabs/FoundationStereo) | Iterative | CVPR 2025 Best Paper Nomination,  add default `self.args` in `__init__()`, withdraw the input normalization as it has been done in our dataloader, timm==0.6.5. |
-| ✅ | [StereoAnywhere](https://github.com/bartn8/stereoanywhere) | Iterative | CVPR 2025, integrate depthanythingv2 into the forward process, withdraw the input normalization as it has been done in our dataloader. |
+| ✅ | [MonSter](https://github.com/Junda24/MonSter) | 3D Conv. + Iterative | CVPR 2025, add default `self.args` in `__init__()`, timm==0.5.4. |
+| ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, note that the used depthanythingv2 has additional interpolation step, timm<=0.6.5|
+| ✅ | [FoundationStereo](https://github.com/NVlabs/FoundationStereo) | 3D Conv. + Iterative | CVPR 2025 Best Paper Nomination,  add default `self.args` in `__init__()`, timm==0.6.5. |
+| ✅ | [StereoAnywhere](https://github.com/bartn8/stereoanywhere) | Iterative | CVPR 2025, integrate depthanythingv2 into the forward process. |
+| ✅ | [IGEVStereoPlusPluss (IGEV++)](https://github.com/gangweix/IGEV-plusplus) ｜3D Conv. + Iterative ｜ T-PAMI 2025， timm=0.5.4 |
 
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
 - All predictions are output as a list during training, and only the final disparity map is output during inference.
@@ -162,7 +165,7 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  1.0391 | 8.1380 | 4.6462 | 3.5443 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 0.6790 | 5.7491 | 3.7320 | 2.9069 |
 | GMStereo | [GMStereo-scale2-regrefine3-resumeflowthings-sceneflow](https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth) | 0.6355 | 6.1353 | 3.4315 | 2.5237 |
-| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 1.6664 | 13.7177 | 9.1151 | 7.3592 |
+| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 0.6822 | 5.1854 | 3.3273 |2.6104 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) | 0.6956 | 5.7341 | 3.7000 | 2.8816 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) | 0.6048 | 5.3667 | 3.4717 | 2.6904 |
 | MonSter<sup>&Dagger;</sup> | [sceneflow.pth](https://huggingface.co/cjd24/MonSter/blob/main/sceneflow.pth) | 0.5201 | 4.5608 | 2.9705 | 2.3052 |
@@ -171,6 +174,7 @@ Returns a dictionary containing the requested data types:
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.5165 | 4.0213 | 2.4983 | 1.9194 |
 | FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) | 0.4966 | 3.6243 | 2.2180 | 1.7123 |
 | StereoAnywhere<sup>&Dagger;</sup> | [sceneflow.tar](https://drive.google.com/drive/folders/1uQqNJo2iWoPtXlSsv2koAt2OPYHpuh1x) | 0.9109 | 7.9459% | 5.0610 | 4.0071 |
+| IGEV++ | [sceneflow.pth](https://drive.google.com/drive/folders/19WA5WeoSQGFxxyzq7ZhJFeptz4zwBNuq) | 0.6269 | 4.7347 | 2.8433 | 2.1624 |
 
 - <sup>&dagger;</sup>w/o occluded mask input
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
@@ -190,7 +194,7 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) | 1.7777 | 14.9532 | 5.5273 | 5.7416 | 0.9589 | 30.2184 | 4.0734 | 4.6669 | 3.1463 | 37.9880 | 12.1703 | 15.8633 | 0.5284 | 11.6673 | 5.2792 | 5.5360 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) | 1.1868 | 14.2606 | 5.5951 | 5.7924 | 1.0131 | 33.6624 | 4.9248 | 5.5936 | 1.5491 | 24.2787 | 7.2518 | 9.9079 | 0.7400 | 9.7601 | 4.0635 | 4.3856 |
 | GMStereo | [GMStereo-scale2-regrefine3-resumeflowthings-sceneflow](https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth) | 1.1957 | 19.4742 | 5.3210 | 5.6365 | 1.1021 | 36.7635 | 4.7391 | 5.4961 | 2.1188 | 41.0546 | 12.7984 | 16.6042 | 0.4013 | 14.3825 | 5.5249 | 5.8759 |
-| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 3.0037 | 37.6884 | 15.8052 | 16.1353 | 2.0608 | 41.7991 | 11.6353 | 12.2870 | 1.3362 | 22.6613 | 7.2370 | 9.5321 | 0.1725 |3.6289 | 1.9675 | 2.0427 |
+| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 5.3563 | 44.5432 | 19.8355 | 20.2043 | 3.3760 | 41.0264 | 13.8920 | 14.4562 | - | - | - | - | - | - | - | - |
 | [NerfStereo-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) | 1.1330 | 14.6178 | 5.2269 | 5.4257 | 0.8592 | 26.9731 | 3.5119 | 4.0440 | 1.6247 | 31.0983 | 6.7877 | 10.3770 | 0.2992 | 8.3545 | 2.7778 | 3.0729 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) | 1.2629 | 17.7190 | 6.0989 | 6.3532 | 1.0889 | 28.0310 | 4.9432 | 5.4576 | 1.6684 | 26.7379 | 7.5835 | 10.5572 | 0.3958 | 8.8286 | 3.8131 | 4.2670 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) | 1.2124 | 13.8184 | 5.7032 | 5.8859 | 1.0068 | 31.8457 | 5.0626 | 5.6780 | 1.3974 | 22.5942 | 6.7270 | 9.1742 | 0.4373 | 9.8115 | 4.0689 | 4.4284 |
@@ -202,10 +206,11 @@ Returns a dictionary containing the requested data types:
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) | 0.8812 | 9.3458 | 3.1114 | 3.2651 | 0.6646 | 16.5310 | 2.5713 | 2.8640 | 0.5377 | 10.6189 | 1.3074 | 2.7566 | 0.1612 | 2.5606 | 0.7094 | 0.7776 |
 | FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) | 0.8746 | 8.1694 | 3.1106 | 3.2388 | 0.6692 | 15.3932 | 2.6666 | 2.9389 | 0.5060 | 8.5997 | 1.1179 | 2.2698 | 0.1517 | 2.2747 | 0.5694 | 0.6525 |
 | StereoAnywhere<sup>&Dagger;</sup> | [sceneflow.tar](https://drive.google.com/drive/folders/1uQqNJo2iWoPtXlSsv2koAt2OPYHpuh1x) | 0.9531 | 11.2782 | 3.6955 | 3.8666 | 0.8347 | 21.6785 | 3.5198 | 3.9184 | 1.2584 | 20.7357 | 5.3881 | 7.629 | 0.2362 | 4.2515 | 1.5314 | 1.7172 |
-
+| IGEV++ | [sceneflow.pth](https://drive.google.com/drive/folders/19WA5WeoSQGFxxyzq7ZhJFeptz4zwBNuq) | 1.2942 | 16.6714 | 6.2537 | 6.4695 | 1.1315 | 34.6407 | 5.7610 | 6.4504 | 2.3679 | 26.2245 | 7.2190 | 10.0922 | 0.4844 | 5.8613 | 4.2269 | 4.2871 |
 
 - <sup>&dagger;</sup>trained on extra synthetic/real data.
 - <sup>&Dagger;</sup>employed the foundation model (DepthAnything v2).
+- CroCoStereo was trained with Middlebury and ETH3D datasets. 
 
 **Table 3: Inference speed (s) and memory (MB) usage.** Device: NVIDIA GeForce RTX 4090.
 
@@ -230,6 +235,7 @@ Returns a dictionary containing the requested data types:
 | FoundationStereo-S | 0.2792 | 4522.09 | 0.6896 | 7237.75 | 1.5627 | 12145.71 | 62.34 |37.55 |
 | FoundationStereo-L | 0.3327 | 2811.62 | 0.8369  | 5569.83 | 1.7758 | 10555.90 | 374.52 | 39.20 |
 | StereoAnywhere | 0.4172 | 2785.66 | 0.8389 | 7810.07 | 2.6662 | 22433.76 | 346.75	 | 11.43 |
+| IGEV++ |  0.2881 | 741.00 | 0.4362 | 2066.62 | 0.8782 | 4619.21 | 14.53  |14.53 |
 
 
 **Table 4: Generalization across different weathers.** The outlier threshold is set to 3.
@@ -245,7 +251,7 @@ Returns a dictionary containing the requested data types:
 | PCWNet_GC | [PCWNet_sceneflow_pretrain.ckpt](https://drive.google.com/file/d/18HglItUO7trfi-klXzqLq7KIDwPSVdAM/view) |  0.9841 | 3.5835 | 1.0074 | 3.6724 | 1.9833 | 10.5247 | 1.1282 | 5.1968 |
 | IGEVStereo | [sceneflow.pth](https://drive.google.com/drive/folders/1yqQ55j8ZRodF1MZAI6DAXjjre3--OYOX) |  1.0485 | 4.5893 | 1.1052 | 5.1544 | 2.2975 | 15.4724 | 1.0657 | 4.4922 |
 | GMStereo | [GMStereo-scale2-regrefine3-resumeflowthings-sceneflow](https://s3.eu-central-1.amazonaws.com/avg-projects/unimatch/pretrained/gmstereo-scale2-regrefine3-resumeflowthings-sceneflow-f724fee6.pth) | 1.3744 | 6.8031 | 1.3299 | 7.0328 | 2.9797 | 16.7326 | 1.5465 | 9.7642 |
-| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 1.3744 | 6.8031 | 1.3299 | 7.0328 | 2.9797 | 16.7326 | 1.5465 | 9.7642 |
+| CroCoStereo | [crocostereo.pth](https://download.europe.naverlabs.com/ComputerVision/CroCo/StereoFlow_models/crocostereo.pth) | 2.0420 | 8.2903 | 1.4104 | 5.7141 | 2.3852 | 16.8024 | 1.6361 | 6.3033 |
 | [NerfStereo-RAFT](https://github.com/fabiotosi92/NeRF-Supervised-Deep-Stereo)<sup>&dagger;</sup> | [raftstereo-NS.tar](https://drive.google.com/file/d/1zAX2q1Tr9EOypXv5kwkI4a_YTravdtsS/view) |  0.9003 | 2.8822 | 0.9145 | 2.9105 | 1.7485 | 10.2047 | 1.0682 | 3.9268 |
 | SelectiveRAFT | [sceneflow.pth](https://drive.google.com/drive/folders/14c5E8znK_F3wk-C_xiC4V2JT3yeDL48g) |  1.1099 | 4.8376 | 1.0555 | 4.4836 | 1.8238 | 13.9435 | 0.9648 | 3.4256 |
 | SelectiveIGEV | [sceneflow.pth](https://drive.google.com/drive/folders/1VyBzwQJAsKPXFpkcCWFn_IiAWWjpWYbz) |  1.1242 | 5.0513 | 1.1139 | 5.2406 | 2.0507 | 13.5095 | 1.0679 | 4.1028 |
@@ -257,6 +263,7 @@ Returns a dictionary containing the requested data types:
 | FoundationStereo-S<sup>&Dagger;</sup> | [11-33-40/model_best_bp2.pth](https://drive.google.com/drive/folders/1qKDRgdBJFRRRBf_UlInkmOiSzW9jiNDL) |  0.8651 | 2.7184 | 0.8791 | 2.5519 | 1.5783 | 13.4365 | 1.0134 | 3.3486 |
 | FoundationStereo-L<sup>&Dagger;</sup> | [23-51-11/model_best_bp2.pth](https://drive.google.com/drive/folders/1BbhoPliFqPJlrtD65TgNX49sJYuYcwA-) |  0.9427 | 3.1979 | 0.8918 | 2.6189 | 5.3590 | 26.9548 | 2.1145 | 5.6173 |
 | StereoAnywhere<sup>&Dagger;</sup> | [sceneflow.tar](https://drive.google.com/drive/folders/1uQqNJo2iWoPtXlSsv2koAt2OPYHpuh1x) |  0.9713 | 3.5070 | 0.9068 | 2.9285 | 1.3656 | 10.8506 | 0.9408 | 2.8968 |
+| IGEV++ | [sceneflow.pth](https://drive.google.com/drive/folders/19WA5WeoSQGFxxyzq7ZhJFeptz4zwBNuq) | 1.1330 | 4.9870 | 1.1195 | 5.1955 | 3.3631 | 17.1510 | 1.2028 | 5.9750 |
 
 
 ## 🙏 Acknowledgements
