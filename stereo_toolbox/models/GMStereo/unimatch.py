@@ -119,9 +119,8 @@ class UniMatch(nn.Module):
         results_dict = {}
         flow_preds = []
 
-        if task == 'flow':
-            # stereo and depth tasks have normalized img in dataloader
-            img0, img1 = normalize_img(img0, img1)  # [B, 3, H, W]
+        # stereo and depth tasks have normalized img in dataloader
+        img0, img1 = normalize_img(img0, img1)  # [B, 3, H, W]
 
         # list of features, resolution low to high
         feature0_list, feature1_list = self.extract_feature(img0, img1)  # list of features
