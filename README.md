@@ -95,7 +95,7 @@ Returns a dictionary containing the requested data types:
 | ✅ | [DEFOM-Stereo](https://github.com/Insta360-Research-Team/DEFOM-Stereo) | Iterative | CVPR 2025, add default `self.args` in `__init__()`, note that the used depthanythingv2 has additional interpolation step, timm<=0.6.5|
 | ✅ | [FoundationStereo](https://github.com/NVlabs/FoundationStereo) | 3D Conv. + Iterative | CVPR 2025 Best Paper Nomination,  add default `self.args` in `__init__()`, timm==0.6.5. |
 | ✅ | [StereoAnywhere](https://github.com/bartn8/stereoanywhere) | Iterative | CVPR 2025, integrate depthanythingv2 into the forward process. |
-| ✅ | [IGEVStereoPlusPluss (IGEV++)](https://github.com/gangweix/IGEV-plusplus) ｜3D Conv. + Iterative ｜ T-PAMI 2025， timm=0.5.4 |
+| ✅ | [IGEVStereoPlusPluss (IGEV++)](https://github.com/gangweix/IGEV-plusplus) | 3D Conv. + Iterative | T-PAMI 2025， timm=0.5.4 |
 
 - Unless specified, the maximum search disparity for cost volume filtering methods is set to 192.
 - All predictions are output as a list during training, and only the final disparity map is output during inference.
