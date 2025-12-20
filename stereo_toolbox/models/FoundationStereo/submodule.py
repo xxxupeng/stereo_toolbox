@@ -221,8 +221,15 @@ class FlashMultiheadAttention(nn.Module):
         K = K.view(K.size(0), K.size(1), self.num_heads, self.head_dim)
         V = V.view(V.size(0), V.size(1), self.num_heads, self.head_dim)
 
-        attn_output = flash_attn_func(Q, K, V, window_size=window_size)  # Replace with actual FlashAttention function
-
+        if Q.dtype in (torch.float16, torch.bfloat16):
+            attn_output = flash_attn_func(Q, K, V, window_size=window_size)
+        else:
+            q = Q.permute(0, 2, 1, 3)
+            k = K.permute(0, 2, 1, 3)
+            v = V.permute(0, 2, 1, 3)
+            attn_output = F.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=0.0, is_causal=False)
+            attn_output = attn_output.permute(0, 2, 1, 3)
+            
         attn_output = attn_output.reshape(B,L,-1)
         output = self.out_proj(attn_output)
 

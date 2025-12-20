@@ -135,7 +135,7 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
             hidden_dims=[128]*3,
             low_memory=0,
             max_disp=416,
-            mixed_precision=True,
+            mixed_precision=False,
             precision_dtype=None,
             n_downsample=2,
             n_gru_layers=3,
