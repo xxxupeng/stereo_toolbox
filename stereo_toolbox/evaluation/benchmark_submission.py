@@ -107,7 +107,7 @@ def benchmark_submission(model, device='cuda:0', save_dir='./tmp/'):
 
 
     os.system(f'cd {save_dir}/kitti2015/ && zip -r ../kitti2015.zip .')
-    os.system(f'cd {save_dir}kitti2012/disp_0/ && zip -r ../../kitti2012.zip .')
+    os.system(f'cd {save_dir}/kitti2012/disp_0/ && zip -r ../../kitti2012.zip .')
     os.system(f'cd {save_dir}/middlebury/ && zip -r ../middlebury.zip .')
     os.system(f'cd {save_dir}/eth3d/ && zip -r ../eth3d.zip .')
 
