@@ -11,7 +11,7 @@ torch.backends.cudnn.benchmark = True
 import cv2
 
 
-from stereo_toolbox.datasets import KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset
+# from stereo_toolbox.datasets_v2 import KITTI2015_Dataset, KITTI2012_Dataset, MiddEval3_Dataset, ETH3D_Dataset
 
 
 def writePFM(file, image, scale=1):
@@ -50,19 +50,20 @@ def benchmark_submission(model, device='cuda:0', save_dir='./tmp/'):
 
     dataset_names = ['kitti2015', 'kitti2012', 'middlebury', 'eth3d']
 
-    for idx, (dataset, split) in enumerate(zip([KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset],
-                                               ['test', 'test', 'testH', 'test'])):
+    for idx, dataset in enumerate([KITTI2015_Dataset, KITTI2012_Dataset, MiddEval3_Dataset, ETH3D_Dataset]):
         print(f'Processing {dataset_names[idx]} dataset...')
 
-        testdataloader = DataLoader(dataset(split=split, training=False),
+        testdataloader = DataLoader(dataset(split='test', training=False,
+                                            requests=['ref', 'tgt', 'top_pad', 'right_pad', 'ref_filename'],
+                                            **({'resolution':'H'} if idx==2 else {})),
                                     batch_size=1, num_workers=16, shuffle=False, drop_last=False)
         
         for i, data in enumerate(tqdm(testdataloader)):
-            left = data['left'].to(device)
-            right = data['right'].to(device)
-            top_pad = data['top_pad']
-            right_pad = data['right_pad']
-            left_filename = data['left_filename'][0]
+            left = data['ref'].to(device)
+            right = data['tgt'].to(device)
+            top_pad = int(data['top_pad'][0])
+            right_pad = int(data['right_pad'][0])
+            left_filename = data['ref_filename'][0]
 
             with torch.no_grad():
                 output = model(left, right).squeeze()
@@ -115,11 +116,12 @@ def benchmark_submission(model, device='cuda:0', save_dir='./tmp/'):
                 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':    
     import sys
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-    from datasets import KITTI2015_Dataset, KITTI2012_Dataset, MiddleburyEval3_Dataset, ETH3D_Dataset
-    from models import load_checkpoint_flexible, IGEVStereo
+    sys.path.insert(0, '/home/xp/stereo_toolbox/')
+
+    from stereo_toolbox.datasets_v2 import KITTI2015_Dataset, KITTI2012_Dataset, MiddEval3_Dataset, ETH3D_Dataset
+    from stereo_toolbox.models import load_checkpoint_flexible, IGEVStereo
 
     model = load_checkpoint_flexible(IGEVStereo(),
                                  '/home/xp/stereo_toolbox/stereo_toolbox/models/IGEVStereo/sceneflow.pth',
