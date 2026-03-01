@@ -49,13 +49,15 @@ class MBS20K_Dataset(Stereo_Dataset):
         
 
     def load_disparity(self, filename, focal_length=480, baseline=0.5):
-        depth = np.array(Image.open(filename).convert('RGB'))
-        depth = (depth @ [1, 256, 256**2]) * 1000 / (256**3 - 1)
-        depth[depth > 200] = -1 # ignore depth > 200m
+        depth_rgb = np.asarray(Image.open(filename).convert('RGB'), dtype=np.float32)
+        depth = (depth_rgb @ np.array([1.0, 256.0, 256.0**2], dtype=np.float32)) * (1000.0 / (256.0**3 - 1.0))
 
-        with np.errstate(divide='ignore', invalid='ignore'):
-            disp = (focal_length * baseline * self.baseline_scale) / depth
-            disp[~np.isfinite(disp)] = 0  # Replace NaN and inf with 0
+        # Depth encoding is 0~1000 where 1000 is infinity.
+        # Only keep valid metric depth in (0, 200]; set others to zero disparity.
+        valid = (depth > 0.0) & (depth <= 200.0)
+        disp = np.zeros_like(depth, dtype=np.float32)
+        scale = float(focal_length * baseline * self.baseline_scale)
+        disp[valid] = scale / depth[valid]
         return disp
     
         
